@@ -1,0 +1,5 @@
+safe: false
+lsi: false
+pygments: true
+paginate: 1
+permalink: /:categories/:title.html
