@@ -1,0 +1,4 @@
+paginate: 15
+permalink: /:categories/:title.html
+description: "Lynnelv's Blog"
+
