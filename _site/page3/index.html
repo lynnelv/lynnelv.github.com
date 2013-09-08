@@ -9,7 +9,7 @@
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<title>{{ page.title }} &raquo; Lynnelv's Blog</title>
+		<title> &raquo; Lynnelv's Blog</title>
 	</head>
 
 	<body class="home">
@@ -18,14 +18,60 @@
 				<div class="span2 side">
 					<ul>
 						<li><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog" /></li>
-						{% for category in site.categories %}
-						<li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
-						{% endfor %}
+						
+						<li><a href="/categories/life/">life</a></li>
+						
+						<li><a href="/categories/it/">it</a></li>
+						
 					</ul>
 				</div>
 				<div class="span9 offset1 content">
-					<h2>{{ page.title }}</h2>
-					<article>{{ content }}</article>
+					<h2></h2>
+					<article><ul>
+	
+	<li>
+	<p><a href="/it/first-blog.html">First Blog</a></p>
+	<p></p>
+	</li>
+	
+</ul>
+
+<div class="pagination" id="post-pagination">
+	<!---->
+	<!--<p class="previous">-->
+		<!--<a href="">上一页</a>-->
+	<!--</p>-->
+	<!---->
+
+	<ul class="pages">
+		
+		<li class="page">
+		
+		<a href="/">1</a>
+		
+		</li>
+		
+		<li class="page">
+		
+		<a href="/page2/">2</a>
+		
+		</li>
+		
+		<li class="page">
+		
+		<span class="current-page">3</span>
+		
+		</li>
+		
+	</ul>
+
+	<!---->
+	<!--<p class="next disabled">-->
+		<!--<span>下一页</span>-->
+	<!--</p>-->
+	<!---->
+</div>
+</article>
 				</div>
 			</div>
 		</div>
