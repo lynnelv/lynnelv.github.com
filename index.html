@@ -5,7 +5,7 @@ layout: default
 <ul>
 	{% for page in paginator.posts %}
 	<li>
-	<p>&nbsp;&nbsp;<a href="{{page.url}}">{{page.title}}</a></p>
+	<p><a href="{{page.url}}">{{page.title}}</a></p>
 	<p>{{ page.description }}</p>
 	</li>
 	{% endfor %}
@@ -23,12 +23,12 @@ layout: default
 	<!--{% endif %}-->
 
 	<ul class="pages">
-		{% for count in (2..paginator.total_pages) %}
+		{% for count in (1..paginator.total_pages) %}
 		<li class="page">
 		{% if count == paginator.page %}
 		<span class="current-page">{{ count }}</span>
 		{% else %}
-		<a href="/page{{ count }}">{{ count }}</a>
+		<a href="/{% if count > 1 %}page{{ count }}/{% endif %}">{{ count }}</a>
 		{% endif %}
 		</li>
 		{% endfor %}
