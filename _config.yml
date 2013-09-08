@@ -1,6 +1,6 @@
-markdown: redcarpet
 safe: false
 lsi: false
+markdown: redcarpet
 pygments: true
 paginate: 1
 permalink: /:categories/:title.html
