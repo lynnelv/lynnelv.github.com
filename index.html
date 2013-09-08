@@ -12,18 +12,18 @@ layout: default
 </ul>
 
 <div class="pagination" id="post-pagination">
-	{% if paginator.previous_page %}
-	<p class="previous">
-		<a href="{{ paginator.previous_page_path }}">上一页</a>
-	</p>
-	{% else %}
-	<p class="previous disabled">
-		<span>上一页</span>
-	</p>
-	{% endif %}
+	<!--{% if paginator.previous_page %}-->
+	<!--<p class="previous">-->
+		<!--<a href="{{ paginator.previous_page_path }}">上一页</a>-->
+	<!--</p>-->
+	<!--{% else %}-->
+	<!--<p class="previous disabled">-->
+		<!--<span>上一页</span>-->
+	<!--</p>-->
+	<!--{% endif %}-->
 
 	<ul class="pages">
-		{% for count in (1..paginator.total_pages) %}
+		{% for count in (2..paginator.total_pages) %}
 		<li class="page">
 		{% if count == paginator.page %}
 		<span class="current-page">{{ count }}</span>
@@ -34,13 +34,13 @@ layout: default
 		{% endfor %}
 	</ul>
 
-	{% if paginator.next_page %}
-	<p class="next">
-		<a href="{{ paginator.next_page_path }}">下一页</a>
-	</p>
-	{% else %}
-	<p class="next disabled">
-		<span>下一页</span>
-	</p>
-	{% endif %}
+	<!--{% if paginator.next_page %}-->
+	<!--<p class="next">-->
+		<!--<a href="{{ paginator.next_page_path }}">下一页</a>-->
+	<!--</p>-->
+	<!--{% else %}-->
+	<!--<p class="next disabled">-->
+		<!--<span>下一页</span>-->
+	<!--</p>-->
+	<!--{% endif %}-->
 </div>
