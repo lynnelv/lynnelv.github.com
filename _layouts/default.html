@@ -4,12 +4,18 @@
 		<meta charset='utf-8'>
 		<meta name="keywords" content="吕彦蓉, lynnelv, Blog, 博客, 吕彦蓉的博客" />
 		<meta name="Author" content="lynnelv" />
+		<link rel="shortcut icon" href="/img/icon.jpg" />
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<title>{{ page.title }} &raquo; Lynnelv's Blog</title>
+		<style type="text/css">
+			li {
+				list-style-type: none;
+			}
+		</style>
 	</head>
 
 	<body class="home">
@@ -17,7 +23,7 @@
 			<div class="row">
 				<div class="span2 side">
 					<ul>
-						<li><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog" /></li>
+						<li><a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog" /></a></li>
 						{% for category in site.categories %}
 						<li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
 						{% endfor %}

@@ -1,8 +1,4 @@
-safe: false
-lsi: false
-markdown: redcarpet
-pygments: true
-paginate: 1
+paginate: 15
 permalink: /:categories/:title.html
 description: "Lynnelv's Blog"
 
