@@ -3,7 +3,6 @@ layout: default
 ---
 {% for post in site.categories.[page.category] %}
 	<p>
-		{{ post.date | date_to_utc | date: '%Y-%m-%d'}} &raquo; 
-		<a href="{{ post.url }}">{{ post.title }}</a>
+		{{ post.date | date_to_utc | date: '%Y-%m-%d'}} &nbsp; &nbsp; &raquo; &nbsp; &nbsp; <a href="{{ post.url }}">{{ post.title }}</a>
 	</p>
 {% endfor %}

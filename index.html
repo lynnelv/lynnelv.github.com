@@ -5,7 +5,7 @@ layout: default
 <ul>
 	{% for page in paginator.posts %}
 	<li>
-	<p><a href="{{page.url}}">{{page.title}}</a></p>
+	{{ page.date | date_to_utc | date:'%Y-%m-%d' }} &nbsp; &nbsp; &raquo; &nbsp; &nbsp; <a href="{{page.url}}">{{page.title}}</a>
 	<p>{{ page.description }}</p>
 	</li>
 	{% endfor %}

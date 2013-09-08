@@ -22,8 +22,8 @@
 		<div class="container main">
 			<div class="row">
 				<div class="span2 side">
+					<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
 					<ul>
-						<li><a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog" /></a></li>
 						{% for category in site.categories %}
 						<li><a href="/categories/{{ category | first }}/">{{ category | first }}</a></li>
 						{% endfor %}
