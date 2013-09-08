@@ -23,6 +23,7 @@ layout: default
 	<!--{% endif %}-->
 
 	<ul class="pages">
+		{% if paginator.total_pages > 1 %}
 		{% for count in (1..paginator.total_pages) %}
 		<li class="page">
 		{% if count == paginator.page %}
@@ -32,6 +33,7 @@ layout: default
 		{% endif %}
 		</li>
 		{% endfor %}
+		{% endif %}
 	</ul>
 
 	<!--{% if paginator.next_page %}-->
