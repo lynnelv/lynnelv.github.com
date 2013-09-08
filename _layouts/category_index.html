@@ -1,3 +1,5 @@
+<a href="/">首页</a>
 {% for post in site.categories.[page.category] %}
-	{{ post.date }} &raquo; {{ post.title }}
+<p>{{ post.date }} &raquo; {{ post.title }}</p>
+<p><a href="{{ post.url }}"></a></p>
 {% endfor %}

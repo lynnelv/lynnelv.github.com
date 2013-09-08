@@ -3,8 +3,11 @@ layout: default
 ---
 
 <ul>
-	{% for post in site.posts %}
-	<li>{{ post.date | date_to_string }}&nbsp;&nbsp;<a href="{{post.url}}">{{post.title}}</a></li>
+	{% for page in paginator.posts %}
+	<li>
+	<p>{{ post.date | date_to_string }}&nbsp;&nbsp;<a href="{{page.url}}">{{page.title}}</a></p>
+	<p>{{ page.description }}</p>
+	</li>
 	{% endfor %}
 </ul>
 
