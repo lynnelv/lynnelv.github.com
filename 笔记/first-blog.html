@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta name="keywords" content="吕彦蓉, lynnelv, Blog, 博客, 吕彦蓉的博客" />
+		<meta name="Author" content="lynnelv" />
+		<link rel="shortcut icon" href="/img/icon.jpg" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>First Blog &raquo; Lynnelv's Blog</title>
+		<style type="text/css">
+			li {
+				list-style-type: none;
+			}
+		</style>
+	</head>
+
+	<body class="home">
+		<div class="container main">
+			<div class="row">
+				<div class="span2 side">
+					<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
+					<ul>
+						
+						<li><a href="/categories/笔记/">笔记</a></li>
+						
+					</ul>
+				</div>
+				<div class="span9 offset1 content">
+					<h2>First Blog</h2>
+					<article><p>2013-09-08&nbsp; &nbsp; | &nbsp; &nbsp; 分类：笔记</p>
+<p>捣鼓了一天，终于搭好Blog架子了，以后可以用程序猿的思维写Blog了，其实上个月就开始搭建了，中途遇到一些问题，
+像博文分类，原因是github不支持使用插件（_plugins/*），所以只有在让jekyll在本地编译好页面之后再push到github
+上。具体实现：创建一个dev分支，dev分支保存的是未编译的源文件，作为以后的工作分支；master分支存放本地jekyll
+生成的静态页面。先切换到master分支下：
+<p><code>git checkout master</code></p>
+<p><code>//新建一个.nojekyll文件（带.nojekyll的目录，github不会启用jekyll去build</code></p>
+<p><code>touch .nojekyll</code></p>
+然后切换回dev分支，让jekyll build页面，本地查看效果：
+<p><code>git checkout dev</code></p>
+<p><code>jekyll --server --auto</code></p>
+通过访问http://localhost:4000访问build出来的页面，OK之后push到master分支：
+<p><code>git checkout master</code></p>
+<p><code>cp -r _site/* .</code></p>
+<p><code>git add .</code></p>
+<p><code>git commit -m 'post to master'</code></p>
+<p><code>git push origin master</code></p>
+现在可以通过http://github.com/youname访问了，不过需要提交两个分支。</p>
+</article>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>
+			Copyright © 2013 lynnelv. <a href="http://weibo.com/lvyanrong">@飞鱼_笨懒懒</a>
+			</p>
+		</div>
+
+		<script type="text/javascript" charset="utf-8" src="/js/jquery-1.10.2.min.js"></script>
+	</body>
+</html>
