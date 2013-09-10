@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta name="keywords" content="吕彦蓉, lynnelv, Blog, 博客, 吕彦蓉的博客" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="description" content=""/>
+		<link rel="shortcut icon" href="/img/favicon.icon" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title> &raquo; Lynnelv's Blog</title>
+		<style type="text/css">
+			#search-box {
+				margin-top: 40px;
+				border: 0 none;
+				width: 180px;
+			}
+			.logo {
+				display: block;
+				width: 200px;
+				top: 50px;
+			}
+			.navigator {
+				margin-top: 40px;
+				width: 180px;
+			}
+			.current {
+				background: #eee !important;
+			}
+		</style>
+	</head>
+
+	<body class="home">
+		<div class="container main">
+			<div class="row">
+				<div class="span2 side">
+					<div class="head">
+						<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
+					</div>
+					<input id="search-box" type="text" placeholder="Searching..." />
+					<ul class="navigator">
+						
+						<li><a href="/categories/笔记/">笔记</a></li>
+						
+					</ul>
+				</div>
+				<div class="span8 offset1 content">
+					<h1></h1>
+					<dl>
+	
+	<dt>
+	2013-09-08 &nbsp; &nbsp; &raquo; &nbsp; &nbsp; <a href="/blog/first-blog.html">First Blog</a>
+	</dt>
+	<dd>生成jekyll博文分类，因为github不支持插件，故只能让jekyll先在本地编译再push到github上。</dd>
+	</li>
+	
+</dl>
+
+<div class="pagination" id="post-pagination">
+	<!---->
+	<!--<p class="previous disabled">-->
+		<!--<span>上一页</span>-->
+	<!--</p>-->
+	<!---->
+
+	<ul class="pages">
+		
+	</ul>
+
+	<!---->
+	<!--<p class="next disabled">-->
+		<!--<span>下一页</span>-->
+	<!--</p>-->
+	<!---->
+</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<p>Copyright © 2013 lynnelv. <a href="http://weibo.com/lvyanrong" target="_blank">@飞鱼_笨懒懒</a></p>
+		</div>
+
+		<script type="text/javascript" charset="utf-8" src="/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			(function($) {
+				$('.navigator').on('click', 'li', function(e) {
+					$('.navigator li').removeClass('current');
+					$(e.currentTarget).addClass('current');
+				 });
+				 $('#search-box').keydown(function(e) {
+					 if (e.which == 13) {
+						 var keyword = $(this).val();
+						 $.ajax({
+							url: '/search.xml',
+							dataType: 'xml'
+						}).done(function(data) {
+							var match = $('article', data).map(function() {
+								var regexp = new RegExp(keyword, "ig");
+								if (regexp.test(title)) {
+									return {
+										url: $('url', this).text(),
+										title: $('title', this).text(),
+										date: $('date', this).text(),
+										desc: $('desc', this).text()
+									};
+								}
+							}).get();
+						$('.content').html('').html(helper(match));
+					});
+					}
+				});
+
+				function helper(arr) {
+					var list = '<dl>'
+					for(var item in arr) {
+						list += '<dt>'
+						+ item.date + '   »  '
+						+ '<a href=' + item.url + '>'
+						+ item.title
+						+ '<\/a><\/dt>'
+						+ '<dd>'
+						+ item.desc
+						+ '<\/dd>'
+					}
+					list + '<\/dl>';
+					return list;
+				}
+
+			})(jQuery);
+		</script>
+	</body>
+</html>
