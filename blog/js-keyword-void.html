@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta name="keywords" content="吕彦蓉, lynnelv, Blog, 博客, 吕彦蓉的博客" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="description" content="Javascript中void关键字的主要用途。"/>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
+		<link href="/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>Js中的void关键字 &raquo; Lynnelv's Blog</title>
+	</head>
+
+	<body>
+		<div class="container main">
+			<div class="row">
+				<div class="span2 side">
+					<div class="head">
+						<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
+					</div>
+					<!--<input id="search-box" type="text" placeholder="Searching..." />-->
+					<h4>CATEGORIES</h4>
+					<p></p>
+					<p></p>
+					<ul class="navigator">
+						
+						<li id="笔记"><a href="/categories/笔记/">笔记</a></li>
+						
+						<li id="生活"><a href="/categories/生活/">生活</a></li>
+						
+						<li id="旅行"><a href="/categories/旅行/">旅行</a></li>
+						
+						<li id="IT"><a href="/categories/IT/">IT</a></li>
+						
+					</ul>
+				</div>
+				<div class="span8 offset3 content">
+					<article>
+<h1>Js中的void关键字</h1>
+<p><i class="icon-time"></i> 2013-09-09&nbsp; &nbsp; &nbsp; &nbsp; <i class="icon-tag"></i> <a href="/categories/IT">IT</a></p>
+<p>ECMAScript关键字：</p>
+
+<pre>
+	break
+	case
+	catch
+	continue
+	default
+	delete
+	do
+	else
+	finally
+	for
+	function
+	if
+	in
+	instanceof
+	new
+	return
+	switch
+	this
+	throw
+	try
+	typeof
+	var
+	void
+	while
+	with
+</pre>
+
+原来undefined不是js的关键字，一直以为是。。。这也解释了我的疑惑，undefined是可以被重写的。
+
+<pre>
+	>>> void 0
+	undefined
+	>>> void 1
+	undefined
+	>>> void 2
+	undefined
+	>>> void function(){}
+	undefined
+	>>> void 1+2
+	NaN
+	>>> void (1+2)
+	undefined
+</pre>
+
+注意：void 1+2    =>    NaN
+因为void优先级大于+，所以相当于void(1)+2
+用法：void 表达式
+<p>void关键字的作用：运行表达式，并返回undefined。</p>
+<p>void三个用途：</p>
+<ol>
+	<li>
+		<dt>用void 0（这里void 0,1,2,3...效果是一样的，表达式或者number都OK）代替undefined。</dt>
+
+		PS：为什么要用void 0代替undefined呢？
+
+		因为undefined会有被重写的危险，eg：
+
+<pre>
+function test() {
+	var undefined = 1;
+	console.log(undefined);		//1
+}
+test();
+</pre>
+
+		此时，undefined==1，被重写了，为了避免这种情况，通常，引入这种写法：
+
+		<pre>
+;(function($, window, document, undefinedefined) {
+//很多jQuery插件都是这个写法
+//;是为了防止之前代码最后一句遗漏;的情况
+//$作为实参jQuery的简写
+//(function(){})();这是匿名函数的立即调用，可以防止全局变量的污染和全局变量与函数内部局部变量的名字冲突
+//window和document也就是window和document全局对象
+//形参undefined并没有接受任何实参，它就是window.undefined，防止匿名函数中的undefined被外部重写
+})(jQuery, window, document);
+		</pre>
+			而void是js的关键字，不会被重写，eg：void = 1;会报错。
+	</li>
+	<li>
+		<dt>小书签（Bookmarklets）</dt>
+		<p><strong>Bookmarklet</strong>是由<strong>Bookmark</strong>和<strong>Applet</strong>组合而来。无论小书签如何以什么形式储存，它们都是用来对浏览器或是网页添加一些特定功能的。</p>
+
+		<p><strong>Bookmarklet</strong>的作用：</p>
+		<ul>
+			<li><strong>修改网页的外观（修改字体大小，背景颜色等）</strong></li>
+			<li><strong>从网页中提取某些数据（链接，图片，文本等）</strong></li>
+			<li><strong>将当前页面提交到博客平台，缩短链接服务或是书签服务</strong></li>
+			<li><strong>快速调用搜索引擎搜索当前页面选中的文字</strong></li>
+			<li><strong>将网页提交到链接检测服务，或是在线翻译服务</strong></li>
+			<li><strong>设置某些页面本身不能修改的功能</strong></li>
+		</ul>
+		<p><strong>javascript:3+4</strong>会把当前页面的内容替换成7.</p>
+		<p><strong>javascript:void(3+4)</strong>不会改变当前页面的内容.void会“隐藏”掉表达式3+4的结果.</p>
+		<p>类似的:</p>
+		<p><strong>javascript:window.open("http://lynnelv.github.com")</strong>会替换掉当前页面的内容.</p>
+		<p><strong>javascript:void window.open("http://lynnelv.github.com")</strong>不会改变当前页面的内容.</p>
+		<p>网上有很多流行的Bookmarklet，通常是导入了一个js文件，比如繁体字转换成简体字，比如购物网站比价。</p>
+		<pre>
+javascript:void(
+	document.body.appendChild(
+		document.createElement("script"))
+		.src = "http://tongwen.openfoundry.org/NewTongWen/tools/bookmarklet_cn2.js");
+		</pre>
+	</li>
+	<li>
+		<dt>在a标签中执行js代码</dt>
+		<pre><xmp><a href="javascript:void dosth();">do</a></xmp></pre>
+		这样可以防止dosth()函数返回非undefined值时引起网页内容的改变，但是这种用法是不推荐的。
+		常用javascript:void(0)来阻止a标签的默认链接行为：
+		<pre><xmp><a href="javascript:void(0)"></a></xmp></pre>
+	</li>
+</ol>
+
+</article>
+
+<img src="/img/totop.png" alt="返回顶部" id="totop" title="返回顶部" style="display: none;" />
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+	var disqus_shortname = 'lynnelv';
+
+	(function() {
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+		var toTopBtn = document.getElementById('totop'),
+			client,
+			isChrome = navigator.userAgent.match(/chrome(.+)/i);
+
+		client = isChrome ? document.body : document.documentElement;
+
+		function getScrollTop() {
+			return document.body.scrollTop + document.documentElement.scrollTop;
+		}
+
+		window.onscroll = function() {
+			var scrollTop = getScrollTop();
+			if (scrollTop > 0) {
+				toTopBtn.style.display = '';
+			} else {
+				toTopBtn.style.display = 'none';
+			}
+		}
+
+		toTopBtn.onclick = function() {
+			client.scrollTop = 0;
+		}
+
+	})();
+</script>
+
+
+				</div>
+			</div>
+
+			<div class="row footer">
+				<p>Copyright © 2013 lynnelv. <a href="http://weibo.com/lvyanrong" target="_blank">@飞鱼_笨懒懒</a></p>
+			</div>
+		</div>
+
+		<!--<script type="text/javascript" charset="utf-8" src="/js/jquery-1.10.2.min.js"></script>-->
+		<script type="text/javascript">
+			(function() {
+				var current = document.getElementById('IT').childNodes[0];
+
+				if (current) {
+					current.className = current.className + ' current';
+				}
+			})();
+
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-44013526-1', 'github.com');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>

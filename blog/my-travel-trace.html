@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta name="keywords" content="吕彦蓉, lynnelv, Blog, 博客, 吕彦蓉的博客" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="description" content="我的旅行足迹。"/>
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
+		<link href="/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>我的旅行足迹 &raquo; Lynnelv's Blog</title>
+	</head>
+
+	<body>
+		<div class="container main">
+			<div class="row">
+				<div class="span2 side">
+					<div class="head">
+						<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
+					</div>
+					<!--<input id="search-box" type="text" placeholder="Searching..." />-->
+					<h4>CATEGORIES</h4>
+					<p></p>
+					<p></p>
+					<ul class="navigator">
+						
+						<li id="笔记"><a href="/categories/笔记/">笔记</a></li>
+						
+						<li id="生活"><a href="/categories/生活/">生活</a></li>
+						
+						<li id="旅行"><a href="/categories/旅行/">旅行</a></li>
+						
+						<li id="IT"><a href="/categories/IT/">IT</a></li>
+						
+					</ul>
+				</div>
+				<div class="span8 offset3 content">
+					<article>
+<h1>我的旅行足迹</h1>
+<p><i class="icon-time"></i> 2013-09-13&nbsp; &nbsp; &nbsp; &nbsp; <i class="icon-tag"></i> <a href="/categories/旅行">旅行</a></p>
+<div id="map"></div>
+<p>地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『走遍世界每个有好吃的角落』还很遥远，希望短期目标『每年至少一个人旅行一次 』不会再落空。</p>
+
+<script type="text/javascript" src="/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/js/jquery-jvectormap-1.2.2.min.js"></script>
+<script type="text/javascript" src="/js/china-en.js" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#map').vectorMap({
+			map: 'china_en',
+			scaleColors: ['#C8EEFF', '#0071A4'],
+			normalizeFunction: 'polynomial',
+			hoverOpacity: 0.7,
+			hoverColor: false,
+			markerStyle: {
+				initial: {
+					fill: '#F8E23B',
+					stroke: '#505050'
+				}
+			},
+			backgroundColor: '#383f47',
+			markers: [
+				{latLng: [22.38, 110.09], name: '广西 玉林 - 家'},
+				{latLng: [21.11, 110.24], name: '广东 湛江 - 2009'},
+				{latLng: [25.17, 110.17], name: '广西 桂林 - 2009'},
+				{latLng: [29.35, 106.33], name: '重庆 - 2009-2013'},
+				{latLng: [22.48, 108.19], name: '广西 南宁 - 2010'},
+				{latLng: [30.40, 104.04], name: '四川 成都 - 2012'},
+				{latLng: [23.08, 113.14], name: '广东 广州 - 2012,2013'},
+				{latLng: [22.27, 113.47], name: '广东 深圳 - 2012'},
+				{latLng: [25.04, 102.42], name: '云南 昆明 - 2013'},
+				{latLng: [26.88, 100.23], name: '云南 丽江 - 2013'},
+				{latLng: [25.34, 100.13], name: '云南 大理 - 2013'},
+				{latLng: [39.55, 116.24], name: '北京 - 2013'},
+			]
+		});
+	});
+</script>
+
+</article>
+
+<img src="/img/totop.png" alt="返回顶部" id="totop" title="返回顶部" style="display: none;" />
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+	var disqus_shortname = 'lynnelv';
+
+	(function() {
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+		var toTopBtn = document.getElementById('totop'),
+			client,
+			isChrome = navigator.userAgent.match(/chrome(.+)/i);
+
+		client = isChrome ? document.body : document.documentElement;
+
+		function getScrollTop() {
+			return document.body.scrollTop + document.documentElement.scrollTop;
+		}
+
+		window.onscroll = function() {
+			var scrollTop = getScrollTop();
+			if (scrollTop > 0) {
+				toTopBtn.style.display = '';
+			} else {
+				toTopBtn.style.display = 'none';
+			}
+		}
+
+		toTopBtn.onclick = function() {
+			client.scrollTop = 0;
+		}
+
+	})();
+</script>
+
+
+				</div>
+			</div>
+
+			<div class="row footer">
+				<p>Copyright © 2013 lynnelv. <a href="http://weibo.com/lvyanrong" target="_blank">@飞鱼_笨懒懒</a></p>
+			</div>
+		</div>
+
+		<!--<script type="text/javascript" charset="utf-8" src="/js/jquery-1.10.2.min.js"></script>-->
+		<script type="text/javascript">
+			(function() {
+				var current = document.getElementById('旅行').childNodes[0];
+
+				if (current) {
+					current.className = current.className + ' current';
+				}
+			})();
+
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-44013526-1', 'github.com');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>

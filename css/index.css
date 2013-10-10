@@ -1,0 +1,197 @@
+@import url(http://fonts.googleapis.com/css?family=Philosopher&subset=cyrillic,latin);
+
+html, body {
+    height: 100%;
+    font-family: Philosopher, Tahoma;
+    background-color: #111;
+}
+
+body {
+    overflow: hidden;
+    padding-top: 20px;
+    width: 100%;
+}
+
+a {text-decoration: none; cursor: pointer;}
+
+#piano {
+    color: #000;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    width: 1530px;
+    left: -10%;
+    margin-top: -250px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.6);
+    ms-transform: scale(0.6);
+    transform: scale(0.6);
+}
+
+#pianoBody {
+    width: 100%;
+    position: relative;
+    float: left;
+    display: block;
+}
+
+#littleRedLine {
+    background-color: #fff;
+    color: #000;
+    height: 5px;
+    position: absolute;
+    top: 1px;
+    width: 100%;
+    z-index: 100;
+    display: block;
+}
+
+.octave {
+    position: relative;
+    float: left;
+} 
+
+.key {
+    cursor: pointer;
+}
+
+.white {
+    float: left;
+    width: 88px;
+    height: 460px;
+    background-color: #F4F4F4;
+    border: 1px solid #626262;
+    position: relative;
+    -moz-border-radius: 0 0 15px 15px;
+    border-radius: 0 0 15px 15px; 
+    background-image: -webkit-gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    -webkit-box-shadow: 0 -10px 2px 0px #838383 none, 0 -60px 40px 10px #EEEEEE inset;
+
+    background-image: -moz-linear-gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    -moz-box-shadow: 0 -10px 2px 0px #838383 inset, 0 -60px 40px 10px #EEEEEE inset;
+
+    background-image: -gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    box-shadow: 0 -10px 2px 0px #838383 inset, 0 -60px 40px 10px #EEEEEE inset;
+}
+
+div.white:active,
+div.white.pressed {
+    border: 1px solid #343434;
+    background-image: -webkit-gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    -webkit-box-shadow: 0 -5px 20px -3px #272927 inset;
+
+    background-image: -moz-linear-gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    -moz-box-shadow: 0 -5px 2px 0px #838383 inset,0 -3px 20px -3px #272927 inset;
+
+    background-image: -gradient(center bottom , #FFFFFF 90%, #CCCCCC 100%);
+    box-shadow: 0 -5px 20px -3px #272927 inset;
+}
+
+.black {
+    float: left;
+    width: 44px;
+    height: 320px;
+    background-color: #000000;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    position: absolute;
+    top: 6px;
+    z-index: 100;
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px; 
+    border-top: 0px;
+    -moz-box-shadow: 0 -9px 10px 9px #303030 inset, 0 -15px #F7F7F7 inset;
+    -webkit-box-shadow: 0 -9px 10px 9px #303030 inset, 0 -15px #F7F7F7 inset;
+    box-shadow: 0 -9px 10px 9px #303030 inset, 0 -15px #F7F7F7 inset;
+}
+
+div.black:active,
+div.black.pressed {
+    border: 1px solid #CECECE;
+    border-top: 1px solid #626262;
+    -moz-box-shadow: 0 0 6px 7px #303030 inset, 0 -5px #F7F7F7 inset;
+    -webkit-box-shadow: 0 0 6px 7px #303030 inset, 0 -5px #F7F7F7 inset;
+    box-shadow: 0 0 6px 7px #303030 inset, 0 -5px #F7F7F7 inset;
+}
+
+div.flats {
+
+}
+
+div.flats :nth-child(1) {
+    margin-left: 67px;
+}
+div.flats :nth-child(2) {
+    margin-left: 157px;
+}
+div.flats :nth-child(3) {
+    margin-left: 338px;
+}
+div.flats :nth-child(4) {
+    margin-left: 428px;
+}
+div.flats :nth-child(5) {
+    margin-left: 517px;
+}
+
+.logo .nav{
+    margin: 382px 1px 0 0;
+}
+
+div.black div.keyname {
+    margin-left: 0px;
+}
+
+
+.white .keyname {
+    font-size: 4em;
+    color: #111;
+    text-shadow: 2px 2px 0 #7E6D1F;
+    margin: 382px 1px 0 0;
+}
+
+.black .keyname {
+    font-size: 1.6em;
+    margin: 233px 0 0 0;
+    color: #fff;
+    text-shadow: 1px 1px 0 #7E6D1F;
+}
+
+.nav {
+    position: relative;
+    float: left;
+    left: 40%;
+    margin-top: -60px;
+}
+
+.nav a{
+    color: #fff;
+    text-shadow: 1px 1px 0 #8CC540;
+}
+
+.seperator {
+    margin-right: 20px;
+    margin-left: 20px;
+    color: #fff;
+}
+
+.logo {
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 1px 1px 0 #8CC540;
+    position: relative;
+    float: left;
+    left: 38%;
+    margin-top: 30px;
+    margin-bottom: -55px;
+}
+
+#pianoStrings {
+    position: fixed;
+    bottom: 10px;
+    left: 20px;
+    display: none;
+}
