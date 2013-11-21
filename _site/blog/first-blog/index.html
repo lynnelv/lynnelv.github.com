@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+        <meta name="allow-search" content="yes" />
+		<meta name="keywords" content="lynnelv, blog, 博客,lynnelv's blog" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="description" content="在Github上搭建Blog了，关于博文分类，用到了jekyll的category插件，但是Github不支持插件，所以只能在本地编译好源码再push到Github上。" />
+
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" media="screen" charset="utf-8" />
+		<link href="/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>First Blog &raquo; Lynnelv's Blog</title>
+	</head>
+
+	<body>
+		<div class="container main">
+			<div class="row">
+				<div class="span2 side">
+					<div class="head">
+						<a href="/"><img src="/img/logo_lynnelv.png" alt="Lynnelv's Blog"></a>
+					</div>
+					<!--<input id="search-box" type="text" placeholder="Searching..." />-->
+					<h4 style="text-transform: Uppercase; font-size: 15px;">categories</h4>
+					<p></p>
+					<p></p>
+					<ul class="navigator">
+						
+						<li id="笔记"><a href="/categories/笔记/">笔记</a></li>
+						
+						<li id="旅行"><a href="/categories/旅行/">旅行</a></li>
+						
+						<li id="IT"><a href="/categories/IT/">IT</a></li>
+						
+						<li id="生活"><a href="/categories/生活/">生活</a></li>
+						
+					</ul>
+				</div>
+				<div class="span8 offset3 content">
+					<article>
+<h1>First Blog</h1>
+<p><i class="icon-time"></i> 2013-09-08&nbsp; &nbsp; &nbsp; &nbsp; <i class="icon-tag"></i> <a href="/categories/笔记">笔记</a></p>
+<p>捣鼓了一天，终于搭好<strong>Blog</strong>架子了，以后可以用程序猿的思维写<strong>Blog</strong>了，其实上个月就开始搭建了，中途遇到一些问题，
+像博文分类，原因是github不支持使用插件（_plugins/*），所以只有在让jekyll在本地编译好页面之后再push到github
+上。具体实现：创建一个dev分支，dev分支保存的是未编译的源文件，作为以后的工作分支；master分支存放本地jekyll
+生成的静态页面。先切换到master分支下：
+<p><code>git checkout master</code></p>
+<p><code>//新建一个<strong>.nojekyll</strong>文件（带<strong>.nojekyll</strong>的目录，github不会启用jekyll去build</code></p>
+<p><code>touch <strong>.nojekyll</strong></code></p>
+然后切换回dev分支，让jekyll build页面，本地查看效果：
+<p><code>git checkout dev</code></p>
+<p><code>jekyll --server --auto</code></p>
+通过访问http://localhost:4000访问build出来的页面，OK之后push到master分支：
+<p><code>git checkout master</code></p>
+<p><code>cp -r _site/* .</code></p>
+<p><code>git add .</code></p>
+<p><code>git commit -m 'post to master'</code></p>
+<p><code>git push origin master</code></p>
+现在可以通过http://github.com/youname访问了，注意以后开发需要提交两个分支。</p>
+
+</article>
+
+<img src="/img/totop.png" alt="返回顶部" id="totop" title="返回顶部" style="display: none;" />
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+	var disqus_shortname = 'lynnelv';
+
+	(function() {
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+		var toTopBtn = document.getElementById('totop'),
+			client,
+			isChrome = navigator.userAgent.match(/chrome(.+)/i);
+
+		client = isChrome ? document.body : document.documentElement;
+
+		function getScrollTop() {
+			return document.body.scrollTop + document.documentElement.scrollTop;
+		}
+
+		window.onscroll = function() {
+			var scrollTop = getScrollTop();
+			if (scrollTop > 0) {
+				toTopBtn.style.display = '';
+			} else {
+				toTopBtn.style.display = 'none';
+			}
+		}
+
+		toTopBtn.onclick = function() {
+			client.scrollTop = 0;
+		}
+
+	})();
+</script>
+
+
+				</div>
+			</div>
+
+			<footer>
+				Copyright © 2013 lynnelv. <a href="http://weibo.com/lvyanrong" target="_blank">@飞鱼_笨懒懒</a>
+			</footer>
+		</div>
+
+		<script type="text/javascript">
+			(function() {
+				var current = document.getElementById('笔记');
+
+				if (current) {
+					current.className = current.className + ' current';
+				}
+			})();
+
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-44013526-1', 'github.com');
+			ga('send', 'pageview');
+		</script>
+	</body>
+</html>
