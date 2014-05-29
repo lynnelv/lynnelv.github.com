@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="allow-search" content="yes" />
+		<meta name="subject" content="lynnelv" />
+		<meta name="abstract" content="lynnelv" />
+		<meta name="keywords" content="lynnelv, 前端开发, 博客, front-end developer, lynnelv's blog" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+		<title>lynne lv</title>
+	</head>
+	<body>
+		<nav>
+			<ul class="nav">
+				<li><a href="http://lynnelv.github.io/blog.html"><span>Blog</span></a></li>
+				<li><a href="#"><span>About</span></a></li>
+				<li class="last"><a href="#"><span>Photo</span></a></li>
+			</ul>
+		</nav>
+		<div class="wrap">
+			<img src="img/wallpaper.jpg" id="bg">
+			<audio src="pianosounds/bg_music.mp3" autoplay="true" loop="true" hidden="true"></audio>
+			<canvas id="mask"></canvas>
+			<div class="logo">LYNNE LV</div>
+			<div id="hero">
+				<p>yep,  i am not sure about the furture,</p>
+				<p>but,  i decide to follow my heart,</p>
+				<p>even if very diffcult.</p>
+				<p>
+					<small>
+						lynne<br>
+						<date>2014/05/29</date>
+					</small>
+				</p>
+			</div>
+		</div>
+		<script src="js/rainy.js"></script>
+		<script type="text/javascript">
+			document.body.onload = function() {
+				var engine = new RainyDay('mask','bg', window.innerWidth, window.innerHeight);
+				engine.gravity = engine.GRAVITY_NON_LINEAR;
+				engine.trail = engine.TRAIL_DROPS;
+
+				engine.rain([
+					engine.preset(0, 2, 500)
+					]);
+
+				engine.rain([
+					engine.preset(3, 3, 0.88),
+					engine.preset(5, 5, 0.9),
+					engine.preset(6, 2, 1),
+					], 100);
+			};
+		</script>
+	</body>
+</html>

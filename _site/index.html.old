@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta charset='utf-8'>
+		<meta name="allow-search" content="yes" />
+		<meta name="subject" content="lynnelv" />
+		<meta name="abstract" content="lynnelv" />
+		<meta name="keywords" content="lynnelv, 前端开发, 博客, front-end developer, lynnelv's blog" />
+		<meta name="Author" content="lynnelv" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+		<title>lynne lv</title>
+	</head>
+	<body>
+
+		<div class="logo">LYNNE LV</div>
+		<div class="flash">
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="700" height="300">
+				<param name="movie" value="/pianosounds/note.swf"/>
+				<param name="quality" value="high" />
+				<param name="wmode" value="transparent"/>
+				<param name="menu" value="false"/>
+				<embed src="/pianosounds/note.swf" width="700" height="300" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" wmode="transparent" menu="false"></embed>
+			</object>
+		</div>
+
+		<div id="piano">
+			<ul class="pianoBody">
+				<li id="A1" class="key white"><span class="keyname">Z</span></li>
+				<li id="As1" class="key black"><span class="keyname">S</span></li>
+				<li id="B1" class="key white"><span class="keyname">X</span></li>
+				<li id="C2" class="key white" ><span class="keyname">C</span></li>
+				<li id="Cs2" class="key black"><span class="keyname">F</span></li>
+				<li id="D2" class="key white"><span class="keyname">V</span></li>
+				<li id="Ds2" class="key black"><span class="keyname">G</span></li>
+				<li id="E2" class="key white"><span class="keyname">B</span></li>
+				<li id="F2" class="key white"><span class="keyname">N</span></li>
+				<li id="Fs2" class="key black"><span class="keyname">J</span></li>
+				<li id="G2" class="key white"><span class="keyname">M</span></li>
+				<li id="Gs2" class="key black"><span class="keyname">K</span></li>
+				<li id="A2" class="key white"><span class="keyname">,</span></li>
+				<li id="B2" class="key white"><span class="keyname">.</span></li>
+				<li id="As2" class="key black"><span class="keyname">L</span></li>
+				<li id="C3" class="key white" ><span class="keyname">E</span></li>
+				<li id="Cs3" class="key black"><span class="keyname">4</span></li>
+				<li id="D3" class="key white"><span class="keyname">R</span></li>
+				<li id="Ds3" class="key black"><span class="keyname">5</span></li>
+				<li id="E3" class="key white"><span class="keyname">T</span></li>
+				<li id="F3" class="key white"><span class="keyname">Y</span></li>
+				<li id="Fs3" class="key black"><span class="keyname">7</span></li>
+				<li id="G3" class="key white"><span class="keyname">U</span></li>
+				<li id="Gs3" class="key black"><span class="keyname">8</span></li>
+				<li id="A3" class="key white"><span class="keyname">I</span></li>
+				<li id="As3" class="key black"><span class="keyname">9</span></li>
+				<li id="B3" class="key white"><span class="keyname">O</span></li>
+				<li id="C4" class="key white" ><span class="keyname">P</span></li>
+			</ul>
+		</div>
+
+		<div class="wrap">
+		<ul class="nav">
+			<li><a href="http://lynnelv.github.com/blog.html">Blog</a></li>
+			<li class="sep"><a href="#">About</a></li>
+			<li class="sep"><a href="#">Photo</a></li>
+		</ul>
+		</div>
+
+		<div id="pianoStrings">
+			<audio id="tone-A1" preload="auto" controls>
+			<source src="pianosounds/A1.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/A1.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-As1" preload="auto" controls>
+			<source src="pianosounds/As1.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/As1.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-B1" preload="auto" controls>
+			<source src="pianosounds/B1.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/B1.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-C2" preload="auto" controls>
+			<source src="pianosounds/C2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/C2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Cs2" preload="auto" controls>
+			<source src="pianosounds/Cs2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Cs2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-D2" preload="auto" controls>
+			<source src="pianosounds/D2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/D2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Ds2" preload="auto" controls>
+			<source src="pianosounds/Ds2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Ds2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-E2" preload="auto" controls>
+			<source src="pianosounds/E2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/E2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-F2" preload="auto" controls>
+			<source src="pianosounds/F2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/F2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Fs2" preload="auto" controls>
+			<source src="pianosounds/Fs2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Fs2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-G2" preload="auto" controls>
+			<source src="pianosounds/G2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/G2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Gs2" preload="auto" controls>
+			<source src="pianosounds/Gs2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Gs2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-A2" preload="auto" controls>
+			<source src="pianosounds/A2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/A2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-As2" preload="auto" controls>
+			<source src="pianosounds/As2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/As2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-B2" preload="auto" controls>
+			<source src="pianosounds/B2.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/B2.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-C3" preload="auto" controls>
+			<source src="pianosounds/C3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/C3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Cs3" preload="auto" controls>
+			<source src="pianosounds/Cs3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Cs3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-D3" preload="auto" controls>
+			<source src="pianosounds/D3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/D3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Ds3" preload="auto" controls>
+			<source src="pianosounds/Ds3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Ds3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-E3" preload="auto" controls>
+			<source src="pianosounds/E3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/E3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-F3" preload="auto" controls>
+			<source src="pianosounds/F3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/F3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Fs3" preload="auto" controls>
+			<source src="pianosounds/Fs3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Fs3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-G3" preload="auto" controls>
+			<source src="pianosounds/G3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/G3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-Gs3" preload="auto" controls>
+			<source src="pianosounds/Gs3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/Gs3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-A3" preload="auto" controls>
+			<source src="pianosounds/A3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/A3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-As3" preload="auto" controls>
+			<source src="pianosounds/As3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/As3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-B3" preload="auto" controls>
+			<source src="pianosounds/B3.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/B3.mp3" type="audio/mpeg"></source>
+			</audio>
+			<audio id="tone-C4" preload="auto" controls>
+			<source src="pianosounds/C4.ogg" type="audio/ogg"></source>
+			<source src="pianosounds/C4.mp3" type="audio/mpeg"></source>
+			</audio>
+		</div>
+
+		<script src="/js/jquery-1.10.2.min.js"></script>
+		<script src="/js/jquery.hotkeys.js"></script>
+		<script src="/js/index.js"></script>
+	</body>
+</html>
