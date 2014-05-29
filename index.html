@@ -15,7 +15,7 @@
 
 		<title>lynne lv</title>
 	</head>
-	<body>
+	<body onload="mask();">
 		<nav>
 			<ul class="nav">
 				<li><a href="http://lynnelv.github.io/blog.html"><span>Blog</span></a></li>
@@ -42,7 +42,7 @@
 		</div>
 		<script src="js/rainy.js"></script>
 		<script type="text/javascript">
-			document.body.onload = function() {
+			function mask() {
 				var engine = new RainyDay('mask','bg', window.innerWidth, window.innerHeight);
 				engine.gravity = engine.GRAVITY_NON_LINEAR;
 				engine.trail = engine.TRAIL_DROPS;
@@ -56,7 +56,7 @@
 					engine.preset(5, 5, 0.9),
 					engine.preset(6, 2, 1),
 					], 100);
-			};
+			}
 		</script>
 	</body>
 </html>
