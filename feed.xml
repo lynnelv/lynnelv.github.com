@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-20T21:24:59+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">足迹</title><link href="http://localhost:4000/travel-footprints" rel="alternate" type="text/html" title="足迹" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/TravelMap</id><content type="html" xml:base="http://localhost:4000/travel-footprints">&lt;link href=&quot;/css/jquery-jvectormap-2.0.3.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+
+地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『环游世界』还很遥远，希望短期目标『每年至少旅行一次 』不会再落空。
+
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-jvectormap-2.0.3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-jvectormap-world-mill.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+	(function ($) {
+		$('#map').vectorMap({
+			map: 'world_mill',
+			backgroundColor: '#a5bfdd',
+          	selectedColor: '#333333',
+	        selectedRegions: ['CN','MY'],
+	        regionStyle: {
+            	selected: {
+	                fill: '#ed8d6c'
+	            }
+	        },
+          	markerStyle: {
+				initial: {
+					fill: '#F8E23B',
+			        stroke: '#383f47'
+				}
+			},
+			markers: [
+				{latLng: [21.11, 110.24], name: '湛江-2009'},
+				{latLng: [25.17, 110.17], name: '桂林-2009'},
+				{latLng: [29.35, 106.33], name: '重庆-2009-2013'},
+				{latLng: [22.48, 108.19], name: '南宁-2010'},
+				{latLng: [30.40, 104.04], name: '成都-2012'},
+				{latLng: [23.08, 113.14], name: '广州-2012'},
+				{latLng: [22.27, 113.47], name: '深圳-2012'},
+				{latLng: [25.04, 102.42], name: '昆明-2013'},
+				{latLng: [26.88, 100.23], name: '丽江-2013'},
+				{latLng: [25.34, 100.13], name: '大理-2013'},
+				{latLng: [39.55, 116.24], name: '北京-2013'},
+				{latLng: [3.14, 101.68], name: '吉隆坡-2015,2016'},
+				{latLng: [5.98, 116.07], name: '沙巴-2015,2016'},
+			]
+		});
+	})(jQuery);
+&lt;/script&gt;</content><category term="旅行" /><category term="旅行" /><summary type="html">记录我的旅行足迹，地图中的标记点，是我目前去过的地方。</summary></entry><entry><title type="html">我的2016</title><link href="http://localhost:4000/2016-summary" rel="alternate" type="text/html" title="我的2016" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/2016Summary</id><content type="html" xml:base="http://localhost:4000/2016-summary">&lt;p&gt;时间你好快，好像什么事情都没做，又过去一年，折腾是我2016的标签。&lt;/p&gt;
+2015的年会结束之后，走出世界之窗的门口，我决定2016不要再持续这种颓废迷茫的日子。
+这是我2016定的一些&lt;strong&gt;TODO-LIST&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;换个工作环境&lt;/li&gt;
+	&lt;li&gt;出国旅游&lt;/li&gt;
+	&lt;li&gt;周末没事多去泡书店&lt;/li&gt;
+	&lt;li&gt;坚持每周几次锻炼&lt;/li&gt;
+	&lt;li&gt;培养一项兴趣爱好（piano or dance or ...）&lt;/li&gt;
+	&lt;li&gt;改掉（至少控制）说话不经大脑的毛病&lt;/li&gt;
+	&lt;li&gt;23点准时上床睡觉&lt;/li&gt;
+	&lt;li&gt;学会理财而不是理倒财&lt;/li&gt;
+	&lt;li&gt;还有一些碎碎末的决定......&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;时间是检验『雄心壮志』的唯一标准。目前看来，我做到的只有三成不到，自我安慰下，可是总比0%好呀。&lt;/p&gt;
+&lt;p&gt;
+	&lt;strong&gt;11月9号&lt;/strong&gt; 我离开了待了3年的老东家&lt;strong&gt;百度&lt;/strong&gt;，结束了人生的第二份工作，
+	选择总是一个取舍的过程，但愿我做了一个不是错的选择。离职之后的无业状态是一个很好的身心放松机会，
+	因为没有太多时间准备，这次休假我又去了一次马来，上次去没有上岛，略遗憾，这次补回来了，
+	在&lt;strong&gt;Mataking岛&lt;/strong&gt;待了几天，风景各种好。
+&lt;/p&gt;
+&lt;p&gt;
+	周末泡书店这个计划，这2周才开始启动，之前一直懒癌上身，今年一定一定一定要坚持下来啊！！
+	谁也不想变成自己鄙视的人，你肤浅无知粗俗不修边幅的样子自己都嫌弃，更何况别人。。。&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;
+	坚持锻炼这个算是没有完全落空，从6月份下了keep之后，除了特殊时期、懒癌发作、休假，每周基本都有做1~2次，
+	然而同事跟我说一周做少于3次等于没做，呵呵哒~为了不长成大腹便便的膘姨，不能再三天打鱼两天晒网了，
+	毕竟好的东西都是不容易得到的。
+&lt;/p&gt;
+&lt;p&gt;
+	对的，好的东西都是来之不易的，理财、心理学、设计、情商...我还有一堆东西要学，新的一年，任重道远。
+	至于23点准时休息，完全没做到，失眠还愈加严重了，对，活该！
+&lt;/p&gt;
+&lt;p&gt;
+	最后，2017做成的第一件小事，趁这两天有点自由时间，把博客重新整理了下，之前的内容都清空了，
+	想到一句话，回头翻下之前空间的说说和日志，恨不得拍死自己，是有多没脑才写得出那些悲春伤秋的东西。
+	至少我回头看是有这种感觉的，虽然另一种说法是那也是你自己的过去。重新开始吧。
+&lt;/p&gt;</content><category term="随感" /><category term="总结" /><summary type="html">时间你好快，好像什么事情都没做，又过去一年，折腾是我的2016的标签。</summary></entry></feed>

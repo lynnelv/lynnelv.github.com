@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset='utf-8'>
-		<meta content="{{page.kw}}" name="keywords">
-		<meta content="{{page.desc}}" name="description">
+		<meta content="" name="keywords">
+		<meta content="" name="description">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
-		<link rel="canonical" href="http://lynnelv.github.io{{page.url}}">
+		<link rel="canonical" href="http://lynnelv.github.io/categories/%E6%97%85%E8%A1%8C/">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0' />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="subject" content="lynnelv" />
@@ -17,7 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/css/index.css" />
 		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<title>{{page.title}}</title>
+		<title>Category: 旅行</title>
 	</head>
 	<body>
 		<section class="left-side">
@@ -33,17 +33,31 @@
 			</div>
 			<nav class="nav">NAVIGATION</nav>
 			<ul class="cate">
-			{% for category in site.categories %}
-		    	<li class="{% if forloop.last %}last{% endif %}">
-			    	<a href="/categories/{{ category | first }}/" title="{{ category | first }}">
-						<span>{{ category | first }} <b>({{ category | last | size }})</b></span>
+			
+		    	<li class="">
+			    	<a href="/categories/随感/" title="随感">
+						<span>随感 <b>(1)</b></span>
 					</a>
 			    </li>
-		    {% endfor %}
+		    
+		    	<li class="last">
+			    	<a href="/categories/旅行/" title="旅行">
+						<span>旅行 <b>(1)</b></span>
+					</a>
+			    </li>
+		    
 			</ul>
 		</section>
 		<section class="main">
-			{{ content }}
+			<ul class="article-list">
+    
+    <li>
+        <time>20 January 2017</time>
+        <h3><a href="/travel-footprints">足迹</a></h3>
+        <p class="excerpt">记录我的旅行足迹，地图中的标记点，是我目前去过的地方。</p>
+    </li>
+    
+</ul>
 		</section>
 		<footer>
 			Copyright©2017 Lynnelv.
