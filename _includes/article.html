@@ -1,0 +1,13 @@
+<article>
+	<h1>{{post.title}}</h1>
+	<aside>
+	<time>{{ post.date | date: "%-d %B %Y"}}</time>
+	{% for tag in post.tags %}
+    	<span class="tag">{{tag}}</span>
+    {% endfor %}
+	</aside>
+	<div class="seperator"></div>
+	<div class="content">
+		{{ content }}
+	</div>
+</article>

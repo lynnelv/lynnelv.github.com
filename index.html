@@ -1,62 +1,34 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset='utf-8'>
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<meta name="allow-search" content="yes" />
-		<meta name="subject" content="lynnelv" />
-		<meta name="abstract" content="lynnelv" />
-		<meta name="keywords" content="lynnelv, 前端开发, 博客, front-end developer, lynnelv's blog" />
-		<meta name="Author" content="lynnelv" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+---
+layout: default
+title: lynne lv
+kw: 前端开发,前端博客,前端技术,旅行,摄影,lynnelv
+desc: 这里是lynnelv的个人主页,记录包括但不限于前端技术,旅行手记,摄影等个人生活的碎碎沫,欢迎访问!
+link: http://lynnelv.github.io/
+---
+<link rel="stylesheet" href="/css/swiper.min.css">
 
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+<div class="swiper-container">
+	<ul class="swiper-wrapper">
+	{% for image in site.static_files %}
+	    {% if image.path contains 'img/slider' %}
+	        <li class="swiper-slide" style="background-image: url({{ image.path }})"></li>
+	    {% endif %}
+	{% endfor %}
+	</ul>
+	<div class="swiper-pagination"></div>
+</div>
 
-		<title>lynne lv</title>
-	</head>
-	<body onload="mask();">
-		<nav>
-			<ul class="nav">
-				<li><a href="http://lynnelv.github.io/blog.html"><span>Blog</span></a></li>
-				<li><a href="#"><span>About</span></a></li>
-				<li class="last"><a href="#"><span>Photo</span></a></li>
-			</ul>
-		</nav>
-		<div class="wrap">
-			<img src="img/wallpaper.jpg" id="bg">
-			<audio src="pianosounds/bg_music.mp3" autoplay="true" hidden="true"></audio>
-			<canvas id="mask"></canvas>
-			<div class="logo">LYNNE LV</div>
-			<div id="hero">
-				<p>yep,  i am not sure about the furture,</p>
-				<p>but,  i decide to follow my heart,</p>
-				<p>even if very diffcult.</p>
-				<p>
-					<small>
-						lynne<br>
-						<date>2014/05/29</date>
-					</small>
-				</p>
-			</div>
-		</div>
-		<script src="js/rainy.js"></script>
-		<script type="text/javascript">
-			function mask() {
-				var engine = new RainyDay('mask','bg', window.innerWidth, window.innerHeight);
-				engine.gravity = engine.GRAVITY_NON_LINEAR;
-				engine.trail = engine.TRAIL_DROPS;
+{% assign post = site.posts.first %}
+{% assign content = post.content %}
+{% include article.html %}
 
-				engine.rain([
-					engine.preset(0, 2, 500)
-					]);
-
-				engine.rain([
-					engine.preset(3, 3, 0.88),
-					engine.preset(5, 5, 0.9),
-					engine.preset(6, 2, 1),
-					], 100);
-			}
-		</script>
-	</body>
-</html>
+<script type="text/javascript" src="/js/swiper.min.js"></script>
+<script type="text/javascript">
+new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    centeredSlides: true,
+    autoplay: 3600,
+    autoplayDisableOnInteraction: false
+});
+</script>
