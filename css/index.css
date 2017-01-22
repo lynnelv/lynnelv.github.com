@@ -11,7 +11,7 @@ html {
 }
 body {
     font-family: Angelina, Tahoma;
-    letter-spacing: .18em;
+    letter-spacing: .16em;
 	color: #7a7a7a;
     background: #fbf9f9;
     display: flex;
@@ -20,6 +20,7 @@ body {
     margin: auto;
     min-height: 100%;
     position: relative;
+    padding-bottom: 2em;
 }
 a {
 	text-decoration: none;
@@ -37,6 +38,9 @@ ul {
 	width: 265px;
 	border-right: 2px solid #eee;
 	background: #fff;
+}
+.left-side .divide {
+	display: none;
 }
 .main {
 	flex: 13;
@@ -68,12 +72,14 @@ nav {
 .intro {
 	margin: 2em 0;
 	font-size: 1.3em;
+	line-height: 1.3em;
 }
 .cate {
 	padding: 0;
 }
 .cate li {
 	position: relative;
+	display: block;
 	margin: 1.5em 0;
 }
 .cate li.last:after {
@@ -123,14 +129,16 @@ footer {
 	width: 100%;
 	text-align: center;
 	margin: auto;
-	padding-bottom: 1em;
+	padding: 1em 0;
 	font-size: .6em;
 	letter-spacing: .1em;
 }
 .article-list li {
-	height: 7em;
+	height: 6em;
+	padding: 1em;
 	border-bottom: 1px dashed #cdcdcd;
 	overflow: hidden;
+	box-sizing: border-box;
 }
 .article-list h3 {
 	display: inline-block;
@@ -141,7 +149,7 @@ footer {
 	color: #999;
 	overflow: hidden;
 	width: 100%;
-	line-height: 1.6em;
+	line-height: 4em;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
@@ -152,6 +160,7 @@ footer {
 }
 .swiper-wrapper {
 	padding: 0;
+	display: block !important;
 }
 .swiper-slide {
 	background-position: center;

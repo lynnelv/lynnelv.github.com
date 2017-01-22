@@ -7,10 +7,14 @@ article {
 	background: #fff;
 	box-sizing: border-box;
 	border: 2px solid #eee;
-	margin-bottom: 5em;
 }
 article ul {
 	list-style: outside;
+	padding: 0 2em;
+}
+article p {
+	margin: 1em 0;
+	text-indent: 1.5em;
 }
 article .content {
 	line-height: 1.8em;
@@ -42,13 +46,13 @@ h1 {
     font-family: Angelina, Tahoma;
     font-weight: bold;
     color: #fff;
-    margin-left: -45px;
+    margin-left: -40px;
     margin-top: -18px;
 }
 .date-label::before {
     position: absolute;
     content: "";
-    border: 1.5em solid #f59d7f;
+    border: 24px solid #f59d7f;
     border-right-color: transparent;
     top: 0;
     left: 100%;

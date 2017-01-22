@@ -1,17 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-20T21:24:59+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-22T19:51:36+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">足迹</title><link href="http://localhost:4000/travel-footprints" rel="alternate" type="text/html" title="足迹" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/TravelMap</id><content type="html" xml:base="http://localhost:4000/travel-footprints">&lt;link href=&quot;/css/jquery-jvectormap-2.0.3.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
 
-地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『环游世界』还很遥远，希望短期目标『每年至少旅行一次 』不会再落空。
+&lt;p&gt;
+	地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『环游世界』还很遥远，希望短期目标『每年至少旅行一次』不会再落空。
+&lt;/p&gt;
 
 &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
 
 &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-jvectormap-2.0.3.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-jvectormap-world-mill.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-jvectormap-world-merc.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
 	(function ($) {
 		$('#map').vectorMap({
-			map: 'world_mill',
+			map: 'world_merc',
 			backgroundColor: '#a5bfdd',
           	selectedColor: '#333333',
 	        selectedRegions: ['CN','MY'],
@@ -44,8 +46,10 @@
 		});
 	})(jQuery);
 &lt;/script&gt;</content><category term="旅行" /><category term="旅行" /><summary type="html">记录我的旅行足迹，地图中的标记点，是我目前去过的地方。</summary></entry><entry><title type="html">我的2016</title><link href="http://localhost:4000/2016-summary" rel="alternate" type="text/html" title="我的2016" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/2016Summary</id><content type="html" xml:base="http://localhost:4000/2016-summary">&lt;p&gt;时间你好快，好像什么事情都没做，又过去一年，折腾是我2016的标签。&lt;/p&gt;
-2015的年会结束之后，走出世界之窗的门口，我决定2016不要再持续这种颓废迷茫的日子。
+&lt;p&gt;
+	2015的年会结束之后，走出世界之窗的门口，我决定2016不要再持续这种颓废迷茫的日子。
 这是我2016定的一些&lt;strong&gt;TODO-LIST&lt;/strong&gt;：
+&lt;/p&gt;
 &lt;ul&gt;
 	&lt;li&gt;换个工作环境&lt;/li&gt;
 	&lt;li&gt;出国旅游&lt;/li&gt;
