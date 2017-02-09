@@ -39,9 +39,6 @@ ul {
 	border-right: 2px solid #eee;
 	background: #fff;
 }
-.left-side .divide {
-	display: none;
-}
 .main {
 	flex: 13;
     padding: 1em 2em;
@@ -75,7 +72,7 @@ nav {
 	line-height: 1.3em;
 }
 .cate {
-	padding: 0;
+	display: block !important;
 }
 .cate li {
 	position: relative;
@@ -160,7 +157,6 @@ footer {
 }
 .swiper-wrapper {
 	padding: 0;
-	display: block !important;
 }
 .swiper-slide {
 	background-position: center;

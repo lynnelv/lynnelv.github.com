@@ -42,10 +42,18 @@ ul {
 	background-size: contain;
 	width: 120px;
 	height: 68px;
-	margin-left: 1em;
+	margin-left: 5em;
 }
-.about-me, .me, .nav {
+.about-me, .me .intro, .me .linkto, .nav {
 	display: none;
+}
+.portrait {
+    width: 50px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 7px 15px 7px 15px;
 }
 .cate-container {
 	overflow: hidden;
@@ -57,46 +65,15 @@ ul {
 .cate {
 	padding: 1em 1em 0 1em;
 	margin-bottom: .4em;
+	font-size: .9em;
 }
 .cate .swiper-slide {
 	margin-right: 1.2em;
 	width: auto !important;
-	font-size: .9em;
+	font-size: .95em;
 }
 .cate li a b {
 	display: none;
-}
-.divide {
-	position: absolute;
-	bottom: 0;
-	background-color: #cb1cf0;
-	overflow: hidden;
-	width: 100%;
-	height: 2px;
-	display: flex;
-}
-.divide > i {
-	display: block;
-	height: 2px;
-	flex: 3;
-}
-.red {
-	background-color: #f01c1c;
-}
-.orange {
-	background-color: #f08a1c;
-}
-.green {
-	background-color: #9ef01c;
-}
-.cyan {
-	background-color: #1cd5f0;
-}
-.blue {
-	background-color: #1c5df0;
-}
-.brown{
-	background-color: #cb1cf0;
 }
 .swiper-container {
 	width: 100%;
@@ -134,7 +111,7 @@ article p {
 }
 article .content {
 	line-height: 1.4em;
-	font-size: .95em;
+	font-size: .9em;
 }
 
 time {

@@ -1,0 +1,112 @@
+html {
+	height: 100%;
+}
+body {
+	font-family: Helvetica, Arial, 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft YaHei', STHeiti, 'Microsoft Jhenghei', sans-serif;
+    letter-spacing: .16em;
+	color: #7a7a7a;
+    background: #fbf9f9;
+    display: flex;
+    width: 986px;
+    min-width: 986px;
+    margin: auto;
+    min-height: 100%;
+    position: relative;
+    padding: 2em;
+    line-height: 1.6em;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #ed8d6c;
+}
+.page {
+	width: 100%;
+}
+.bar {
+	background: #eee;
+}
+h1.bar {
+	text-align: center;
+	padding: .5em;
+}
+.cells {
+	padding: .8em;
+	flex: 3;
+}
+.info {
+	display: flex;
+}
+.info div:last-of-type {
+	flex: 1;
+}
+.cell {
+	padding: .6em 0;
+}
+.cell-bd {
+	font-weight: bold;
+	float: left;
+	width: 80px;
+	margin-right: 2em;
+    text-align:justify;
+    text-justify:distribute-all-lines;/*ie6-8*/
+    text-align-last:justify;/* ie9*/
+    -moz-text-align-last:justify;/*ff*/
+    -webkit-text-align-last:justify;/*chrome 20+*/
+}
+.portrait {
+	width: 120px;
+}
+.bar .title {
+	display: inline-block;
+	background: #ed8d6c;
+	color: #fff;
+	padding: .6em;
+}
+.work-experience,.skill,.certificate {
+	padding: 1em;
+}
+.work-experience dl {
+	margin-bottom: 1em;
+	border-bottom: 1px dashed #cdcdcd;
+}
+.project {
+	margin: 1em;
+}
+.project ul {
+	list-style: circle;
+	margin: 1em 1em 1em 2.5em;
+}
+dt {
+	display: flex;
+	align-items: center;
+}
+dt span {
+	flex: 1;
+	margin-right: 5em;
+}
+.tencent {
+	background: url(/img/tencent-logo.png) center no-repeat;
+}
+.baidu {
+	background: url(/img/baidu-logo.png) center no-repeat;
+}
+.weibo {
+	background: url(/img/weibo-logo.png) center no-repeat;
+}
+.company {
+	background-size: contain;
+	height: 40px;
+}
+.pname {
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+.skill ul {
+	list-style-type:square;
+	margin-left: 1em;
+}
+.certificate ul {
+	list-style-type:circle;
+	margin-left: 1em;
+}
