@@ -1,29 +1,27 @@
 html {
 	height: 100%;
+	max-width: 520px;
+	width: 100%;
+	margin: auto;
+	overflow-x: hidden;
 }
 body {
 	font-family: Helvetica, Arial, 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft YaHei', STHeiti, 'Microsoft Jhenghei', sans-serif;
     letter-spacing: .16em;
 	color: #7a7a7a;
     background: #fbf9f9;
-    width: 986px;
-    min-width: 986px;
-    margin: auto;
+    width: 100%;
     min-height: 100%;
-    position: relative;
-    line-height: 1.6em;
+    letter-spacing: .16em;
+    line-height: 1.3em;
 }
 .page {
-    padding: 2em;
-	
+    padding: 1em;
 }
 a {
 	text-decoration: none;
 	cursor: pointer;
 	color: #ed8d6c;
-}
-.page {
-	width: 100%;
 }
 .bar {
 	background: #eee;
@@ -32,32 +30,23 @@ h1.bar {
 	text-align: center;
 	padding: .5em;
 }
-.cells {
-	padding: .8em;
-	flex: 3;
-}
 .info {
 	display: flex;
-}
-.info div:last-of-type {
-	flex: 1;
+	flex-direction: column;
 }
 .cell {
-	padding: .6em 0;
+	padding: .5em 0;
 }
 .cell-bd {
-	font-weight: bold;
-	float: left;
-	width: 80px;
-	margin-right: 2em;
-    text-align:justify;
-    text-justify:distribute-all-lines;/*ie6-8*/
-    text-align-last:justify;/* ie9*/
-    -moz-text-align-last:justify;/*ff*/
-    -webkit-text-align-last:justify;/*chrome 20+*/
+	display: none;
 }
 .portrait {
 	width: 120px;
+	position: absolute;
+    top: 0;
+    border-radius: 100%;
+    top: 7em;
+    right: 1em;
 }
 .bar .title {
 	display: inline-block;
@@ -66,14 +55,14 @@ h1.bar {
 	padding: .6em;
 }
 .work-experience,.skill,.certificate {
-	padding: 1em;
+	padding: 1em 0;
 }
 .work-experience dl {
 	margin-bottom: 1em;
 	border-bottom: 1px dashed #cdcdcd;
 }
 .project {
-	margin: 1em;
+	padding: 1em 0;
 }
 .project ul {
 	list-style: circle;
@@ -81,20 +70,19 @@ h1.bar {
 }
 dt {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 }
 dt span {
-	flex: 1;
-	margin-right: 5em;
+	margin-bottom: 1em;
 }
 .tencent {
-	background: url(/img/tencent-logo.png) center no-repeat;
+	background: url(/img/tencent-logo.png) left no-repeat;
 }
 .baidu {
-	background: url(/img/baidu-logo.png) center no-repeat;
+	background: url(/img/baidu-logo.png) left no-repeat;
 }
 .weibo {
-	background: url(/img/weibo-logo.png) center no-repeat;
+	background: url(/img/weibo-logo.png) left no-repeat;
 }
 .company {
 	background-size: contain;
@@ -106,6 +94,7 @@ dt span {
 }
 .skill{
 	display: flex;
+	flex-direction: column;
 }
 .certificate ul {
 	list-style-type:circle;
