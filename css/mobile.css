@@ -140,6 +140,7 @@ h1 {
     font-weight: bold;
     color: #fff;
     margin-left: -15px;
+    font-size: .85em;
 }
 .date-label::before {
     position: absolute;

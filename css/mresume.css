@@ -13,7 +13,6 @@ body {
     width: 100%;
     min-height: 100%;
     letter-spacing: .16em;
-    line-height: 1.3em;
 }
 .page {
     padding: 1em;
@@ -33,9 +32,10 @@ h1.bar {
 .info {
 	display: flex;
 	flex-direction: column;
+	margin: .5em 0;
 }
 .cell {
-	padding: .5em 0;
+	padding: .6em 0;
 }
 .cell-bd {
 	display: none;
@@ -56,13 +56,14 @@ h1.bar {
 }
 .work-experience,.skill,.certificate {
 	padding: 1em 0;
+    line-height: 2em;
 }
 .work-experience dl {
 	margin-bottom: 1em;
 	border-bottom: 1px dashed #cdcdcd;
 }
 .project {
-	padding: 1em 0;
+	margin: 1em 0;
 }
 .project ul {
 	list-style: circle;
