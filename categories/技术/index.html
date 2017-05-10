@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset='utf-8'>
-		<meta content="旅行,旅行足迹,世界地图" name="keywords">
-		<meta content="记录我的旅行足迹." name="description">
+		<meta content="" name="keywords">
+		<meta content="" name="description">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
-		<link rel="canonical" href="http://lynnelv.github.io/travel-footprints">
+		<link rel="canonical" href="http://lynnelv.github.io/categories/%E6%8A%80%E6%9C%AF/">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0' />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="subject" content="lynnelv" />
@@ -20,7 +20,7 @@
 		<link href="/css/prism.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="/css/swiper.min.css">
 		<script type="text/javascript" src="/js/swiper.min.js"></script>
-		<title>足迹</title>
+		<title>Category: 技术</title>
 	</head>
 	<body>
 		<section class="left-side">
@@ -61,75 +61,15 @@
 			</div>
 		</section>
 		<section class="main">
-			<article>
-	<div class="date-label">20 January 2017</div>
-	<h1>足迹</h1>
-	<aside>
-	
-    	<span class="tag">旅行</span>
+			<ul class="article-list">
     
-	</aside>
-	<div class="seperator"></div>
-	<div class="content">
-		<link href="/css/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
-
-<p>
-	地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『环游世界』还很遥远，希望短期目标『每年至少旅行一次』不会再落空。
-</p>
-
-<div id="map"></div>
-
-<script type="text/javascript" src="https://cdn.staticfile.org/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/jquery-jvectormap-2.0.3.min.js"></script>
-<script type="text/javascript" src="/js/jquery-jvectormap-world-merc.js"></script>
-<script type="text/javascript">
-	(function ($) {
-		$('#map').vectorMap({
-			map: 'world_merc',
-			backgroundColor: '#a5bfdd',
-          	selectedColor: '#333333',
-	        selectedRegions: ['CN','MY'],
-	        regionStyle: {
-            	selected: {
-	                fill: '#ed8d6c'
-	            }
-	        },
-          	markerStyle: {
-				initial: {
-					fill: '#F8E23B',
-			        stroke: '#383f47'
-				}
-			},
-			markers: [
-				{latLng: [21.11, 110.24], name: '湛江-2009'},
-				{latLng: [25.17, 110.17], name: '桂林-2009'},
-				{latLng: [29.35, 106.33], name: '重庆-2009-2013'},
-				{latLng: [22.48, 108.19], name: '南宁-2010'},
-				{latLng: [30.40, 104.04], name: '成都-2012'},
-				{latLng: [23.08, 113.14], name: '广州-2012'},
-				{latLng: [22.27, 113.47], name: '深圳-2012'},
-				{latLng: [25.04, 102.42], name: '昆明-2013'},
-				{latLng: [26.88, 100.23], name: '丽江-2013'},
-				{latLng: [25.34, 100.13], name: '大理-2013'},
-				{latLng: [39.55, 116.24], name: '北京-2013'},
-				{latLng: [3.14, 101.68], name: '吉隆坡-2015,2016'},
-				{latLng: [5.98, 116.07], name: '沙巴-2015,2016'},
-			]
-		});
-	})(jQuery);
-</script>
-
-
-	</div>
-</article>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-	var disqus_shortname = 'lynnelv';
-	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <li>
+        <time>10 May 2017</time>
+        <h3><a href="/veevalidate">vue2表单校验插件のvee-validate使用笔记</a></h3>
+        <p class="excerpt">最近的项目前端是基于vue2.0，对于表单验证的需求，经过对比决定用vee-validate插件，本文是一些常用api总结。</p>
+    </li>
+    
+</ul>
 		</section>
 		<footer>
 			Copyright©2017 Lynnelv.

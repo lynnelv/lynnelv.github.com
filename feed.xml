@@ -1,5 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-02-13T20:59:40+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">足迹</title><link href="http://localhost:4000/travel-footprints" rel="alternate" type="text/html" title="足迹" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/TravelMap</id><content type="html" xml:base="http://localhost:4000/travel-footprints">&lt;link href=&quot;/css/jquery-jvectormap-2.0.3.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-10T21:40:40+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">vue2表单校验插件のvee-validate使用笔记</title><link href="http://localhost:4000/veevalidate" rel="alternate" type="text/html" title="vue2表单校验插件のvee-validate使用笔记" /><published>2017-05-10T00:00:00+08:00</published><updated>2017-05-10T00:00:00+08:00</updated><id>http://localhost:4000/veevalidator</id><content type="html" xml:base="http://localhost:4000/veevalidate">&lt;p&gt;输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然&lt;a href=&quot;http://vee-validate.logaretm.com/index.html&quot; rel=&quot;nofollow&quot;&gt;官方API&lt;/a&gt;已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下&lt;/p&gt;
+&lt;p&gt;还是按部就班吧，安装走起：&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	npm install vee-validate --save
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;使用方法很简单，直接引用&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	import Vue from 'vue'
+	import VeeValidate from 'vee-validate'
+
+	Vue.use(VeeValidate, {
+		// 指定locale为中文
+	  	locale: 'zh_CN'
+	})
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;可以整理一个单独的组件来管理表单验证的相关代码。&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	import {Validator} from 'vee-validate'
+	import cn from 'vee-validate/dist/locale/zh_CN'
+	// 默认是en，这里添加中文的lang包
+	Validator.addLocale(cn)
+	// 自定义校验规则
+	Validator.extend('chinese', {
+		messages: {
+			zh_CN: field =&gt; field + '格式不正确'
+		},
+		validate(value) {
+			return /^[\u4E00-\u9FFF\u3400-\u4DFF]+$/.test(value)
+		}
+	})
+	// 修改vee-validate默认的提示文案
+	Validator.updateDictionary({
+		zh_CN: {
+		    messages: {
+		        regex: field =&gt; field + '格式不正确'
+		    }
+		}
+	});
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;vee-validate本身也有很多常用的校验规则可以选择，这里不累述了，直接参考&lt;a href=&quot;http://vee-validate.logaretm.com/rules.html#available-rules&quot; rel=&quot;nofollow&quot;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;关于表单控件的引用，这里有几个点：&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;data-vv-as - 指定显示给用户看的提示字段名，默认是使用name属性&lt;/li&gt;
+	&lt;li&gt;v-validate - 校验规则，多个以“|”分隔&lt;/li&gt;
+	&lt;li&gt;data-vv-validate-on - 指定触发校验的时机，默认是input、change事件时触发，如希望手动触发，设置为&lt;code&gt;none&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;name - name属性是必须的，否则无法触发校验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	&amp;lt;input type=&quot;text&quot; name=&quot;name&quot; data-vv-as=&quot;姓名&quot; v-validate=&quot;'required|chinese'&quot; data-vv-validate-on=&quot;blur&quot; v-model=&quot;name&quot;&amp;gt;
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;然后是错误提示了，&lt;em&gt;errors&lt;/em&gt;的常用api如下：&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;has(field) - 指定字段是否有错误&lt;/li&gt;
+	&lt;li&gt;first(field) - 返回指定字段的第一个错误信息&lt;/li&gt;
+	&lt;li&gt;firstByRule(field, rule) - 返回指定字段某个校验规则的错误信息&lt;/li&gt;
+	&lt;li&gt;any() - 当前表单校验是否有错误&lt;/li&gt;
+	&lt;li&gt;add(file, msg, ruleRule) - 添加错误信息到errors对象&lt;/li&gt;
+	&lt;li&gt;remove(field) - 清空指定字段的所有错误信息&lt;/li&gt;
+	&lt;li&gt;clear() - 清空当前表单的所有错误信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;p.s: name字段的校验规则包括非空和中文，这里的效果是，非空不提示错误，只有填了非中文的值才提示错误信息，如果空值需要提示，那么用first()&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	&amp;lt;div class=&quot;error&quot; v-show=&quot;errors.firstByRule('name','chinese')&quot;&amp;gt;&amp;lt;/div&amp;gt;
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;以上是通过data-*属性来触发校验，因为前面的&lt;code&gt;Vue.use(VeeValidate)&lt;/code&gt;已经在vue中注册了实例，也可以手动触发校验，如表单提交前手动校验：&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	this.$validator.validateAll().then(async (validateFlag) =&gt; {
+        	if (!validateFlag) return
+			this.$store.dispatch('showToast', {
+				type: 'loading',
+				message: '正在加载...'
+			})
+			await this.$store.dispatch('post', data)
+      	}, err =&gt; {
+      	})
+	}
+	&lt;/code&gt;
+&lt;/pre&gt;
+&lt;p&gt;我这里没有写校验规则，因为在控件上指定了，如果没有，那可以这样指定：&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	const validator = new Validator({
+		name: 'required|chinese',
+		...
+	})
+	&lt;/code&gt;
+&lt;/pre&gt;</content><category term="技术" /><category term="web,vue" /><summary type="html">最近的项目前端是基于vue2.0，对于表单验证的需求，经过对比决定用vee-validate插件，本文是一些常用api总结。</summary></entry><entry><title type="html">足迹</title><link href="http://localhost:4000/travel-footprints" rel="alternate" type="text/html" title="足迹" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/TravelMap</id><content type="html" xml:base="http://localhost:4000/travel-footprints">&lt;link href=&quot;/css/jquery-jvectormap-2.0.3.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
 
 &lt;p&gt;
 	地图中的标记点，是我目前去过的地方，暂时还很少，离我的梦想『环游世界』还很遥远，希望短期目标『每年至少旅行一次』不会再落空。

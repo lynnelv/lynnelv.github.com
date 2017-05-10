@@ -46,7 +46,7 @@ ul {
 }
 .logo {
 	display: block;
-	background: url('/img/logo.png') left no-repeat;
+	background: url('/img/logo/logo.png') left no-repeat;
 	background-size: contain;
 	height: 60px;
 	margin-bottom: 2em;

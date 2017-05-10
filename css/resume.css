@@ -87,13 +87,13 @@ dt span {
 	margin-right: 5em;
 }
 .tencent {
-	background: url(/img/tencent-logo.png) center no-repeat;
+	background: url(/img/logo/tencent-logo.png) center no-repeat;
 }
 .baidu {
-	background: url(/img/baidu-logo.png) center no-repeat;
+	background: url(/img/logo/baidu-logo.png) center no-repeat;
 }
 .weibo {
-	background: url(/img/weibo-logo.png) center no-repeat;
+	background: url(/img/logo/weibo-logo.png) center no-repeat;
 }
 .company {
 	background-size: contain;

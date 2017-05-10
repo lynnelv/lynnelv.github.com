@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset='utf-8'>
-		<meta content="前端开发,前端博客,前端技术,旅行,摄影,lynnelv" name="keywords">
-		<meta content="这里是lynnelv的个人主页,记录包括但不限于前端技术,旅行手记,摄影等个人生活的碎碎沫,欢迎访问!" name="description">
+		<meta content="vuejs, vue validate, veevalidate, 表单校验, form validate, vue插件" name="keywords">
+		<meta content="" name="description">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
-		<link rel="canonical" href="http://lynnelv.github.io/">
+		<link rel="canonical" href="http://lynnelv.github.io/veevalidate">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0' />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="subject" content="lynnelv" />
@@ -20,7 +20,7 @@
 		<link href="/css/prism.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="/css/swiper.min.css">
 		<script type="text/javascript" src="/js/swiper.min.js"></script>
-		<title>lynne lv</title>
+		<title>vue2表单校验插件のvee-validate使用笔记</title>
 	</head>
 	<body>
 		<section class="left-side">
@@ -61,99 +61,10 @@
 			</div>
 		</section>
 		<section class="main">
-			<div class="swiper-container">
-	<ul class="swiper-wrapper">
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/aa.jpg)"></li>
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/boat.jpg)"></li>
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/dog.jpg)"></li>
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/mataking-resort.jpg)"></li>
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/mosque.jpg)"></li>
-	    
-	
-	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/sea.jpg)"></li>
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	    
-	
-	</ul>
-	<div class="swiper-pagination"></div>
-</div>
-
-
-
-<article>
+			<article>
+	<div class="date-label">10 May 2017</div>
 	<h1>vue2表单校验插件のvee-validate使用笔记</h1>
 	<aside>
-	<time>10 May 2017</time>
 	
     	<span class="tag">web,vue</span>
     
@@ -260,16 +171,14 @@
 </pre>
 	</div>
 </article>
-
+<div id="disqus_thread"></div>
 <script type="text/javascript">
-new Swiper('.swiper-container', {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    centeredSlides: true,
-    autoplay: 3600,
-    autoplayDisableOnInteraction: false
-});
+	var disqus_shortname = 'lynnelv';
+	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		</section>
 		<footer>
 			Copyright©2017 Lynnelv.
