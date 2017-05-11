@@ -105,10 +105,6 @@
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/aa.jpg)"></li>
-	    
-	
-	    
 	        <li class="swiper-slide" style="background-image: url(/img/slider/boat.jpg)"></li>
 	    
 	
@@ -121,11 +117,19 @@
 	    
 	
 	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/me.jpg)"></li>
+	    
+	
+	    
 	        <li class="swiper-slide" style="background-image: url(/img/slider/mosque.jpg)"></li>
 	    
 	
 	    
 	        <li class="swiper-slide" style="background-image: url(/img/slider/sea.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/seabed.jpg)"></li>
 	    
 	
 	    
@@ -151,16 +155,18 @@
 
 
 <article>
-	<h1>vue2表单校验插件のvee-validate使用笔记</h1>
+	<h1>vue2表单验证插件のvee-validate</h1>
 	<aside>
 	<time>10 May 2017</time>
 	
-    	<span class="tag">web,vue</span>
+    	<span class="tag">web</span>
+    
+    	<span class="tag">vue.js</span>
     
 	</aside>
 	<div class="seperator"></div>
 	<div class="content">
-		<p>输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然<a href="http://vee-validate.logaretm.com/index.html" rel="nofollow">官方API</a>已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下</p>
+		<p>输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然<a href="http://vee-validate.logaretm.com/index.html" target="_blank" rel="nofollow">官方API</a>已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下</p>
 <p>还是按部就班吧，安装走起：</p>
 <pre>
 	<code class="language-javascript">
@@ -205,7 +211,7 @@
 	});
 	</code>
 </pre>
-<p>vee-validate本身也有很多常用的校验规则可以选择，这里不累述了，直接参考<a href="http://vee-validate.logaretm.com/rules.html#available-rules" rel="nofollow">官方文档</a>。</p>
+<p>vee-validate本身也有很多常用的校验规则可以选择，这里不累述了，直接参考<a href="http://vee-validate.logaretm.com/rules.html#available-rules" target="_blank" rel="nofollow">官方文档</a>。</p>
 <p>关于表单控件的引用，这里有几个点：</p>
 <ul>
 	<li>data-vv-as - 指定显示给用户看的提示字段名，默认是使用name属性</li>
@@ -220,13 +226,13 @@
 </pre>
 <p>然后是错误提示了，<em>errors</em>的常用api如下：</p>
 <ul>
-	<li>has(field) - 指定字段是否有错误</li>
-	<li>first(field) - 返回指定字段的第一个错误信息</li>
-	<li>firstByRule(field, rule) - 返回指定字段某个校验规则的错误信息</li>
-	<li>any() - 当前表单校验是否有错误</li>
-	<li>add(file, msg, ruleRule) - 添加错误信息到errors对象</li>
-	<li>remove(field) - 清空指定字段的所有错误信息</li>
-	<li>clear() - 清空当前表单的所有错误信息</li>
+	<li><code>has(field)</code> - 指定字段是否有错误</li>
+	<li><code>first(field)</code> - 返回指定字段的第一个错误信息</li>
+	<li><code>firstByRule(field, rule)</code> - 返回指定字段某个校验规则的错误信息</li>
+	<li><code>any()</code> - 当前表单校验是否有错误</li>
+	<li><code>add(file, msg, ruleRule)</code> - 添加错误信息到errors对象</li>
+	<li><code>remove(field)</code> - 清空指定字段的所有错误信息</li>
+	<li><code>clear()</code> - 清空当前表单的所有错误信息</li>
 </ul>
 <p>p.s: name字段的校验规则包括非空和中文，这里的效果是，非空不提示错误，只有填了非中文的值才提示错误信息，如果空值需要提示，那么用first()</p>
 <pre>
@@ -249,7 +255,7 @@
 	}
 	</code>
 </pre>
-<p>我这里没有写校验规则，因为在控件上指定了，如果没有，那可以这样指定：</p>
+<p>我这里没有写校验规则，因为在控件上指定了，也可以通过js指定，那么调用就变成了<code>validator.validateAll()</code></p>
 <pre>
 	<code class="language-javascript">
 	const validator = new Validator({
