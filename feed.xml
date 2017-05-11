@@ -1,5 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-11T12:59:01+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">vue2表单验证插件のvee-validate</title><link href="http://localhost:4000/veevalidate" rel="alternate" type="text/html" title="vue2表单验证插件のvee-validate" /><published>2017-05-10T00:00:00+08:00</published><updated>2017-05-10T00:00:00+08:00</updated><id>http://localhost:4000/veevalidator</id><content type="html" xml:base="http://localhost:4000/veevalidate">&lt;p&gt;输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然&lt;a href=&quot;http://vee-validate.logaretm.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;官方API&lt;/a&gt;已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-11T15:44:50+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">jmeter主要的常用功能介绍</title><link href="http://localhost:4000/jmeter" rel="alternate" type="text/html" title="jmeter主要的常用功能介绍" /><published>2017-05-11T00:00:00+08:00</published><updated>2017-05-11T00:00:00+08:00</updated><id>http://localhost:4000/jmeter</id><content type="html" xml:base="http://localhost:4000/jmeter">&lt;p&gt;
+	前段时间，哦，不，应该说是前几个月，研究了下测试工具jmeter的使用。时隔已久，今天临时需要测试一批接口的返回码，自然想起了用jmeter啊，但是发现有些用法不太记得了。。。故翻以前的笔记整理一下，记之。
+&lt;/p&gt;
+&lt;p&gt;
+	关于jmeter的介绍就不多说了（其实是我也没有很熟悉它），安装很简单，依赖java环境，蒽，自然可以跨平台使用。jmeter操作步骤基本是：创建一个测试计划，配置，执行测试计划，然后分析结果。
+&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;1. 添加测试计划&lt;/dt&gt;
+			&lt;dd&gt;
+				&lt;img src=&quot;../img/article/jmeter/test-plan.png&quot;&gt;
+				&lt;p&gt;这里设置的是全局变量，能在整个测试plan访问到。&lt;/p&gt;
+			&lt;/dd&gt;
+		&lt;/dl&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;2. 添加线程组&lt;/dt&gt;
+			&lt;dd&gt;
+				&lt;ul&gt;
+					&lt;li&gt;线程数：执行测试计划的线程数。&lt;/li&gt;
+					&lt;li&gt;ramp-up period：启动所有线程的耗时，如线程数是100，启动时长设置10，则1s启动10个线程。&lt;/li&gt;
+					&lt;li&gt;循环次数：单线程发送请求的次数，如线程数是100，循环10次，则总请求数等于1000。&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/dd&gt;
+		&lt;/dl&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;3. 添加配置元件&lt;/dt&gt;
+			&lt;dd&gt;
+				&lt;p&gt;
+					&lt;b&gt;http请求默认值&lt;/b&gt;：默认所有请求都自动带上所设置的参数。
+				&lt;/p&gt;
+				&lt;img src=&quot;../img/article/jmeter/default-param.png&quot;&gt;
+			&lt;/dd&gt;
+		&lt;/dl&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;4. 后置处理器&lt;/dt&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					&lt;dl&gt;
+						&lt;dt&gt;正则提取器：&lt;/dt&gt;
+						&lt;dd&gt;
+							提取返回结果作为下一个请求的入参。
+							&lt;img src=&quot;../img/article/jmeter/regex-extractor.png&quot;&gt;
+							&lt;p class=&quot;warn-text&quot;&gt;如果提取结果是一个数组，需要自动循环下个请求，这时候就要配合forEach控制器使用。&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;loop start index&lt;/b&gt;: 1&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;loop end index&lt;/b&gt;: &lt;code&gt;${id_arr_matchNr}&lt;/code&gt;&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;loop variable&lt;/b&gt;: id&lt;/p&gt;
+							&lt;img src=&quot;../img/article/jmeter/foreach.png&quot;&gt;
+							&lt;p&gt;
+								其中result为上个请求的返回结果集，下个请求通过&lt;code&gt;${id}&lt;/code&gt;引用单个结果。
+							&lt;/p&gt;
+							&lt;img src=&quot;../img/article/jmeter/next-req.png&quot;&gt;
+						&lt;/dd&gt;
+					&lt;/dl&gt;
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/dl&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;dl&gt;
+			&lt;dt&gt;5. 监听器&lt;/dt&gt;
+			&lt;dd&gt;
+				&lt;ul&gt;
+					&lt;li&gt;
+						&lt;dl&gt;
+							&lt;dt&gt;察看结果树：&lt;/dt&gt;
+							&lt;dd&gt;
+								查看每个请求的详细情况。
+							&lt;/dd&gt;
+							&lt;img src=&quot;../img/article/jmeter/graphic.png&quot;&gt;
+						&lt;/dl&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;dt&gt;PerfMon Metrics Collectot：&lt;/dt&gt;
+						&lt;dd&gt;
+							监控server的CPU、内存等指标，指定端口监听：&lt;br&gt;
+							&lt;code&gt;java -jar ./CMDRunner.jar --tool PerfMonAgent --udp-port 8080 --tcp-port 8080&lt;/code&gt;
+							&lt;img src=&quot;../img/article/jmeter/perfmon.png&quot;&gt;
+						&lt;/dd&gt;
+					&lt;/li&gt;
+					&lt;li&gt;
+						&lt;dt&gt;聚合报告：&lt;/dt&gt;
+						&lt;dd&gt;
+							&lt;img src=&quot;../img/article/jmeter/poly-report.png&quot;&gt;
+							&lt;p&gt;- Label: 展示测试过程中所有执行的请求和控制器的聚合&lt;/p&gt;
+							&lt;p&gt;- # Samples: 样例执行数量&lt;/p&gt;
+							&lt;p&gt;- Average: 平均时间，单位: ms&lt;/p&gt;
+							&lt;p&gt;- Median：中位数，50％用户的响应时间，单位: ms&lt;/p&gt;
+							&lt;p&gt;- Min: 最小时间，单位: ms&lt;/p&gt;
+							&lt;p&gt;- Max: 最大时间，单位: ms&lt;/p&gt;
+							&lt;p&gt;- Error %: 错误率&lt;/p&gt;
+							&lt;p&gt;- Throughput: 服务每秒处理的请求数据量&lt;/p&gt;
+						&lt;/dd&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/dd&gt;
+		&lt;/dl&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+	以上是使用过程中一些主要点的总结，我用到的功能还只是jmeter的一小部分，jmeter支持的测试类型不只HTTP请求，还有DB，junit等。本文只是介绍了一个完整测试计划的配置过程，作为一个非专业人员自己摸索，有错漏的地方，谢谢指正。
+&lt;/p&gt;</content><category term="技术" /><category term="测试" /><category term="jmeter" /><summary type="html">本文就jmeter常用的、主要的功能作一个总结。</summary></entry><entry><title type="html">vue2表单验证插件のvee-validate</title><link href="http://localhost:4000/veevalidate" rel="alternate" type="text/html" title="vue2表单验证插件のvee-validate" /><published>2017-05-10T00:00:00+08:00</published><updated>2017-05-10T00:00:00+08:00</updated><id>http://localhost:4000/veevalidator</id><content type="html" xml:base="http://localhost:4000/veevalidate">&lt;p&gt;输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然&lt;a href=&quot;http://vee-validate.logaretm.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;官方API&lt;/a&gt;已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下&lt;/p&gt;
 &lt;p&gt;还是按部就班吧，安装走起：&lt;/p&gt;
 &lt;pre&gt;
 	&lt;code class=&quot;language-javascript&quot;&gt;

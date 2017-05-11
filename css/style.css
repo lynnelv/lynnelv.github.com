@@ -29,7 +29,7 @@ code {
     background-color: #f9f2f4;
     border-radius: 4px;
 }
-a {
+.main a {
 	text-decoration: none;
 	cursor: pointer;
 	color: #ed8d6c;
@@ -38,7 +38,17 @@ a {
 time {
     font-family: Angelina, Tahoma;
 }
-
+article img {
+	display: block;
+	margin: 6px 0;
+	width: 100%;
+}
+article dt {
+	font-weight: bolder;
+}
+article .warn-text {
+	color: red;
+}
 .seperator {
 	width: 100%;
 	border-bottom: 2px solid #eee;
