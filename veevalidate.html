@@ -20,7 +20,9 @@
 		<link href="/css/prism.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="/css/swiper.min.css">
 		<script type="text/javascript" src="/js/swiper.min.js"></script>
-		<title>vue2表单验证插件のvee-validate</title>
+		
+		<title>vue2表单验证插件のvee-validate - lynnelv's blog</title>
+		
 	</head>
 	<body>
 		<section class="left-side">
@@ -28,7 +30,7 @@
 			<nav class="about-me">ABOUT THE AUTHOR</nav>
 			<div class="me">
 				<!-- <a href="/resume" target="_blank"><img src="/img/portrait.jpg" class="portrait"></img></a> -->
-				<a href="#"><img src="/img/portrait.jpg" class="portrait"></img></a>
+				<a href="javascript:"><img src="/img/portrait.jpg" class="portrait"></img></a>
 				<p class="intro">
 					This is my personal blog where I share a lot of stuffs about my life and work<br>
 					everything i do in between.
@@ -122,10 +124,10 @@
 <p>vee-validate本身也有很多常用的校验规则可以选择，这里不累述了，直接参考<a href="http://vee-validate.logaretm.com/rules.html#available-rules" target="_blank" rel="nofollow">官方文档</a>。</p>
 <p>关于表单控件的引用，这里有几个点：</p>
 <ul>
-	<li>data-vv-as - 指定显示给用户看的提示字段名，默认是使用name属性</li>
-	<li>v-validate - 校验规则，多个以“|”分隔</li>
-	<li>data-vv-validate-on - 指定触发校验的时机，默认是input、change事件时触发，如希望手动触发，设置为<code>none</code></li>
-	<li>name - name属性是必须的，否则无法触发校验</li>
+	<li><code>data-vv-as</code> - 指定显示给用户看的提示字段名，默认是使用name属性</li>
+	<li><code>v-validate</code> - 校验规则，多个以“|”分隔</li>
+	<li><code>data-vv-validate-on</code> - 指定触发校验的时机，默认是input、change事件时触发，如希望手动触发，设置为<code>none</code></li>
+	<li><code>name</code> - name属性是必须的，否则无法触发校验</li>
 </ul>
 <pre>
 	<code class="language-javascript">
