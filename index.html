@@ -53,9 +53,15 @@
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide last">
+			    	<li class="swiper-slide">
 				    	<a href="/categories/技术/" title="技术">
 							<span>技术 <b>(2)</b></span>
+						</a>
+				    </li>
+			    
+			    	<li class="swiper-slide last">
+				    	<a href="/categories/音乐/" title="音乐">
+							<span>音乐 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
@@ -176,126 +182,20 @@
 
 
 <article>
-	<h1>记jmeter常用功能</h1>
+	<h1>歌单『周杰伦』</h1>
 	<aside>
-	<time>11 May 2017</time>
+	<time>23 May 2017</time>
 	
-    	<span class="tag">测试</span>
+    	<span class="tag">音乐</span>
     
-    	<span class="tag">jmeter</span>
+    	<span class="tag">周杰伦</span>
     
 	</aside>
 	<div class="seperator"></div>
 	<div class="content">
-		<p>
-	前段时间，哦，不，应该说是前几个月，研究了下测试工具jmeter的使用。时隔已久，今天临时需要测试一批接口的返回码，自然想起了用jmeter啊，但是发现有些用法不太记得了。。。故翻以前的笔记整理一下，记之。
-</p>
-<p>
-	关于jmeter的介绍就不多说了（其实是我也没有很熟悉它），安装很简单，依赖java环境，蒽，自然可以跨平台使用。jmeter操作步骤基本是：创建一个测试计划，配置，执行测试计划，然后分析结果。
-</p>
+		陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来，记給我自己。<br>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=600 height=800 src="//music.163.com/outchain/player?type=0&id=737659339&auto=0&height=430"></iframe>
 
-<ol>
-	<li>
-		<dl>
-			<dt>1. 添加测试计划</dt>
-			<dd>
-				<img src="../img/article/jmeter/test-plan.png">
-				<p>这里设置的是全局变量，能在整个测试plan访问到。</p>
-			</dd>
-		</dl>
-	</li>
-	<li>
-		<dl>
-			<dt>2. 添加线程组</dt>
-			<dd>
-				<ul>
-					<li>线程数：执行测试计划的线程数。</li>
-					<li>ramp-up period：启动所有线程的耗时，如线程数是100，启动时长设置10，则1s启动10个线程。</li>
-					<li>循环次数：单线程发送请求的次数，如线程数是100，循环10次，则总请求数等于1000。</li>
-				</ul>
-			</dd>
-		</dl>
-	</li>
-	<li>
-		<dl>
-			<dt>3. 添加配置元件</dt>
-			<dd>
-				<p>
-					<b>http请求默认值</b>：默认所有请求都自动带上所设置的参数。
-				</p>
-				<img src="../img/article/jmeter/default-param.png">
-			</dd>
-		</dl>
-	</li>
-	<li>
-		<dl>
-			<dt>4. 后置处理器</dt>
-			<ul>
-				<li>
-					<dl>
-						<dt>正则提取器：</dt>
-						<dd>
-							提取返回结果作为下一个请求的入参。
-							<img src="../img/article/jmeter/regex-extractor.png">
-							<p class="warn-text">如果提取结果是一个数组，需要自动循环下个请求，这时候就要配合forEach控制器使用。</p>
-							<p><b>loop start index</b>: 1</p>
-							<p><b>loop end index</b>: <code>${id_arr_matchNr}</code></p>
-							<p><b>loop variable</b>: id</p>
-							<img src="../img/article/jmeter/foreach.png">
-							<p>
-								其中result为上个请求的返回结果集，下个请求通过<code>${id}</code>引用单个结果。
-							</p>
-							<img src="../img/article/jmeter/next-req.png">
-						</dd>
-					</dl>
-				</li>
-			</ul>
-		</dl>
-	</li>
-	<li>
-		<dl>
-			<dt>5. 监听器</dt>
-			<dd>
-				<ul>
-					<li>
-						<dl>
-							<dt>察看结果树：</dt>
-							<dd>
-								查看每个请求的详细情况。
-							</dd>
-							<img src="../img/article/jmeter/graphic.png">
-						</dl>
-					</li>
-					<li>
-						<dt>PerfMon Metrics Collectot：</dt>
-						<dd>
-							监控server的CPU、内存等指标，指定端口监听：<br>
-							<code>java -jar ./CMDRunner.jar --tool PerfMonAgent --udp-port 8080 --tcp-port 8080</code>
-							<img src="../img/article/jmeter/perfmon.png">
-						</dd>
-					</li>
-					<li>
-						<dt>聚合报告：</dt>
-						<dd>
-							<img src="../img/article/jmeter/poly-report.png">
-							<p>- Label: 展示测试过程中所有执行的请求和控制器的聚合</p>
-							<p>- # Samples: 样例执行数量</p>
-							<p>- Average: 平均时间，单位: ms</p>
-							<p>- Median：中位数，50％用户的响应时间，单位: ms</p>
-							<p>- Min: 最小时间，单位: ms</p>
-							<p>- Max: 最大时间，单位: ms</p>
-							<p>- Error %: 错误率</p>
-							<p>- Throughput: 服务每秒处理的请求数据量</p>
-						</dd>
-					</li>
-				</ul>
-			</dd>
-		</dl>
-	</li>
-</ol>
-<p>
-	以上是使用过程中一些主要点的总结，我用到的功能还只是jmeter的一小部分，jmeter支持的测试类型不只HTTP请求，还有DB，junit等。本文只是介绍了一个完整测试计划的配置过程，作为一个非专业人员自己摸索，有错漏的地方，谢谢指正。
-</p>
 	</div>
 </article>
 

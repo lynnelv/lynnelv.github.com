@@ -89,7 +89,6 @@ h1 {
     border-right: .8em solid #ed8d6c;
     border-bottom: 0.4em solid transparent;
 }
-
 .tag {
 	background: #fbc4a2;
     color: #fff;
@@ -127,4 +126,9 @@ h1 {
 	-webkit-transition: all .50s linear;
 	-moz-transition: all .50s linear;
 	transition: all .50s linear;
+}
+
+blockquote {
+	border-left: 5px solid #a5bfdd;
+	padding: .2em;
 }
