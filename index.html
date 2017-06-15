@@ -39,33 +39,32 @@
 			</div>
 			<nav class="nav">NAVIGATION</nav>
 			<div class="cate-container">
-				<ul class="cate swiper-wrapper">
+				<ul class="cate">
 				
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/随感/" title="随感">
 							<span>随感 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/旅行/" title="旅行">
 							<span>旅行 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/技术/" title="技术">
-							<span>技术 <b>(2)</b></span>
+							<span>技术 <b>(3)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide last">
+			    	<li class="last">
 				    	<a href="/categories/音乐/" title="音乐">
 							<span>音乐 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<!-- <li class="swiper-slide last"><a href="/resume" target="_blank"><span>我的简历</span></a></li> -->
 				</ul>
 			</div>
 		</section>
@@ -182,20 +181,54 @@
 
 
 <article>
-	<h1>歌单『周杰伦』</h1>
+	<h1>兼容安卓、IOS的纯数字键盘输入方案</h1>
 	<aside>
-	<time>23 May 2017</time>
+	<time>15 June 2017</time>
 	
-    	<span class="tag">音乐</span>
+    	<span class="tag">html</span>
     
-    	<span class="tag">周杰伦</span>
+    	<span class="tag">javascript</span>
     
 	</aside>
 	<div class="seperator"></div>
 	<div class="content">
-		陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来，记給我自己。<br>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=600 height=800 src="//music.163.com/outchain/player?type=0&id=737659339&auto=0&height=430"></iframe>
-
+		<b>需求点：</b>
+<p>
+1、调起系统的数字键盘。2、只接受0-9的数字输入。3、限制输入长度是18。
+</p>
+<b>踩在前面的坑：</b>
+<p>
+	提到纯数字输入，自然而然的反应就是number类型的input控件，但它在IOS下并不能调起数字键盘。
+</p>
+<p>
+	于是又想到了<code>pattern</code>属性，加了<code>pattern="\d*"</code>之后（PS:\d{18}不OK），安卓、IOS都能正常拉起数字键盘了，但是问题又来了，安卓下的数字键盘是带运算符（+、-、.）的，因为这几个符号（包括e）属于数字范畴。
+</p>
+<p>
+	o(︶︿︶)o。。。不能限制它不现实运算符，但我能去清掉你们吧，清掉的方法其实很简单<code>onkeypress="if(event.keyCode < 48 || event.keyCode > 56) event.returnValue = false;"</code>
+</p>
+<p>
+	PC下效果完美，然而安卓和IOS表现各异，安卓下不触发keypress，IOS不触发keyup，且安卓下的keyup也不能禁止运算符的输入。
+</p>
+<p>
+	最后，看了下别人的手机充值代码，用了tel类型，代替number+pattern调起数字键盘，至于禁止前面说的运算符，监听keyup事件去掉非数字字符就可以了，我用的是vue，这步放在watch里面。<br />
+</p>
+<pre>
+	<code class="language-javascript">
+	watch: {
+		id: function(val, old) {
+			if (old !== val) {
+				this.id = this.getNum(val)
+			}
+		}
+	},
+	methods: {
+		getNum(value) {
+			return this.$util.trim(value).replace(/[^\d]/g, '')
+		}
+	}
+	</code>
+</pre><br />
+开发中很小的一个问题，纯当吐槽记の。
 	</div>
 </article>
 
@@ -215,21 +248,12 @@ new Swiper('.swiper-container', {
 		</footer>
 		<script type="text/javascript" src="/js/prism.js"></script>
 		<script type="text/javascript">
-			// document.oncontextmenu = function() {return false};
-
 			var w = window,
 			    d = document,
 			    e = d.documentElement,
-			    g = d.getElementsByTagName('body')[0],
-			    w = w.innerWidth || e.clientWidth || g.clientWidth,
-			    h = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
-			if (w <= 520) {
-				document.querySelector('.cate').className += ' swiper-wrapper';
-				new Swiper('.cate-container', {
-					grabCursor: true
-				});
-			}
+			    b = d.getElementsByTagName('body')[0],
+			    x = w.innerWidth || e.clientWidth || b.clientWidth,
+			    y = w.innerHeight|| e.clientHeight|| b.clientHeight
 
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -238,6 +262,7 @@ new Swiper('.swiper-container', {
 
 			ga('create', 'UA-44013526-1', 'github.com');
 			ga('send', 'pageview');
+			document.oncontextmenu = function() {return false};
 		</script>
 	</body>
 </html>

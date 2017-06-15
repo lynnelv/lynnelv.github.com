@@ -15,7 +15,7 @@ html {
 }
 body {
     font-family: Angelina, Tahoma;
-    letter-spacing: .18em;
+    letter-spacing: .2em;
 	color: #7a7a7a;
     background: #fbf9f9;
     width: 100%;
@@ -38,7 +38,7 @@ ul {
 }
 .logo {
 	display: block;
-	background: url('/img/logo.png') center no-repeat;
+	background: url('/img/logo/logo.png') center no-repeat;
 	background-size: contain;
 	width: 120px;
 	height: 68px;
@@ -67,9 +67,10 @@ ul {
 	margin-bottom: .4em;
 	font-size: .9em;
 }
-.cate .swiper-slide {
+.cate li {
+	// width: auto !important;
+	display: inline-block;
 	margin-right: 1.2em;
-	width: auto !important;
 	font-size: .95em;
 }
 .cate li a b {

@@ -39,38 +39,43 @@
 			</div>
 			<nav class="nav">NAVIGATION</nav>
 			<div class="cate-container">
-				<ul class="cate swiper-wrapper">
+				<ul class="cate">
 				
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/随感/" title="随感">
 							<span>随感 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/旅行/" title="旅行">
 							<span>旅行 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide">
+			    	<li>
 				    	<a href="/categories/技术/" title="技术">
-							<span>技术 <b>(2)</b></span>
+							<span>技术 <b>(3)</b></span>
 						</a>
 				    </li>
 			    
-			    	<li class="swiper-slide last">
+			    	<li class="last">
 				    	<a href="/categories/音乐/" title="音乐">
 							<span>音乐 <b>(1)</b></span>
 						</a>
 				    </li>
 			    
-			    	<!-- <li class="swiper-slide last"><a href="/resume" target="_blank"><span>我的简历</span></a></li> -->
 				</ul>
 			</div>
 		</section>
 		<section class="main">
 			<ul class="article-list">
+    
+    <li>
+        <time>15 June 2017</time>
+        <h3><a href="/only-number-input">兼容安卓、IOS的纯数字键盘输入方案</a></h3>
+        <p class="excerpt">兼容安卓、IOS的纯数字键盘输入方案，限制只输入0-9的数字。</p>
+    </li>
     
     <li>
         <time>11 May 2017</time>
@@ -92,21 +97,12 @@
 		</footer>
 		<script type="text/javascript" src="/js/prism.js"></script>
 		<script type="text/javascript">
-			// document.oncontextmenu = function() {return false};
-
 			var w = window,
 			    d = document,
 			    e = d.documentElement,
-			    g = d.getElementsByTagName('body')[0],
-			    w = w.innerWidth || e.clientWidth || g.clientWidth,
-			    h = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
-			if (w <= 520) {
-				document.querySelector('.cate').className += ' swiper-wrapper';
-				new Swiper('.cate-container', {
-					grabCursor: true
-				});
-			}
+			    b = d.getElementsByTagName('body')[0],
+			    x = w.innerWidth || e.clientWidth || b.clientWidth,
+			    y = w.innerHeight|| e.clientHeight|| b.clientHeight
 
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -115,6 +111,7 @@
 
 			ga('create', 'UA-44013526-1', 'github.com');
 			ga('send', 'pageview');
+			document.oncontextmenu = function() {return false};
 		</script>
 	</body>
 </html>

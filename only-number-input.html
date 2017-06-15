@@ -2,13 +2,13 @@
 <html>
 	<head>
 		<meta charset='utf-8'>
-		<meta content="" name="keywords">
+		<meta content="数字键盘, 纯数字，表单校验" name="keywords">
 		<meta content="" name="description">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
-		<link rel="canonical" href="http://lynnelv.github.io/categories/%E9%9A%8F%E6%84%9F/">
+		<link rel="canonical" href="http://lynnelv.github.io/only-number-input">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0' />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="subject" content="lynnelv" />
@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="/css/swiper.min.css">
 		<script type="text/javascript" src="/js/swiper.min.js"></script>
 		
-		<title>Category: 随感</title>
+		<title>兼容安卓、IOS的纯数字键盘输入方案 - lynnelv's blog</title>
 		
 	</head>
 	<body>
@@ -69,15 +69,65 @@
 			</div>
 		</section>
 		<section class="main">
-			<ul class="article-list">
+			<article>
+	<div class="date-label">15 June 2017</div>
+	<h1>兼容安卓、IOS的纯数字键盘输入方案</h1>
+	<aside>
+	
+    	<span class="tag">html</span>
     
-    <li>
-        <time>20 January 2017</time>
-        <h3><a href="/2016-summary">我的2016</a></h3>
-        <p class="excerpt">时间你好快，好像什么事情都没做，又过去一年，折腾是我的2016的标签。</p>
-    </li>
+    	<span class="tag">javascript</span>
     
-</ul>
+	</aside>
+	<div class="seperator"></div>
+	<div class="content">
+		<b>需求点：</b>
+<p>
+1、调起系统的数字键盘。2、只接受0-9的数字输入。3、限制输入长度是18。
+</p>
+<b>踩在前面的坑：</b>
+<p>
+	提到纯数字输入，自然而然的反应就是number类型的input控件，但它在IOS下并不能调起数字键盘。
+</p>
+<p>
+	于是又想到了<code>pattern</code>属性，加了<code>pattern="\d*"</code>之后（PS:\d{18}不OK），安卓、IOS都能正常拉起数字键盘了，但是问题又来了，安卓下的数字键盘是带运算符（+、-、.）的，因为这几个符号（包括e）属于数字范畴。
+</p>
+<p>
+	o(︶︿︶)o。。。不能限制它不现实运算符，但我能去清掉你们吧，清掉的方法其实很简单<code>onkeypress="if(event.keyCode < 48 || event.keyCode > 56) event.returnValue = false;"</code>
+</p>
+<p>
+	PC下效果完美，然而安卓和IOS表现各异，安卓下不触发keypress，IOS不触发keyup，且安卓下的keyup也不能禁止运算符的输入。
+</p>
+<p>
+	最后，看了下别人的手机充值代码，用了tel类型，代替number+pattern调起数字键盘，至于禁止前面说的运算符，监听keyup事件去掉非数字字符就可以了，我用的是vue，这步放在watch里面。<br />
+</p>
+<pre>
+	<code class="language-javascript">
+	watch: {
+		id: function(val, old) {
+			if (old !== val) {
+				this.id = this.getNum(val)
+			}
+		}
+	},
+	methods: {
+		getNum(value) {
+			return this.$util.trim(value).replace(/[^\d]/g, '')
+		}
+	}
+	</code>
+</pre><br />
+开发中很小的一个问题，纯当吐槽记の。
+	</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	var disqus_shortname = 'lynnelv';
+	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		</section>
 		<footer>
 			Copyright©2017 Lynnelv.

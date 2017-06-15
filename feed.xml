@@ -1,6 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-05-23T21:10:36+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">歌单『周杰伦』</title><link href="http://localhost:4000/jaychou" rel="alternate" type="text/html" title="歌单『周杰伦』" /><published>2017-05-23T00:00:00+08:00</published><updated>2017-05-23T00:00:00+08:00</updated><id>http://localhost:4000/jaychou</id><content type="html" xml:base="http://localhost:4000/jaychou">陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来，记給我自己。&lt;br&gt;
-&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=600 height=800 src=&quot;//music.163.com/outchain/player?type=0&amp;id=737659339&amp;auto=0&amp;height=430&quot;&gt;&lt;/iframe&gt;</content><category term="音乐" /><category term="音乐" /><category term="周杰伦" /><summary type="html">陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来。</summary></entry><entry><title type="html">记jmeter常用功能</title><link href="http://localhost:4000/jmeter" rel="alternate" type="text/html" title="记jmeter常用功能" /><published>2017-05-11T00:00:00+08:00</published><updated>2017-05-11T00:00:00+08:00</updated><id>http://localhost:4000/jmeter</id><content type="html" xml:base="http://localhost:4000/jmeter">&lt;p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-06-15T22:17:37+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">兼容安卓、IOS的纯数字键盘输入方案</title><link href="http://localhost:4000/only-number-input" rel="alternate" type="text/html" title="兼容安卓、IOS的纯数字键盘输入方案" /><published>2017-06-15T00:00:00+08:00</published><updated>2017-06-15T00:00:00+08:00</updated><id>http://localhost:4000/numberkeypad</id><content type="html" xml:base="http://localhost:4000/only-number-input">&lt;b&gt;需求点：&lt;/b&gt;
+&lt;p&gt;
+1、调起系统的数字键盘。2、只接受0-9的数字输入。3、限制输入长度是18。
+&lt;/p&gt;
+&lt;b&gt;踩在前面的坑：&lt;/b&gt;
+&lt;p&gt;
+	提到纯数字输入，自然而然的反应就是number类型的input控件，但它在IOS下并不能调起数字键盘。
+&lt;/p&gt;
+&lt;p&gt;
+	于是又想到了&lt;code&gt;pattern&lt;/code&gt;属性，加了&lt;code&gt;pattern=&quot;\d*&quot;&lt;/code&gt;之后（PS:\d{18}不OK），安卓、IOS都能正常拉起数字键盘了，但是问题又来了，安卓下的数字键盘是带运算符（+、-、.）的，因为这几个符号（包括e）属于数字范畴。
+&lt;/p&gt;
+&lt;p&gt;
+	o(︶︿︶)o。。。不能限制它不现实运算符，但我能去清掉你们吧，清掉的方法其实很简单&lt;code&gt;onkeypress=&quot;if(event.keyCode &lt; 48 || event.keyCode &gt; 56) event.returnValue = false;&quot;&lt;/code&gt;
+&lt;/p&gt;
+&lt;p&gt;
+	PC下效果完美，然而安卓和IOS表现各异，安卓下不触发keypress，IOS不触发keyup，且安卓下的keyup也不能禁止运算符的输入。
+&lt;/p&gt;
+&lt;p&gt;
+	最后，看了下别人的手机充值代码，用了tel类型，代替number+pattern调起数字键盘，至于禁止前面说的运算符，监听keyup事件去掉非数字字符就可以了，我用的是vue，这步放在watch里面。&lt;br /&gt;
+&lt;/p&gt;
+&lt;pre&gt;
+	&lt;code class=&quot;language-javascript&quot;&gt;
+	watch: {
+		id: function(val, old) {
+			if (old !== val) {
+				this.id = this.getNum(val)
+			}
+		}
+	},
+	methods: {
+		getNum(value) {
+			return this.$util.trim(value).replace(/[^\d]/g, '')
+		}
+	}
+	&lt;/code&gt;
+&lt;/pre&gt;&lt;br /&gt;
+开发中很小的一个问题，纯当吐槽记の。</content><category term="技术" /><category term="html" /><category term="javascript" /><summary type="html">兼容安卓、IOS的纯数字键盘输入方案，限制只输入0-9的数字。</summary></entry><entry><title type="html">歌单『周杰伦』</title><link href="http://localhost:4000/jaychou" rel="alternate" type="text/html" title="歌单『周杰伦』" /><published>2017-05-23T00:00:00+08:00</published><updated>2017-05-23T00:00:00+08:00</updated><id>http://localhost:4000/jaychou</id><content type="html" xml:base="http://localhost:4000/jaychou">陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来，记給我自己。&lt;br&gt;
+&lt;iframe id=&quot;music-box&quot; frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+	window.addEventListener('DOMContentLoaded', () =&gt; {
+		let iframe = document.querySelector('#music-box')
+		if (x &lt;= 520) {
+			iframe.src = '//music.163.com/outchain/player?type=0&amp;id=737659339&amp;auto=0&amp;height=90'
+			iframe.width = 320 + 'px'
+		} else {
+			iframe.src = '//music.163.com/outchain/player?type=0&amp;id=737659339&amp;auto=0&amp;height=430'
+			iframe.width = 600 + 'px'
+			iframe.height  = y + 'px'
+		}
+	})
+&lt;/script&gt;</content><category term="音乐" /><category term="歌单" /><category term="周杰伦" /><category term="青春" /><summary type="html">陪我走过一整个青春的歌，就算再失落难过，听周杰伦总能让我静心下来。</summary></entry><entry><title type="html">记jmeter常用功能</title><link href="http://localhost:4000/jmeter" rel="alternate" type="text/html" title="记jmeter常用功能" /><published>2017-05-11T00:00:00+08:00</published><updated>2017-05-11T00:00:00+08:00</updated><id>http://localhost:4000/jmeter</id><content type="html" xml:base="http://localhost:4000/jmeter">&lt;p&gt;
 	前段时间，哦，不，应该说是前几个月，研究了下测试工具jmeter的使用。时隔已久，今天临时需要测试一批接口的返回码，自然想起了用jmeter啊，但是发现有些用法不太记得了。。。故翻以前的笔记整理一下，记之。
 &lt;/p&gt;
 &lt;p&gt;
