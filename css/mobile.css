@@ -44,6 +44,9 @@ ul {
 	height: 68px;
 	margin-left: 5em;
 }
+img {
+	width: 100%;
+}
 .about-me, .me .intro, .me .linkto, .nav {
 	display: none;
 }
