@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-21T17:47:27+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-21T18:15:38+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">灰色花莲（完结）</title><link href="http://localhost:4000/trip-of-hualian" rel="alternate" type="text/html" title="灰色花莲（完结）" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-taiwan-hualian</id><content type="html" xml:base="http://localhost:4000/trip-of-hualian">&lt;p&gt;花莲是这次台湾游的最后一站，从枋寮坐台铁5个小时左右过去，花莲于我是灰色的，因为台风的缘故，从抵达直到回去，总共三天都在下豪雨，天空灰蒙蒙的，所以之前的行程计划也只能跟着搁浅了，即使这样，还是冒雨去了七星潭，清水断崖没有去成，很大一部分时间都在找各种推荐吃的店。&lt;/p&gt;
 
 &lt;p&gt;枋寮只是屏东的一个乡，小而干净的火车站，和余光中的车过枋寮。
@@ -453,7 +453,7 @@
 				{latLng: [25.34, 100.13], name: '大理-2013'},
 				{latLng: [39.55, 116.24], name: '北京-2013'},
 				{latLng: [3.14, 101.68], name: '吉隆坡-2015,2016'},
-				{latLng: [5.98, 116.07], name: '沙巴-2017'},
+				{latLng: [5.98, 116.07], name: '沙巴-2015,2016'},
 				{latLng: [22.20, 114.10], name: '香港-2017'},
 				{latLng: [22.13, 113.33], name: '澳门-2017'},
 				{latLng: [25.05, 121.50], name: '台北-2017'},
