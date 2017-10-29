@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-29T18:06:59+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-29T21:41:18+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">深入理解js事件循环机制</title><link href="http://localhost:4000/js-event-loop" rel="alternate" type="text/html" title="深入理解js事件循环机制" /><published>2017-10-28T00:00:00+08:00</published><updated>2017-10-28T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop</id><content type="html" xml:base="http://localhost:4000/js-event-loop">&lt;style&gt;
 	ol {
 		list-style: decimal;
@@ -19,13 +19,13 @@
 
 &lt;h3 id=&quot;单线程和异步&quot;&gt;单线程和异步&lt;/h3&gt;
 
-&lt;p&gt;提到js，就会想到&lt;strong&gt;单线程&lt;/strong&gt;，&lt;strong&gt;异步&lt;/strong&gt;，那么单线程是如何做到异步的呢？概念先行，先要了解下js的单线程和异步的关系。&lt;/p&gt;
+&lt;p&gt;提到js，就会想到&lt;strong&gt;单线程&lt;/strong&gt;，&lt;strong&gt;异步&lt;/strong&gt;，那么单线程是如何做到异步的呢？概念先行，先要了解下单线程和异步之间的关系。&lt;/p&gt;
 
 &lt;p&gt;单线程是指js引擎中负责解析执行js代码的线程只有一个（主线程），即每次只能做一件事，而我们知道一个ajax请求，主线程在等待它响应的同时是会去做其它事的，浏览器先在事件表注册ajax的回调函数，响应回来后回调函数被添加到任务队列中等待执行，不会造成线程阻塞，所以说js处理ajax请求的方式是异步的。&lt;/p&gt;
 
-&lt;p&gt;js的任务处理分为同步和异步两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。&lt;/p&gt;
+&lt;p&gt;js的任务分为&lt;em&gt;同步&lt;/em&gt;和&lt;em&gt;异步&lt;/em&gt;两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。&lt;/p&gt;
 
-&lt;p&gt;总而言之，检查调用栈是否为空，以及确定把哪个task加入调用栈的这个过程就是&lt;strong&gt;事件循环&lt;/strong&gt;，而js实现异步的核心就是事件循环。&lt;/p&gt;
+&lt;p&gt;总而言之，检查调用栈是否为空，以及确定把哪个task加入调用栈的这个过程就是&lt;strong&gt;事件循环&lt;/strong&gt;，而&lt;strong&gt;js实现异步的核心就是事件循环&lt;/strong&gt;。&lt;/p&gt;
 
 &lt;h3 id=&quot;事件循环&quot;&gt;事件循环&lt;/h3&gt;
 
@@ -40,9 +40,13 @@
 
 &lt;p&gt;规范有提到两个概念，但没有详细介绍，查阅一些资料大概可总结如下：&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;macrotask&lt;/strong&gt;：包含执行整体的js代码，事件回调，XHR回调，定时器（setTimeout/setInterval/setImmediate），IO操作，UI render&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;macrotask&lt;/strong&gt;：包含执行整体的js代码，事件回调，XHR回调，定时器（setTimeout/setInterval/setImmediate），IO操作，UI render&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;&lt;strong&gt;microtask&lt;/strong&gt;：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;microtask&lt;/strong&gt;：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h3 id=&quot;事件处理过程&quot;&gt;事件处理过程&lt;/h3&gt;
 
@@ -92,7 +96,40 @@ console.log('end');
 
 &lt;p&gt;通常浏览器以每秒60帧（60fps）的速率刷新页面，据说这个帧率最适合人眼交互，大概16.7ms渲染一帧。从上图可以知道，UI render是在每次事件循环之后，也就是说每次事件循环的耗时会影响视图的渲染，如果要让用户觉得顺畅，单个macrotask及它相关的所有microtask最好能在16.7ms内完成。&lt;/p&gt;
 
-&lt;p&gt;但也不是每轮事件循环都会执行UI render，浏览器有自己的优化策略，例如把几次的视图更新攒到一起渲染，如果有需要每次事件循环都进行视图渲染，可以用&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame&quot;&gt;requestAnimationFrame API&lt;/a&gt;，requestAnimationFrame的回调在UI render阶段执行。&lt;/p&gt;
+&lt;p&gt;但也不是每轮事件循环都会执行UI render，浏览器有自己的优化策略，例如把几次的视图更新累积到一起重绘，重绘之前会通知requestAnimationFrame执行回调函数，也就是说requestAnimationFrame回调的执行时机是在一次或多次事件循环的UI render阶段。&lt;/p&gt;
+
+&lt;p&gt;以下代码可以验证&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;setTimeout(function() {console.log(4)}, 0);
+
+requestAnimationFrame(function(){
+	console.log('requestAnimationFrame')
+});
+
+setTimeout(function() {console.log(8)}, 0);
+
+new Promise(function executor(resolve) {
+	console.log(1);
+	for( var i=0 ; i&amp;lt;10000 ; i++ ) {
+		i == 9999 &amp;amp;&amp;amp; resolve();
+	}
+	console.log(2);
+}).then(function() {
+	console.log(5);
+	new Promise(function(resolve){
+		resolve();
+		console.log(6);
+	}).then(function(){
+		console.log(7);
+	});
+});
+console.log(3);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;运行结果截图如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/requestAnimationFrame-run-result1.png&quot; alt=&quot;运行结果1&quot; /&gt;
+&lt;img src=&quot;../img/article/event-loop/requestAnimationFrame-run-result2.png&quot; alt=&quot;运行结果2&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
 &lt;ol&gt;
@@ -101,10 +138,10 @@ console.log('end');
     &lt;blockquote&gt;
       &lt;p&gt;a) 执行macrotask队列的一个任务&lt;br /&gt;
 b) 执行完当前microtask队列的所有任务&lt;br /&gt;
-c) 进行视图渲染&lt;/p&gt;
+c) UI render&lt;/p&gt;
     &lt;/blockquote&gt;
   &lt;/li&gt;
-  &lt;li&gt;执行视图渲染的时机由浏览器决定&lt;/li&gt;
+  &lt;li&gt;浏览器只保证requestAnimationFrame的回调在重绘之前执行，没有确定的时间，何时重绘由浏览器决定&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;[参考资料]&lt;/p&gt;
@@ -115,7 +152,7 @@ c) 进行视图渲染&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/?utm_source=html5weekly&amp;amp;utm_medium=email&quot;&gt;Tasks, microtasks, queues and schedules&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/24460769&quot;&gt;HTML系列：macrotask和microtask&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&quot;&gt;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="技术" /><category term="javascript" /><category term="promise" /><category term="event" /><category term="loop" /><summary type="html">。</summary></entry><entry><title type="html">灰色花莲（完结）</title><link href="http://localhost:4000/trip-of-hualian" rel="alternate" type="text/html" title="灰色花莲（完结）" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-taiwan-hualian</id><content type="html" xml:base="http://localhost:4000/trip-of-hualian">&lt;p&gt;花莲是这次台湾行的最后一站，从枋寮坐台铁5个小时左右过去，花莲于我是灰色的，因为台风的缘故，从抵达直到回去，总共三天都在下豪雨，天空灰蒙蒙的，所以之前的行程计划也只能跟着搁浅了，即使这样，还是冒雨去了七星潭，清水断崖没有去成，很大一部分时间都在找各种推荐吃的店。&lt;/p&gt;
+&lt;/ol&gt;</content><category term="技术" /><category term="javascript" /><category term="eventloop" /><summary type="html">众所周知js是单线程语言，却可以同时处理多个请求（异步），其中的运行机制是怎样的呢？</summary></entry><entry><title type="html">灰色花莲（完结）</title><link href="http://localhost:4000/trip-of-hualian" rel="alternate" type="text/html" title="灰色花莲（完结）" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-taiwan-hualian</id><content type="html" xml:base="http://localhost:4000/trip-of-hualian">&lt;p&gt;花莲是这次台湾行的最后一站，从枋寮坐台铁5个小时左右过去，花莲于我是灰色的，因为台风的缘故，从抵达直到回去，总共三天都在下豪雨，天空灰蒙蒙的，所以之前的行程计划也只能跟着搁浅了，即使这样，还是冒雨去了七星潭，清水断崖没有去成，很大一部分时间都在找各种推荐吃的店。&lt;/p&gt;
 
 &lt;p&gt;枋寮只是屏东的一个乡，小而干净的火车站，壁上还有余光中的车过枋寮。
 &lt;img src=&quot;../img/article/taiwan/fangliao-station.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;

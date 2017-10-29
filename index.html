@@ -223,6 +223,10 @@
 	    
 	
 	    
+	
+	    
+	
+	    
 	        <li class="swiper-slide" style="background-image: url(/img/slider/boat.jpg)"></li>
 	    
 	
@@ -287,11 +291,7 @@
 	
     	<span class="tag">javascript</span>
     
-    	<span class="tag">promise</span>
-    
-    	<span class="tag">event</span>
-    
-    	<span class="tag">loop</span>
+    	<span class="tag">eventloop</span>
     
 	</aside>
 	<div class="seperator"></div>
@@ -316,13 +316,13 @@
 
 <h3 id="单线程和异步">单线程和异步</h3>
 
-<p>提到js，就会想到<strong>单线程</strong>，<strong>异步</strong>，那么单线程是如何做到异步的呢？概念先行，先要了解下js的单线程和异步的关系。</p>
+<p>提到js，就会想到<strong>单线程</strong>，<strong>异步</strong>，那么单线程是如何做到异步的呢？概念先行，先要了解下单线程和异步之间的关系。</p>
 
 <p>单线程是指js引擎中负责解析执行js代码的线程只有一个（主线程），即每次只能做一件事，而我们知道一个ajax请求，主线程在等待它响应的同时是会去做其它事的，浏览器先在事件表注册ajax的回调函数，响应回来后回调函数被添加到任务队列中等待执行，不会造成线程阻塞，所以说js处理ajax请求的方式是异步的。</p>
 
-<p>js的任务处理分为同步和异步两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。</p>
+<p>js的任务分为<em>同步</em>和<em>异步</em>两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。</p>
 
-<p>总而言之，检查调用栈是否为空，以及确定把哪个task加入调用栈的这个过程就是<strong>事件循环</strong>，而js实现异步的核心就是事件循环。</p>
+<p>总而言之，检查调用栈是否为空，以及确定把哪个task加入调用栈的这个过程就是<strong>事件循环</strong>，而<strong>js实现异步的核心就是事件循环</strong>。</p>
 
 <h3 id="事件循环">事件循环</h3>
 
@@ -337,9 +337,13 @@
 
 <p>规范有提到两个概念，但没有详细介绍，查阅一些资料大概可总结如下：</p>
 
-<p><strong>macrotask</strong>：包含执行整体的js代码，事件回调，XHR回调，定时器（setTimeout/setInterval/setImmediate），IO操作，UI render</p>
+<blockquote>
+  <p><strong>macrotask</strong>：包含执行整体的js代码，事件回调，XHR回调，定时器（setTimeout/setInterval/setImmediate），IO操作，UI render</p>
+</blockquote>
 
-<p><strong>microtask</strong>：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe</p>
+<blockquote>
+  <p><strong>microtask</strong>：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe</p>
+</blockquote>
 
 <h3 id="事件处理过程">事件处理过程</h3>
 
@@ -389,7 +393,40 @@ console.log('end');
 
 <p>通常浏览器以每秒60帧（60fps）的速率刷新页面，据说这个帧率最适合人眼交互，大概16.7ms渲染一帧。从上图可以知道，UI render是在每次事件循环之后，也就是说每次事件循环的耗时会影响视图的渲染，如果要让用户觉得顺畅，单个macrotask及它相关的所有microtask最好能在16.7ms内完成。</p>
 
-<p>但也不是每轮事件循环都会执行UI render，浏览器有自己的优化策略，例如把几次的视图更新攒到一起渲染，如果有需要每次事件循环都进行视图渲染，可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame">requestAnimationFrame API</a>，requestAnimationFrame的回调在UI render阶段执行。</p>
+<p>但也不是每轮事件循环都会执行UI render，浏览器有自己的优化策略，例如把几次的视图更新累积到一起重绘，重绘之前会通知requestAnimationFrame执行回调函数，也就是说requestAnimationFrame回调的执行时机是在一次或多次事件循环的UI render阶段。</p>
+
+<p>以下代码可以验证</p>
+
+<pre><code class="language-javascript">setTimeout(function() {console.log(4)}, 0);
+
+requestAnimationFrame(function(){
+	console.log('requestAnimationFrame')
+});
+
+setTimeout(function() {console.log(8)}, 0);
+
+new Promise(function executor(resolve) {
+	console.log(1);
+	for( var i=0 ; i&lt;10000 ; i++ ) {
+		i == 9999 &amp;&amp; resolve();
+	}
+	console.log(2);
+}).then(function() {
+	console.log(5);
+	new Promise(function(resolve){
+		resolve();
+		console.log(6);
+	}).then(function(){
+		console.log(7);
+	});
+});
+console.log(3);
+</code></pre>
+
+<p>运行结果截图如下</p>
+
+<p><img src="../img/article/event-loop/requestAnimationFrame-run-result1.png" alt="运行结果1" />
+<img src="../img/article/event-loop/requestAnimationFrame-run-result2.png" alt="运行结果2" /></p>
 
 <h2 id="总结">总结</h2>
 <ol>
@@ -398,10 +435,10 @@ console.log('end');
     <blockquote>
       <p>a) 执行macrotask队列的一个任务<br />
 b) 执行完当前microtask队列的所有任务<br />
-c) 进行视图渲染</p>
+c) UI render</p>
     </blockquote>
   </li>
-  <li>执行视图渲染的时机由浏览器决定</li>
+  <li>浏览器只保证requestAnimationFrame的回调在重绘之前执行，没有确定的时间，何时重绘由浏览器决定</li>
 </ol>
 
 <p>[参考资料]</p>
