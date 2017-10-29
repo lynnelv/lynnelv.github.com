@@ -1,5 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-24T22:34:20+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">灰色花莲（完结）</title><link href="http://localhost:4000/trip-of-hualian" rel="alternate" type="text/html" title="灰色花莲（完结）" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-taiwan-hualian</id><content type="html" xml:base="http://localhost:4000/trip-of-hualian">&lt;p&gt;花莲是这次台湾行的最后一站，从枋寮坐台铁5个小时左右过去，花莲于我是灰色的，因为台风的缘故，从抵达直到回去，总共三天都在下豪雨，天空灰蒙蒙的，所以之前的行程计划也只能跟着搁浅了，即使这样，还是冒雨去了七星潭，清水断崖没有去成，很大一部分时间都在找各种推荐吃的店。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-29T18:06:59+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">深入理解js事件循环机制</title><link href="http://localhost:4000/js-event-loop" rel="alternate" type="text/html" title="深入理解js事件循环机制" /><published>2017-10-28T00:00:00+08:00</published><updated>2017-10-28T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop</id><content type="html" xml:base="http://localhost:4000/js-event-loop">&lt;style&gt;
+	ol {
+		list-style: decimal;
+		list-style-position: inside;
+	}
+	blockquote p {
+		text-indent: 0;
+	}
+&lt;/style&gt;
+
+&lt;h2 id=&quot;抛在前面的问题&quot;&gt;抛在前面的问题：&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;单线程如何做到异步&lt;/li&gt;
+  &lt;li&gt;事件循环的过程是怎样的&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;macrotask&lt;/code&gt; 和 &lt;code&gt;microtask&lt;/code&gt; 是什么，它们有何区别&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;单线程和异步&quot;&gt;单线程和异步&lt;/h3&gt;
+
+&lt;p&gt;提到js，就会想到&lt;strong&gt;单线程&lt;/strong&gt;，&lt;strong&gt;异步&lt;/strong&gt;，那么单线程是如何做到异步的呢？概念先行，先要了解下js的单线程和异步的关系。&lt;/p&gt;
+
+&lt;p&gt;单线程是指js引擎中负责解析执行js代码的线程只有一个（主线程），即每次只能做一件事，而我们知道一个ajax请求，主线程在等待它响应的同时是会去做其它事的，浏览器先在事件表注册ajax的回调函数，响应回来后回调函数被添加到任务队列中等待执行，不会造成线程阻塞，所以说js处理ajax请求的方式是异步的。&lt;/p&gt;
+
+&lt;p&gt;js的任务处理分为同步和异步两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。&lt;/p&gt;
+
+&lt;p&gt;总而言之，检查调用栈是否为空，以及确定把哪个task加入调用栈的这个过程就是&lt;strong&gt;事件循环&lt;/strong&gt;，而js实现异步的核心就是事件循环。&lt;/p&gt;
+
+&lt;h3 id=&quot;事件循环&quot;&gt;事件循环&lt;/h3&gt;
+
+&lt;p&gt;关于事件循环，&lt;a href=&quot;https://www.w3.org/TR/html5/webappapis.html#event-loop&quot;&gt;HTML规范&lt;/a&gt;的介绍&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;There must be at least one event loop per user agent, and at most one event loop per unit of related similar-origin browsing contexts.&lt;br /&gt;An event loop has one or more task queues.&lt;br /&gt;Each task is defined as coming from a specific task source.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;从规范理解，浏览器至少有一个事件循环，一个事件循环至少有一个任务队列（macrotask），每个外任务都有自己的分组，浏览器会为不同的任务组设置优先级。&lt;/p&gt;
+
+&lt;h3 id=&quot;macrotask--microtask&quot;&gt;macrotask &amp;amp; microtask&lt;/h3&gt;
+
+&lt;p&gt;规范有提到两个概念，但没有详细介绍，查阅一些资料大概可总结如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;macrotask&lt;/strong&gt;：包含执行整体的js代码，事件回调，XHR回调，定时器（setTimeout/setInterval/setImmediate），IO操作，UI render&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;microtask&lt;/strong&gt;：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe&lt;/p&gt;
+
+&lt;h3 id=&quot;事件处理过程&quot;&gt;事件处理过程&lt;/h3&gt;
+
+&lt;p&gt;可能光这样看会有点晦涩难懂，通过事件循坏的机制理解清晰很多，下面这张图可以说是介绍得非常清楚了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/event-loop.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;总结起来，一次事件循环的步骤包括：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. 检查macrotask队列是否为空，非空则到2，为空则到3
+2. 执行macrotask中的一个任务
+3. 继续检查microtask队列是否为空，若有则到4，否则到5
+4. 取出microtask中的任务执行，执行完成返回到步骤3
+5. 执行视图更新
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;读完这么多干巴巴的概念介绍，还不如看一段代码感受下&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;console.log('start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log('promise1');
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('end');
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;打印台输出的log顺序是什么？结合上述的步骤分析，系不系so easy~&lt;/p&gt;
+
+&lt;p&gt;首先，js代码被放到调用栈执行，打印&lt;code&gt;start&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;遇到setTimeout，压入macrotask队列，往下执行把promise.then回调压入microtask队列，最后执行console.log(‘end’)，打印出&lt;code&gt;end&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;至此，调用栈中的代码被执行完成，回顾macrotask的定义，我们知道整体代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印&lt;code&gt;promise1&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;promise回调函数默认返回undefined，promise状态变为fullfill触发接下来的then回调，继续压入microtask队列，&lt;strong&gt;event loop会把当前的microtask队列一直执行完&lt;/strong&gt;，此时执行第二个promise.then回调打印出&lt;code&gt;promise2&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），之后再继续下一次事件处理，取出macrotask中的setTimeout回调执行，打印出&lt;code&gt;setTimeout&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;这个过程会不断重复，也就是所谓的&lt;strong&gt;事件循环&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;视图渲染的时机&quot;&gt;视图渲染的时机&lt;/h3&gt;
+
+&lt;p&gt;通常浏览器以每秒60帧（60fps）的速率刷新页面，据说这个帧率最适合人眼交互，大概16.7ms渲染一帧。从上图可以知道，UI render是在每次事件循环之后，也就是说每次事件循环的耗时会影响视图的渲染，如果要让用户觉得顺畅，单个macrotask及它相关的所有microtask最好能在16.7ms内完成。&lt;/p&gt;
+
+&lt;p&gt;但也不是每轮事件循环都会执行UI render，浏览器有自己的优化策略，例如把几次的视图更新攒到一起渲染，如果有需要每次事件循环都进行视图渲染，可以用&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame&quot;&gt;requestAnimationFrame API&lt;/a&gt;，requestAnimationFrame的回调在UI render阶段执行。&lt;/p&gt;
+
+&lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;实现异步的核心就是事件循环&lt;/li&gt;
+  &lt;li&gt;单次事件循环有3个步骤：
+    &lt;blockquote&gt;
+      &lt;p&gt;a) 执行macrotask队列的一个任务&lt;br /&gt;
+b) 执行完当前microtask队列的所有任务&lt;br /&gt;
+c) 进行视图渲染&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;执行视图渲染的时机由浏览器决定&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;[参考资料]&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.w3.org/TR/html5/webappapis.html#event-loops&quot;&gt;event-loops&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues&quot;&gt;sec-jobs-and-job-queues&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://promisesaplus.com/#notes&quot;&gt;Promises/A+&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/?utm_source=html5weekly&amp;amp;utm_medium=email&quot;&gt;Tasks, microtasks, queues and schedules&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/24460769&quot;&gt;HTML系列：macrotask和microtask&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&quot;&gt;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="技术" /><category term="javascript" /><category term="promise" /><category term="event" /><category term="loop" /><summary type="html">。</summary></entry><entry><title type="html">灰色花莲（完结）</title><link href="http://localhost:4000/trip-of-hualian" rel="alternate" type="text/html" title="灰色花莲（完结）" /><published>2017-10-21T00:00:00+08:00</published><updated>2017-10-21T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-taiwan-hualian</id><content type="html" xml:base="http://localhost:4000/trip-of-hualian">&lt;p&gt;花莲是这次台湾行的最后一站，从枋寮坐台铁5个小时左右过去，花莲于我是灰色的，因为台风的缘故，从抵达直到回去，总共三天都在下豪雨，天空灰蒙蒙的，所以之前的行程计划也只能跟着搁浅了，即使这样，还是冒雨去了七星潭，清水断崖没有去成，很大一部分时间都在找各种推荐吃的店。&lt;/p&gt;
 
 &lt;p&gt;枋寮只是屏东的一个乡，小而干净的火车站，壁上还有余光中的车过枋寮。
 &lt;img src=&quot;../img/article/taiwan/fangliao-station.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
@@ -465,44 +581,4 @@
 			]
 		});
 	})(jQuery);
-&lt;/script&gt;</content><category term="旅行" /><category term="旅行" /><category term="世界地图" /><summary type="html">记录我的旅行足迹，地图中的标记点，是我目前去过的地方。</summary></entry><entry><title type="html">我的2016</title><link href="http://localhost:4000/2016-summary" rel="alternate" type="text/html" title="我的2016" /><published>2017-01-20T00:00:00+08:00</published><updated>2017-01-20T00:00:00+08:00</updated><id>http://localhost:4000/2016Summary</id><content type="html" xml:base="http://localhost:4000/2016-summary">&lt;p&gt;时间你好快，好像什么事情都没做，又过去一年，折腾是我2016的标签。&lt;/p&gt;
-&lt;p&gt;
-	2015的年会结束之后，走出世界之窗的门口，我决定2016不要再持续这种颓废迷茫的日子。
-这是我2016定的一些&lt;strong&gt;TODO-LIST&lt;/strong&gt;：
-&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;换个工作环境&lt;/li&gt;
-	&lt;li&gt;出国旅游&lt;/li&gt;
-	&lt;li&gt;周末没事多去泡书店&lt;/li&gt;
-	&lt;li&gt;坚持每周几次锻炼&lt;/li&gt;
-	&lt;li&gt;培养一项兴趣爱好（piano or dance or ...）&lt;/li&gt;
-	&lt;li&gt;改掉（至少控制）说话不经大脑的毛病&lt;/li&gt;
-	&lt;li&gt;23点准时上床睡觉&lt;/li&gt;
-	&lt;li&gt;学会理财而不是理倒财&lt;/li&gt;
-	&lt;li&gt;还有一些碎碎末的决定......&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;时间是检验『雄心壮志』的唯一标准。目前看来，我做到的只有三成不到，自我安慰下，可是总比0%好呀。&lt;/p&gt;
-&lt;p&gt;
-	&lt;strong&gt;11月9号&lt;/strong&gt; 我离开了待了3年的老东家&lt;strong&gt;百度&lt;/strong&gt;，结束了人生的第二份工作，
-	选择总是一个取舍的过程，但愿我做了一个不是错的选择。离职之后的无业状态是一个很好的身心放松机会，
-	因为没有太多时间准备，这次休假我又去了一次马来，上次去没有上岛，略遗憾，这次补回来了，
-	在&lt;strong&gt;Mataking岛&lt;/strong&gt;待了几天，风景各种好。
-&lt;/p&gt;
-&lt;p&gt;
-	周末泡书店这个计划，这2周才开始启动，之前一直懒癌上身，今年一定一定一定要坚持下来啊！！
-	谁也不想变成自己鄙视的人，你肤浅无知粗俗不修边幅的样子自己都嫌弃，更何况别人。。。&lt;br&gt;
-&lt;/p&gt;
-&lt;p&gt;
-	坚持锻炼这个算是没有完全落空，从6月份下了keep之后，除了特殊时期、懒癌发作、休假，每周基本都有做1~2次，
-	然而同事跟我说一周做少于3次等于没做，呵呵哒~为了不长成大腹便便的膘姨，不能再三天打鱼两天晒网了，
-	毕竟好的东西都是不容易得到的。
-&lt;/p&gt;
-&lt;p&gt;
-	对的，好的东西都是来之不易的，理财、心理学、设计、情商...我还有一堆东西要学，新的一年，任重道远。
-	至于23点准时休息，完全没做到，失眠还愈加严重了，对，活该！
-&lt;/p&gt;
-&lt;p&gt;
-	最后，2017做成的第一件小事，趁这两天有点自由时间，把博客重新整理了下，之前的内容都清空了，
-	想到一句话，回头翻下之前空间的说说和日志，恨不得拍死自己，是有多没脑才写得出那些悲春伤秋的东西。
-	至少我回头看是有这种感觉的，虽然另一种说法是那也是你自己的过去。重新开始吧。
-&lt;/p&gt;</content><category term="随感" /><category term="总结" /><summary type="html">时间你好快，好像什么事情都没做，又过去一年，折腾是我的2016的标签。</summary></entry></feed>
+&lt;/script&gt;</content><category term="旅行" /><category term="旅行" /><category term="世界地图" /><summary type="html">记录我的旅行足迹，地图中的标记点，是我目前去过的地方。</summary></entry></feed>
