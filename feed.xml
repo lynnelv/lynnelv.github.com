@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-05T14:34:21+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-05T21:39:16+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">深入理解js事件循环机制（Node.js篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（Node.js篇）" /><published>2017-11-05T00:00:00+08:00</published><updated>2017-11-05T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
 	ol {
 		list-style: decimal;
@@ -20,7 +20,7 @@
     }
 &lt;/style&gt;
 
-&lt;p&gt;在&lt;a href=&quot;http://lynnelv.github.io/js-event-loop-browser&quot;&gt;浏览器篇&lt;/a&gt;已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，node环境是否也一样呢？先看一个demo：&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;http://lynnelv.github.io/js-event-loop-browser&quot;&gt;浏览器篇&lt;/a&gt;已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，Node环境是否也一样呢？先看一个demo：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;setTimeout(()=&amp;gt;{
     console.log('timer1')
 
@@ -36,22 +36,19 @@ setTimeout(()=&amp;gt;{
         console.log('promise2')
     })
 }, 0)
-
-setTimeout(()=&amp;gt;{
-    console.log('timer3')
-
-    Promise.resolve().then(function() {
-        console.log('promise3')
-    })
-}, 0)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;肉眼编译运行一下，蒽，在浏览器的结果就是下面这个了，道理都懂，就不累述了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/browser-result.png&quot; alt=&quot;browser运行结果&quot; /&gt;&lt;/p&gt;
-
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;timer1
+promise1
+timer2
+promise2
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;那么Node下执行看看，咦。。。奇怪，跟浏览器的运行结果并不一样~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/node-result.png&quot; alt=&quot;node运行结果&quot; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;timer1
+timer2
+promise1
+promise2
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;例子说明，浏览器和 Node.js 的事件循环机制是有区别的，一起来看个究竟吧~&lt;/p&gt;
 
@@ -191,6 +188,16 @@ timeout
 &lt;p&gt;而在Node.js中，&lt;code&gt;microtask&lt;/code&gt;会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行&lt;code&gt;microtask&lt;/code&gt;队列的任务。
 &lt;img src=&quot;../img/article/event-loop/ma(i)crotask-in-node.png&quot; alt=&quot;Node.js端&quot; /&gt;&lt;/p&gt;
 
+&lt;h2 id=&quot;demo回顾&quot;&gt;demo回顾&lt;/h2&gt;
+
+&lt;p&gt;回顾文章最开始的demo，脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/excute-animate.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;首先进入timers阶段，执行timer1的回调函数，打印&lt;code&gt;timer1&lt;/code&gt;，并将promise1.then回调放入microtask队列，同样的步骤执行timer2，打印&lt;code&gt;timer2&lt;/code&gt;；&lt;/p&gt;
+
+&lt;p&gt;至此，timer阶段执行结束，event loop进入下一个阶段之前，执行&lt;code&gt;microtask&lt;/code&gt;队列的所有任务，依次打印&lt;code&gt;promise1&lt;/code&gt;、&lt;code&gt;promise2&lt;/code&gt;。&lt;/p&gt;
+
 &lt;h3 id=&quot;processnexttick-vs-setimmediate&quot;&gt;process.nextTick() VS setImmediate()&lt;/h3&gt;
 
 &lt;blockquote&gt;
@@ -240,14 +247,6 @@ setImmediate 1000
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这是因为嵌套调用的 &lt;code&gt;setImmediate()&lt;/code&gt; 回调，被排到了下一次event loop才执行，所以不会出现阻塞。&lt;/p&gt;
-
-&lt;h2 id=&quot;demo回顾&quot;&gt;demo回顾&lt;/h2&gt;
-
-&lt;p&gt;综上所述，回顾文章最开始的demo，3个timer依次放入timer队列，主代码执行完，event loop开始；&lt;/p&gt;
-
-&lt;p&gt;首先进入timers阶段，执行timer的回调函数，打印&lt;code&gt;timer1&lt;/code&gt;，并将promise1.then回调放入microtask队列，同样的步骤依次打印&lt;code&gt;timer2&lt;/code&gt;、&lt;code&gt;timer3&lt;/code&gt;；&lt;/p&gt;
-
-&lt;p&gt;此时，poll队列执行完毕，&lt;code&gt;microtask&lt;/code&gt;队列的任务开始执行，依次打印&lt;code&gt;promise1&lt;/code&gt;、&lt;code&gt;promise2&lt;/code&gt;、&lt;code&gt;promise3&lt;/code&gt;。&lt;/p&gt;
 
 &lt;h2 id=&quot;总结&quot;&gt;总结&lt;/h2&gt;
 &lt;ol&gt;

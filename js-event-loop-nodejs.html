@@ -104,7 +104,7 @@
     }
 </style>
 
-<p>在<a href="http://lynnelv.github.io/js-event-loop-browser">浏览器篇</a>已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，node环境是否也一样呢？先看一个demo：</p>
+<p>在<a href="http://lynnelv.github.io/js-event-loop-browser">浏览器篇</a>已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，Node环境是否也一样呢？先看一个demo：</p>
 <pre><code class="language-javascript">setTimeout(()=&gt;{
     console.log('timer1')
 
@@ -120,22 +120,19 @@ setTimeout(()=&gt;{
         console.log('promise2')
     })
 }, 0)
-
-setTimeout(()=&gt;{
-    console.log('timer3')
-
-    Promise.resolve().then(function() {
-        console.log('promise3')
-    })
-}, 0)
 </code></pre>
 <p>肉眼编译运行一下，蒽，在浏览器的结果就是下面这个了，道理都懂，就不累述了。</p>
-
-<p><img src="../img/article/event-loop/browser-result.png" alt="browser运行结果" /></p>
-
+<pre><code class="language-shell">timer1
+promise1
+timer2
+promise2
+</code></pre>
 <p>那么Node下执行看看，咦。。。奇怪，跟浏览器的运行结果并不一样~</p>
-
-<p><img src="../img/article/event-loop/node-result.png" alt="node运行结果" /></p>
+<pre><code class="language-shell">timer1
+timer2
+promise1
+promise2
+</code></pre>
 
 <p>例子说明，浏览器和 Node.js 的事件循环机制是有区别的，一起来看个究竟吧~</p>
 
@@ -275,6 +272,16 @@ timeout
 <p>而在Node.js中，<code>microtask</code>会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行<code>microtask</code>队列的任务。
 <img src="../img/article/event-loop/ma(i)crotask-in-node.png" alt="Node.js端" /></p>
 
+<h2 id="demo回顾">demo回顾</h2>
+
+<p>回顾文章最开始的demo，脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；</p>
+
+<p><img src="../img/article/event-loop/excute-animate.gif" alt="" /></p>
+
+<p>首先进入timers阶段，执行timer1的回调函数，打印<code>timer1</code>，并将promise1.then回调放入microtask队列，同样的步骤执行timer2，打印<code>timer2</code>；</p>
+
+<p>至此，timer阶段执行结束，event loop进入下一个阶段之前，执行<code>microtask</code>队列的所有任务，依次打印<code>promise1</code>、<code>promise2</code>。</p>
+
 <h3 id="processnexttick-vs-setimmediate">process.nextTick() VS setImmediate()</h3>
 
 <blockquote>
@@ -324,14 +331,6 @@ setImmediate 1000
 </code></pre>
 
 <p>这是因为嵌套调用的 <code>setImmediate()</code> 回调，被排到了下一次event loop才执行，所以不会出现阻塞。</p>
-
-<h2 id="demo回顾">demo回顾</h2>
-
-<p>综上所述，回顾文章最开始的demo，3个timer依次放入timer队列，主代码执行完，event loop开始；</p>
-
-<p>首先进入timers阶段，执行timer的回调函数，打印<code>timer1</code>，并将promise1.then回调放入microtask队列，同样的步骤依次打印<code>timer2</code>、<code>timer3</code>；</p>
-
-<p>此时，poll队列执行完毕，<code>microtask</code>队列的任务开始执行，依次打印<code>promise1</code>、<code>promise2</code>、<code>promise3</code>。</p>
 
 <h2 id="总结">总结</h2>
 <ol>
