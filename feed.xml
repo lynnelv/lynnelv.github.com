@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-05T02:30:18+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">深入理解js事件循环机制（nodejs篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（nodejs篇）" /><published>2017-11-04T00:00:00+08:00</published><updated>2017-11-04T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-05T14:34:21+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">深入理解js事件循环机制（Node.js篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（Node.js篇）" /><published>2017-11-05T00:00:00+08:00</published><updated>2017-11-05T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
@@ -20,7 +20,7 @@
     }
 &lt;/style&gt;
 
-&lt;p&gt;在&lt;a href=&quot;&quot;&gt;浏览器篇&lt;/a&gt;已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，node环境是否也一样呢？先看一个demo：&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;http://lynnelv.github.io/js-event-loop-browser&quot;&gt;浏览器篇&lt;/a&gt;已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，node环境是否也一样呢？先看一个demo：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;setTimeout(()=&amp;gt;{
     console.log('timer1')
 
@@ -45,15 +45,15 @@ setTimeout(()=&amp;gt;{
     })
 }, 0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;肉眼编译运行一下，蒽，结果就是下面这个了，道理都懂，就不累述了。&lt;/p&gt;
+&lt;p&gt;肉眼编译运行一下，蒽，在浏览器的结果就是下面这个了，道理都懂，就不累述了。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../img/article/event-loop/browser-result.png&quot; alt=&quot;browser运行结果&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;那么node下执行看看，咦。。。奇怪，跟浏览器的运行结果并不一样~&lt;/p&gt;
+&lt;p&gt;那么Node下执行看看，咦。。。奇怪，跟浏览器的运行结果并不一样~&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../img/article/event-loop/node-result.png&quot; alt=&quot;node运行结果&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;例子说明，浏览器和Node.js的事件循环机制是有区别的，一起来看个究竟吧~&lt;/p&gt;
+&lt;p&gt;例子说明，浏览器和 Node.js 的事件循环机制是有区别的，一起来看个究竟吧~&lt;/p&gt;
 
 &lt;h2 id=&quot;nodejs的事件处理&quot;&gt;Node.js的事件处理&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Node.js&quot;&gt;Node.js&lt;/a&gt;采用V8作为js的解析引擎，而I/O处理方面使用了自己设计的libuv，libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现，&lt;a href=&quot;https://github.com/libuv/libuv/blob/v1.x/src/unix/core.c#L348-L397&quot;&gt;核心源码参考&lt;/a&gt;：&lt;/p&gt;
@@ -69,17 +69,23 @@ setTimeout(()=&amp;gt;{
 
   while (r != 0 &amp;amp;&amp;amp; loop-&amp;gt;stop_flag == 0) {
     uv__update_time(loop);
+    // timers阶段
     uv__run_timers(loop);
+    // I/O callbacks阶段
     ran_pending = uv__run_pending(loop);
+    // idle阶段
     uv__run_idle(loop);
+    // prepare阶段
     uv__run_prepare(loop);
 
     timeout = 0;
     if ((mode == UV_RUN_ONCE &amp;amp;&amp;amp; !ran_pending) || mode == UV_RUN_DEFAULT)
       timeout = uv_backend_timeout(loop);
-
+    // poll阶段
     uv__io_poll(loop, timeout);
+    // check阶段
     uv__run_check(loop);
+    // close callbacks阶段
     uv__run_closing_handles(loop);
 
     if (mode == UV_RUN_ONCE) {
@@ -99,7 +105,7 @@ setTimeout(()=&amp;gt;{
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;根据&lt;a href=&quot;https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/&quot;&gt;Node.js&lt;/a&gt;官方介绍，每次事件循环都包含了6个阶段，对应到libuv源码中的实现，如下图所示&lt;/p&gt;
+&lt;p&gt;根据&lt;a href=&quot;https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/&quot;&gt;Node.js&lt;/a&gt;官方介绍，每次事件循环都包含了6个阶段，对应到 libuv 源码中的实现，如下图所示&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../img/article/event-loop/node-libuv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -112,19 +118,29 @@ setTimeout(()=&amp;gt;{
   &lt;li&gt;&lt;strong&gt;close callbacks 阶段&lt;/strong&gt;：执行 &lt;code&gt;socket&lt;/code&gt; 的 &lt;code&gt;close&lt;/code&gt; 事件回调&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;重点看&lt;code&gt;timers&lt;/code&gt;、&lt;code&gt;poll&lt;/code&gt;、&lt;code&gt;check&lt;/code&gt;这3个阶段就好，因为日常开发中的绝大部分异步任务都是在这3个阶段处理的。&lt;/p&gt;
+&lt;p&gt;我们重点看&lt;code&gt;timers&lt;/code&gt;、&lt;code&gt;poll&lt;/code&gt;、&lt;code&gt;check&lt;/code&gt;这3个阶段就好，因为日常开发中的绝大部分异步任务都是在这3个阶段处理的。&lt;/p&gt;
 
 &lt;h3 id=&quot;timers-阶段&quot;&gt;timers 阶段&lt;/h3&gt;
 
-&lt;p&gt;timers是事件循环的第一个阶段，在此阶段，Node 会去检查timer队列中有无已过期的 timer，如果有则把回调放到timer的任务队列中&lt;strong&gt;等待主线程空闲时执行&lt;/strong&gt;，并不能确保timer在预设时间到了就能立即执行，因为那个时间点主线程不一定空闲。&lt;/p&gt;
+&lt;p&gt;timers 是事件循环的第一个阶段，Node 会去检查有无已过期的timer，如果有则把它的回调压入timer的任务队列中等待执行，事实上，Node 并不能保证timer在预设时间到了就会立即执行，因为Node对timer的过期检查不一定靠谱，它会受机器上其它运行程序影响，或者那个时间点主线程不空闲。比如下面的代码，&lt;code&gt;setTimeout()&lt;/code&gt; 和 &lt;code&gt;setImmediate()&lt;/code&gt; 的执行顺序是不确定的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;setTimeout(() =&amp;gt; {
+  console.log('timeout')
+}, 0)
 
-&lt;h3 id=&quot;pool-阶段&quot;&gt;pool 阶段&lt;/h3&gt;
+setImmediate(() =&amp;gt; {
+  console.log('immediate')
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是把它们放到一个I/O回调里面，就一定是 &lt;code&gt;setImmediate()&lt;/code&gt; 先执行，因为poll阶段后面就是check阶段。&lt;/p&gt;
+
+&lt;h3 id=&quot;poll-阶段&quot;&gt;poll 阶段&lt;/h3&gt;
 
 &lt;p&gt;poll 阶段主要有2个功能：&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;当有已超时的 timer，执行它的回调函数&lt;/li&gt;
   &lt;li&gt;处理 poll 队列的事件&lt;/li&gt;
+  &lt;li&gt;当有已超时的 timer，执行它的回调函数&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;even loop将同步执行poll队列里的回调，直到队列为空或执行的回调达到系统上限（上限具体多少未详），接下来even loop会去检查有无预设的&lt;code&gt;setImmediate()&lt;/code&gt;，分两种情况：&lt;/p&gt;
@@ -160,7 +176,7 @@ fs.readFile('test.txt', () =&amp;gt; {
   })
 })
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;执行结果应该都没有疑问了。。。&lt;/p&gt;
+&lt;p&gt;执行结果应该都没有疑问了&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;readFile
 immediate
 timeout
@@ -168,7 +184,12 @@ timeout
 
 &lt;h2 id=&quot;nodejs-与浏览器的-event-loop-差异&quot;&gt;Node.js 与浏览器的 Event Loop 差异&lt;/h2&gt;
 
-&lt;p&gt;回顾上一篇，浏览器环境下，&lt;code&gt;microtask&lt;/code&gt;的任务队列是在每轮事件循环的&lt;code&gt;macrotask&lt;/code&gt;执行完之后执行，而在Node.js中，&lt;code&gt;microtask&lt;/code&gt;会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行&lt;code&gt;microtask&lt;/code&gt;队列的任务。&lt;/p&gt;
+&lt;p&gt;回顾上一篇，浏览器环境下，&lt;code&gt;microtask&lt;/code&gt;的任务队列是每个&lt;code&gt;macrotask&lt;/code&gt;执行完之后执行。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/ma(i)crotask.png&quot; alt=&quot;浏览器端&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;而在Node.js中，&lt;code&gt;microtask&lt;/code&gt;会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行&lt;code&gt;microtask&lt;/code&gt;队列的任务。
+&lt;img src=&quot;../img/article/event-loop/ma(i)crotask-in-node.png&quot; alt=&quot;Node.js端&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;processnexttick-vs-setimmediate&quot;&gt;process.nextTick() VS setImmediate()&lt;/h3&gt;
 
@@ -176,9 +197,9 @@ timeout
   &lt;p&gt;In essence, the names should be swapped. process.nextTick() fires more immediately than setImmediate()&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;来自官方文档有意思的一句话，从语义角度看，&lt;code&gt;setImmediate()&lt;/code&gt;应该比&lt;code&gt;process.nextTick()&lt;/code&gt;先执行才对，而事实相反，历史原因也很难再变。&lt;/p&gt;
+&lt;p&gt;来自官方文档有意思的一句话，从语义角度看，&lt;code&gt;setImmediate()&lt;/code&gt; 应该比 &lt;code&gt;process.nextTick()&lt;/code&gt; 先执行才对，而事实相反，命名是历史原因也很难再变。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;process.nextTick()&lt;/code&gt;会在各个事件阶段之后执行，且一直nextTick队列所有任务被执行完毕，才会进入到下一个事件阶段，所以如果递归的调用&lt;code&gt;process.nextTick()&lt;/code&gt;，会导致出现I/O starving（饥饿）的问题，比如下面例子的readFile已经完成，但它的回调一直无法执行：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;process.nextTick()&lt;/code&gt; 会在各个事件阶段之间执行，一旦执行，要直到nextTick队列被清空，才会进入到下一个事件阶段，所以如果递归调用 &lt;code&gt;process.nextTick()&lt;/code&gt;，会导致出现I/O starving（饥饿）的问题，比如下面例子的readFile已经完成，但它的回调一直无法执行：&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const fs = require('fs')
 const starttime = Date.now()
 let endtime
@@ -218,7 +239,7 @@ setImmediate 999
 setImmediate 1000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这是因为嵌套调用的&lt;code&gt;setImmediate()&lt;/code&gt;回调，被排到了下一次event loop才执行，所以不会出现阻塞。&lt;/p&gt;
+&lt;p&gt;这是因为嵌套调用的 &lt;code&gt;setImmediate()&lt;/code&gt; 回调，被排到了下一次event loop才执行，所以不会出现阻塞。&lt;/p&gt;
 
 &lt;h2 id=&quot;demo回顾&quot;&gt;demo回顾&lt;/h2&gt;
 
@@ -237,7 +258,7 @@ setImmediate 1000
       &lt;li&gt;浏览器端，&lt;code&gt;microtask&lt;/code&gt; 在事件循环的 &lt;code&gt;macrotask&lt;/code&gt; 执行完之后执行&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;递归的调用&lt;code&gt;process.nextTick()&lt;/code&gt;会导致I/O starving，推荐使用&lt;code&gt;setImmediate()&lt;/code&gt;替代&lt;/li&gt;
+  &lt;li&gt;递归的调用&lt;code&gt;process.nextTick()&lt;/code&gt;会导致I/O starving，官方推荐使用&lt;code&gt;setImmediate()&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;[参考资料]&lt;/p&gt;
@@ -246,7 +267,8 @@ setImmediate 1000
   &lt;li&gt;&lt;a href=&quot;https://cnodejs.org/topic/57d68794cb6f605d360105bf&quot;&gt;Node.js Event Loop 的理解 Timers，process.nextTick()&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/libuv/libuv/blob/v1.x/src/unix/core.c&quot;&gt;libuv/core.c&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/nodejs/node/blob/master/lib/internal/process/next_tick.js&quot;&gt;nodejs/next_tick.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><category term="技术" /><category term="javascript" /><category term="eventloop" /><category term="Node.js" /><summary type="html">在上一篇已经介绍了事件循环机制和一些相关概念，但主要是针对浏览器端的研究，在node环境是否也一样？本文会以node为运行环境继续介绍。</summary></entry><entry><title type="html">深入理解js事件循环机制（浏览器篇）</title><link href="http://localhost:4000/js-event-loop-browser" rel="alternate" type="text/html" title="深入理解js事件循环机制（浏览器篇）" /><published>2017-10-28T00:00:00+08:00</published><updated>2017-10-28T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-browser</id><content type="html" xml:base="http://localhost:4000/js-event-loop-browser">&lt;style&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lynnelv.github.io/js-event-loop-browser&quot;&gt;深入理解js事件循环机制（浏览器篇）&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><category term="技术" /><category term="javascript" /><category term="eventloop" /><category term="Node.js" /><summary type="html">在上一篇已经介绍了事件循环机制和一些相关概念，但主要是针对浏览器端的研究，在Node.js环境是否也一样？本文会以Node.js为运行环境继续介绍。</summary></entry><entry><title type="html">深入理解js事件循环机制（浏览器篇）</title><link href="http://localhost:4000/js-event-loop-browser" rel="alternate" type="text/html" title="深入理解js事件循环机制（浏览器篇）" /><published>2017-11-04T00:00:00+08:00</published><updated>2017-11-04T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-browser</id><content type="html" xml:base="http://localhost:4000/js-event-loop-browser">&lt;style&gt;
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
@@ -314,7 +336,7 @@ setImmediate 1000
   &lt;p&gt;&lt;strong&gt;microtask&lt;/strong&gt;：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;其中&lt;code&gt;setImmediate&lt;/code&gt;和&lt;code&gt;process.nextTick&lt;/code&gt;是nodejs的实现，在&lt;a href=&quot;&quot;&gt;nodejs篇&lt;/a&gt;会详细介绍。&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;setImmediate&lt;/code&gt;和&lt;code&gt;process.nextTick&lt;/code&gt;是nodejs的实现，在&lt;a href=&quot;http://lynnelv.github.io/js-event-loop-nodejs&quot;&gt;nodejs篇&lt;/a&gt;会详细介绍。&lt;/p&gt;
 
 &lt;h3 id=&quot;事件处理过程&quot;&gt;事件处理过程&lt;/h3&gt;
 
