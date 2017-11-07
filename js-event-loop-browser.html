@@ -185,17 +185,18 @@ Promise.resolve().then(function() {
 console.log('end')
 </code></pre>
 
-<p>打印台输出的log顺序是什么？结合上述的步骤分析，系不系so easy~</p>
+<p>打印台输出的log顺序是什么？结合上述的步骤分析，系不系so easy~
+<img src="../img/article/event-loop/browser-deom1-excute-animate.gif" alt="" /></p>
 
-<p>首先，js代码被放到调用栈执行，打印<code>start</code>；</p>
+<p>首先，全局代码（main()）压入调用栈执行，打印<code>start</code>；</p>
 
-<p>遇到setTimeout，压入macrotask队列，往下执行把promise.then回调压入microtask队列，最后执行console.log(‘end’)，打印出<code>end</code>；</p>
+<p>接下来setTimeout压入macrotask队列，promise.then回调放入microtask队列，最后执行console.log(‘end’)，打印出<code>end</code>；</p>
 
-<p>至此，调用栈中的代码被执行完成，回顾macrotask的定义，我们知道整体代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印<code>promise1</code>；</p>
+<p>至此，调用栈中的代码被执行完成，回顾macrotask的定义，我们知道全局代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印<code>promise1</code>；</p>
 
 <p>promise回调函数默认返回undefined，promise状态变为fullfill触发接下来的then回调，继续压入microtask队列，<strong>event loop会把当前的microtask队列一直执行完</strong>，此时执行第二个promise.then回调打印出<code>promise2</code>；</p>
 
-<p>这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），之后再继续下一次事件处理，取出macrotask中的setTimeout回调执行，打印出<code>setTimeout</code>；</p>
+<p>这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），然后开始下一轮event loop，执行setTimeout的回调，打印出<code>setTimeout</code>；</p>
 
 <p>这个过程会不断重复，也就是所谓的<strong>事件循环</strong>。</p>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-05T21:39:16+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-07T22:40:32+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </subtitle><entry><title type="html">深入理解js事件循环机制（Node.js篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（Node.js篇）" /><published>2017-11-05T00:00:00+08:00</published><updated>2017-11-05T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
 	ol {
 		list-style: decimal;
@@ -190,13 +190,16 @@ timeout
 
 &lt;h2 id=&quot;demo回顾&quot;&gt;demo回顾&lt;/h2&gt;
 
-&lt;p&gt;回顾文章最开始的demo，脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；&lt;/p&gt;
+&lt;p&gt;回顾文章最开始的demo，全局脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/excute-animate.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../img/article/event-loop/node-excute-animate.gif&quot; alt=&quot;Node.js下的处理过程&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;首先进入timers阶段，执行timer1的回调函数，打印&lt;code&gt;timer1&lt;/code&gt;，并将promise1.then回调放入microtask队列，同样的步骤执行timer2，打印&lt;code&gt;timer2&lt;/code&gt;；&lt;/p&gt;
 
 &lt;p&gt;至此，timer阶段执行结束，event loop进入下一个阶段之前，执行&lt;code&gt;microtask&lt;/code&gt;队列的所有任务，依次打印&lt;code&gt;promise1&lt;/code&gt;、&lt;code&gt;promise2&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;对比浏览器端的处理过程：
+&lt;img src=&quot;../img/article/event-loop/browser-excute-animate.gif&quot; alt=&quot;Browser下的处理过程&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;processnexttick-vs-setimmediate&quot;&gt;process.nextTick() VS setImmediate()&lt;/h3&gt;
 
@@ -371,17 +374,18 @@ Promise.resolve().then(function() {
 console.log('end')
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;打印台输出的log顺序是什么？结合上述的步骤分析，系不系so easy~&lt;/p&gt;
+&lt;p&gt;打印台输出的log顺序是什么？结合上述的步骤分析，系不系so easy~
+&lt;img src=&quot;../img/article/event-loop/browser-deom1-excute-animate.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;首先，js代码被放到调用栈执行，打印&lt;code&gt;start&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;首先，全局代码（main()）压入调用栈执行，打印&lt;code&gt;start&lt;/code&gt;；&lt;/p&gt;
 
-&lt;p&gt;遇到setTimeout，压入macrotask队列，往下执行把promise.then回调压入microtask队列，最后执行console.log(‘end’)，打印出&lt;code&gt;end&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;接下来setTimeout压入macrotask队列，promise.then回调放入microtask队列，最后执行console.log(‘end’)，打印出&lt;code&gt;end&lt;/code&gt;；&lt;/p&gt;
 
-&lt;p&gt;至此，调用栈中的代码被执行完成，回顾macrotask的定义，我们知道整体代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印&lt;code&gt;promise1&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;至此，调用栈中的代码被执行完成，回顾macrotask的定义，我们知道全局代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印&lt;code&gt;promise1&lt;/code&gt;；&lt;/p&gt;
 
 &lt;p&gt;promise回调函数默认返回undefined，promise状态变为fullfill触发接下来的then回调，继续压入microtask队列，&lt;strong&gt;event loop会把当前的microtask队列一直执行完&lt;/strong&gt;，此时执行第二个promise.then回调打印出&lt;code&gt;promise2&lt;/code&gt;；&lt;/p&gt;
 
-&lt;p&gt;这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），之后再继续下一次事件处理，取出macrotask中的setTimeout回调执行，打印出&lt;code&gt;setTimeout&lt;/code&gt;；&lt;/p&gt;
+&lt;p&gt;这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），然后开始下一轮event loop，执行setTimeout的回调，打印出&lt;code&gt;setTimeout&lt;/code&gt;；&lt;/p&gt;
 
 &lt;p&gt;这个过程会不断重复，也就是所谓的&lt;strong&gt;事件循环&lt;/strong&gt;。&lt;/p&gt;
 

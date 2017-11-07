@@ -241,6 +241,10 @@
 	    
 	
 	    
+	
+	    
+	
+	    
 	        <li class="swiper-slide" style="background-image: url(/img/slider/boat.jpg)"></li>
 	    
 	
@@ -503,13 +507,16 @@ timeout
 
 <h2 id="demo回顾">demo回顾</h2>
 
-<p>回顾文章最开始的demo，脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；</p>
+<p>回顾文章最开始的demo，全局脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；</p>
 
-<p><img src="../img/article/event-loop/excute-animate.gif" alt="" /></p>
+<p><img src="../img/article/event-loop/node-excute-animate.gif" alt="Node.js下的处理过程" /></p>
 
 <p>首先进入timers阶段，执行timer1的回调函数，打印<code>timer1</code>，并将promise1.then回调放入microtask队列，同样的步骤执行timer2，打印<code>timer2</code>；</p>
 
 <p>至此，timer阶段执行结束，event loop进入下一个阶段之前，执行<code>microtask</code>队列的所有任务，依次打印<code>promise1</code>、<code>promise2</code>。</p>
+
+<p>对比浏览器端的处理过程：
+<img src="../img/article/event-loop/browser-excute-animate.gif" alt="Browser下的处理过程" /></p>
 
 <h3 id="processnexttick-vs-setimmediate">process.nextTick() VS setImmediate()</h3>
 
