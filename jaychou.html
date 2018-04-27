@@ -88,14 +88,17 @@
 
 <script type="text/javascript">
 	window.addEventListener('DOMContentLoaded', () => {
-		let iframe = document.querySelector('#music-box')
-		if (x <= 520) {
+		const iframe = document.querySelector('#music-box'),
+			w = document.documentElement.clientWidth || document.body.clientWidth,
+			h = document.documentElement.clientHeight || document.body.clientHeight
+
+		if (w <= 520) {
 			iframe.src = '//music.163.com/outchain/player?type=0&id=737659339&auto=0&height=90'
 			iframe.width = 320 + 'px'
 		} else {
 			iframe.src = '//music.163.com/outchain/player?type=0&id=737659339&auto=0&height=430'
 			iframe.width = 600 + 'px'
-			iframe.height  = y + 'px'
+			iframe.height  = h + 'px'
 		}
 	})
 </script>
