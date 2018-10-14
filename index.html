@@ -49,7 +49,7 @@
 			    
 			    	<li>
 				    	<a href="/categories/旅行/" title="旅行">
-							<span>旅行 <b>(5)</b></span>
+							<span>旅行 <b>(6)</b></span>
 						</a>
 				    </li>
 			    
@@ -245,39 +245,95 @@
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/boat.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/dog.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/jiufen-street.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/mataking-resort.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/me.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/riding-of-kending.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/sea-of-me.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/seabed.jpg)"></li>
+	
 	    
 	
 	    
-	        <li class="swiper-slide" style="background-image: url(/img/slider/sunset-view-of-kending.jpg)"></li>
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/colosseum.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/golden-pass.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/jungfrau1.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/passby1.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/pilatus-mountain-view.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/sunset.jpg)"></li>
+	    
+	
+	    
+	        <li class="swiper-slide" style="background-image: url(/img/slider/swan.jpg)"></li>
 	    
 	
 	    
@@ -303,291 +359,99 @@
 
 
 <article>
-	<h1>深入理解js事件循环机制（Node.js篇）</h1>
+	<h1>唯美瑞士·风景如画</h1>
 	<aside>
-	<time>5 November 2017</time>
+	<time>14 October 2018</time>
 	
-    	<span class="tag">javascript</span>
+    	<span class="tag">旅行</span>
     
-    	<span class="tag">eventloop</span>
-    
-    	<span class="tag">Node.js</span>
+    	<span class="tag">瑞士</span>
     
 	</aside>
 	<div class="seperator"></div>
 	<div class="content">
-		<style>
-	ol {
-		list-style: decimal;
-		list-style-position: inside;
-	}
-	blockquote p {
-		text-indent: 0;
-	}
-    h2, h3 {
-        font-weight: bold;
-    }
-    h2 {
-        font-size: 1.2em;
-        margin: .6em 0;
-    }
-    h3 {
-        font-size: 1.1em;
-        margin: .5em 0;
-    }
-</style>
+		<p>距离上次旅行又双叒一年了，没勇气感慨时间飞快，因为我今年过得很颓废，『间歇性踌躇满志，持续性混吃等死』是我没错了，一堆烦心事短时间是难解了的，但『每年至少旅行一次』的小目标不能落空啊，是时候出去走走了。前阵子刷抖音，各种安利瑞士的视频看得心痒痒，本来就超爱漂亮的自然风景，就瑞士了！这次行程我完全是无脑跟游，嘿嘿~(•̀⌄•́)</p>
 
-<p>在<a href="http://lynnelv.github.io/js-event-loop-browser">浏览器篇</a>已经对事件循环机制和一些相关的概念作了详细介绍，但主要是针对浏览器端的研究，Node环境是否也一样呢？先看一个demo：</p>
-<pre><code class="language-javascript">setTimeout(()=&gt;{
-    console.log('timer1')
-
-    Promise.resolve().then(function() {
-        console.log('promise1')
-    })
-}, 0)
-
-setTimeout(()=&gt;{
-    console.log('timer2')
-
-    Promise.resolve().then(function() {
-        console.log('promise2')
-    })
-}, 0)
-</code></pre>
-<p>肉眼编译运行一下，蒽，在浏览器的结果就是下面这个了，道理都懂，就不累述了。</p>
-<pre><code class="language-shell">timer1
-promise1
-timer2
-promise2
-</code></pre>
-<p>那么Node下执行看看，咦。。。奇怪，跟浏览器的运行结果并不一样~</p>
-<pre><code class="language-shell">timer1
-timer2
-promise1
-promise2
-</code></pre>
-
-<p>例子说明，浏览器和 Node.js 的事件循环机制是有区别的，一起来看个究竟吧~</p>
-
-<h2 id="nodejs的事件处理">Node.js的事件处理</h2>
-<p><a href="https://en.wikipedia.org/wiki/Node.js">Node.js</a>采用V8作为js的解析引擎，而I/O处理方面使用了自己设计的libuv，libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现，<a href="https://github.com/libuv/libuv/blob/v1.x/src/unix/core.c#L348-L397">核心源码参考</a>：</p>
-
-<pre><code class="language-c++">int uv_run(uv_loop_t* loop, uv_run_mode mode) {
-  int timeout;
-  int r;
-  int ran_pending;
-
-  r = uv__loop_alive(loop);
-  if (!r)
-    uv__update_time(loop);
-
-  while (r != 0 &amp;&amp; loop-&gt;stop_flag == 0) {
-    uv__update_time(loop);
-    // timers阶段
-    uv__run_timers(loop);
-    // I/O callbacks阶段
-    ran_pending = uv__run_pending(loop);
-    // idle阶段
-    uv__run_idle(loop);
-    // prepare阶段
-    uv__run_prepare(loop);
-
-    timeout = 0;
-    if ((mode == UV_RUN_ONCE &amp;&amp; !ran_pending) || mode == UV_RUN_DEFAULT)
-      timeout = uv_backend_timeout(loop);
-    // poll阶段
-    uv__io_poll(loop, timeout);
-    // check阶段
-    uv__run_check(loop);
-    // close callbacks阶段
-    uv__run_closing_handles(loop);
-
-    if (mode == UV_RUN_ONCE) {
-      uv__update_time(loop);
-      uv__run_timers(loop);
-    }
-
-    r = uv__loop_alive(loop);
-    if (mode == UV_RUN_ONCE || mode == UV_RUN_NOWAIT)
-      break;
-  }
-
-  if (loop-&gt;stop_flag != 0)
-    loop-&gt;stop_flag = 0;
-
-  return r;
-}
-</code></pre>
-
-<p>根据<a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">Node.js</a>官方介绍，每次事件循环都包含了6个阶段，对应到 libuv 源码中的实现，如下图所示</p>
-
-<p><img src="../img/article/event-loop/node-libuv.png" alt="" /></p>
-
-<ul>
-  <li><strong>timers 阶段</strong>：这个阶段执行timer（<code>setTimeout</code>、<code>setInterval</code>）的回调</li>
-  <li><strong>I/O callbacks 阶段</strong>：执行一些系统调用错误，比如网络通信的错误回调</li>
-  <li><strong>idle, prepare 阶段</strong>：仅node内部使用</li>
-  <li><strong>poll 阶段</strong>：获取新的I/O事件, 适当的条件下node将阻塞在这里</li>
-  <li><strong>check 阶段</strong>：执行 <code>setImmediate()</code> 的回调</li>
-  <li><strong>close callbacks 阶段</strong>：执行 <code>socket</code> 的 <code>close</code> 事件回调</li>
-</ul>
-
-<p>我们重点看<code>timers</code>、<code>poll</code>、<code>check</code>这3个阶段就好，因为日常开发中的绝大部分异步任务都是在这3个阶段处理的。</p>
-
-<h3 id="timers-阶段">timers 阶段</h3>
-
-<p>timers 是事件循环的第一个阶段，Node 会去检查有无已过期的timer，如果有则把它的回调压入timer的任务队列中等待执行，事实上，Node 并不能保证timer在预设时间到了就会立即执行，因为Node对timer的过期检查不一定靠谱，它会受机器上其它运行程序影响，或者那个时间点主线程不空闲。比如下面的代码，<code>setTimeout()</code> 和 <code>setImmediate()</code> 的执行顺序是不确定的。</p>
-<pre><code class="language-javascript">setTimeout(() =&gt; {
-  console.log('timeout')
-}, 0)
-
-setImmediate(() =&gt; {
-  console.log('immediate')
-})
-</code></pre>
-
-<p>但是把它们放到一个I/O回调里面，就一定是 <code>setImmediate()</code> 先执行，因为poll阶段后面就是check阶段。</p>
-
-<h3 id="poll-阶段">poll 阶段</h3>
-
-<p>poll 阶段主要有2个功能：</p>
-
-<ul>
-  <li>处理 poll 队列的事件</li>
-  <li>当有已超时的 timer，执行它的回调函数</li>
-</ul>
-
-<p>even loop将同步执行poll队列里的回调，直到队列为空或执行的回调达到系统上限（上限具体多少未详），接下来even loop会去检查有无预设的<code>setImmediate()</code>，分两种情况：</p>
-<ol>
-  <li>若有预设的<code>setImmediate()</code>, event loop将结束poll阶段进入check阶段，并执行check阶段的任务队列</li>
-  <li>若没有预设的<code>setImmediate()</code>，event loop将阻塞在该阶段等待</li>
-</ol>
-
-<p>注意一个细节，没有<code>setImmediate()</code>会导致event loop阻塞在poll阶段，这样之前设置的timer岂不是执行不了了？所以咧，在poll阶段event loop会有一个检查机制，检查timer队列是否为空，如果timer队列非空，event loop就开始下一轮事件循环，即重新进入到timer阶段。</p>
-
-<h3 id="check-阶段">check 阶段</h3>
-
-<p><code>setImmediate()</code>的回调会被加入check队列中， 从event loop的阶段图可以知道，check阶段的执行顺序在poll阶段之后。</p>
-
-<h2 id="小结">小结</h2>
-
-<ul>
-  <li>event loop 的每个阶段都有一个任务队列</li>
-  <li>当 event loop 到达某个阶段时，将执行该阶段的任务队列，直到队列清空或执行的回调达到系统上限后，才会转入下一个阶段</li>
-  <li>当所有阶段被顺序执行一次后，称 event loop 完成了一个 tick</li>
-</ul>
-
-<p>讲得好有道理，可是没有demo我还是理解不全啊，憋急，now！</p>
-<pre><code class="language-javascript">const fs = require('fs')
-
-fs.readFile('test.txt', () =&gt; {
-  console.log('readFile')
-  setTimeout(() =&gt; {
-    console.log('timeout')
-  }, 0)
-  setImmediate(() =&gt; {
-    console.log('immediate')
-  })
-})
-</code></pre>
-<p>执行结果应该都没有疑问了</p>
-<pre><code class="language-shell">readFile
-immediate
-timeout
-</code></pre>
-
-<h2 id="nodejs-与浏览器的-event-loop-差异">Node.js 与浏览器的 Event Loop 差异</h2>
-
-<p>回顾上一篇，浏览器环境下，<code>microtask</code>的任务队列是每个<code>macrotask</code>执行完之后执行。</p>
-
-<p><img src="../img/article/event-loop/ma(i)crotask.png" alt="浏览器端" /></p>
-
-<p>而在Node.js中，<code>microtask</code>会在事件循环的各个阶段之间执行，也就是一个阶段执行完毕，就会去执行<code>microtask</code>队列的任务。
-<img src="../img/article/event-loop/ma(i)crotask-in-node.png" alt="Node.js端" /></p>
-
-<h2 id="demo回顾">demo回顾</h2>
-
-<p>回顾文章最开始的demo，全局脚本（main()）执行，将2个timer依次放入timer队列，main()执行完毕，调用栈空闲，任务队列开始执行；</p>
-
-<p><img src="../img/article/event-loop/node-excute-animate.gif" alt="Node.js下的处理过程" /></p>
-
-<p>首先进入timers阶段，执行timer1的回调函数，打印<code>timer1</code>，并将promise1.then回调放入microtask队列，同样的步骤执行timer2，打印<code>timer2</code>；</p>
-
-<p>至此，timer阶段执行结束，event loop进入下一个阶段之前，执行<code>microtask</code>队列的所有任务，依次打印<code>promise1</code>、<code>promise2</code>。</p>
-
-<p>对比浏览器端的处理过程：
-<img src="../img/article/event-loop/browser-excute-animate.gif" alt="Browser下的处理过程" /></p>
-
-<h3 id="processnexttick-vs-setimmediate">process.nextTick() VS setImmediate()</h3>
+<p><img src="../img/article/swiss/map.png" alt="Alt text" />
+这次主要去了图中mark的三个地方：卢塞恩-&gt;因特拉肯-&gt;蒙特勒。</p>
 
 <blockquote>
-  <p>In essence, the names should be swapped. process.nextTick() fires more immediately than setImmediate()</p>
+  <p>卢塞恩</p>
 </blockquote>
 
-<p>来自官方文档有意思的一句话，从语义角度看，<code>setImmediate()</code> 应该比 <code>process.nextTick()</code> 先执行才对，而事实相反，命名是历史原因也很难再变。</p>
+<p>从香港飞，在苏黎世落脚一晚，到达苏黎世是当地时间18点半，第一次坐10几个小时的飞机，累半死，6个小时的时差，国内已经凌晨了，假期时间变慢就是赚了的感觉，彼时深圳还在过30多度的夏天，到这边之后换秋装都瑟瑟发抖，一天入冬了。第二天坐火车往卢塞恩，坐火车发现报站语言不止英语，原来瑞士有4种官方语言，卢塞恩是德语区，隐约意识到吃饭点菜是个问题。。。到达check in之后，在廊桥附近闲逛，天气有点阴郁，整个小镇静谧而悠闲，感觉时光也慢慢流，大抵欧洲小镇都如此。</p>
 
-<p><code>process.nextTick()</code> 会在各个事件阶段之间执行，一旦执行，要直到nextTick队列被清空，才会进入到下一个事件阶段，所以如果递归调用 <code>process.nextTick()</code>，会导致出现I/O starving（饥饿）的问题，比如下面例子的readFile已经完成，但它的回调一直无法执行：</p>
-<pre><code class="language-javascript">const fs = require('fs')
-const starttime = Date.now()
-let endtime
+<p><img src="../img/article/swiss/downtown.jpg" alt="Alt text" />
+<img src="../img/article/swiss/downtown1.jpg" alt="Alt text" /></p>
 
-fs.readFile('text.txt', () =&gt; {
-  endtime = Date.now()
-  console.log('finish reading time: ', endtime - starttime)
-})
+<p>标志性的廊桥，day and night，还没来前在游记看有人说坐在湖边看风景很惬意，眼前的一切真实还原了我yy的画面，站在廊桥，看着湖里的天鹅和船艇放空，湖边尽是悠闲漫步的路人，再来一杯咖啡就演足了。
+<img src="../img/article/swiss/day.jpg" alt="Alt text" />
+<img src="../img/article/swiss/night.jpg" alt="Alt text" /></p>
 
-let index = 0
+<p>还有大名鼎鼎的悲伤的狮子石雕，位置有点难找，在一个小公园里面，瑞士这边街头很多各种水龙头，据说除特殊标示，都可以直接饮用，可见水质环境很好，依云在这边便宜是有道理的。
+<img src="../img/article/swiss/lion.jpg" alt="Alt text" /></p>
 
-function handler () {
-  if (index++ &gt;= 1000) return
-  console.log(`nextTick ${index}`)
-  process.nextTick(handler)
-  // console.log(`setImmediate ${index}`)
-  // setImmediate(handler)
-}
+<p>琉森桥附近的钟楼，登上去可以俯瞰整个小镇。
+<img src="../img/article/swiss/bell-tower.jpg" alt="Alt text" />
+<img src="../img/article/swiss/overall-view-of-downtown.jpg" alt="Alt text" /></p>
 
-handler()
-</code></pre>
+<p>第二天终于放晴了，天公作美，正好今天要上皮拉图山，先坐游船到山脚，蓝天白云碧湖，沿途都是美景，半山都是草地，稀稀疏疏的房子，此处应开启多图模式~
+<img src="../img/article/swiss/boat.jpg" alt="Alt text" />
+<img src="../img/article/swiss/boat-travel.jpg" alt="Alt text" />
+<img src="../img/article/swiss/boat-travel1.jpg" alt="Alt text" />
+<img src="../img/article/swiss/boat-travel2.jpg" alt="Alt text" /></p>
 
-<p><code>process.nextTick()</code>的运行结果：</p>
-<pre><code class="language-shell">nextTick 1
-nextTick 2
-......
-nextTick 999
-nextTick 1000
-finish reading time: 170
-</code></pre>
-<p>替换成<code>setImmediate()</code>，运行结果：</p>
-<pre><code class="language-shell">setImmediate 1
-setImmediate 2
-finish reading time: 80
-......
-setImmediate 999
-setImmediate 1000
-</code></pre>
+<p>大约1h到达山脚，坐小火车上山，有swiss pass可以半价购票（今年之前swiss pass是免费的），游客略多，所见黑发的基本都是中国人or韩国人，据说国庆期间韩国刚好也是假期，且瑞士对韩国免签，难怪了。
+<img src="../img/article/swiss/pilatus-ticket.jpg" alt="Alt text" />
+<img src="../img/article/swiss/pilatus-train.jpg" alt="Alt text" />
+<img src="../img/article/swiss/pilatus-mountain-view.jpg" alt="Alt text" />
+<img src="../img/article/swiss/pilatus-mountain-view1.jpg" alt="Alt text" /></p>
 
-<p>这是因为嵌套调用的 <code>setImmediate()</code> 回调，被排到了下一次event loop才执行，所以不会出现阻塞。</p>
+<p>美得一塌糊涂，各种拍照，还遇到中国大妈在山顶直播</p>
 
-<h2 id="总结">总结</h2>
-<ol>
-  <li>Node.js 的事件循环分为6个阶段</li>
-  <li>浏览器和Node 环境下，<code>microtask</code> 任务队列的执行时机不同
-    <ul>
-      <li>Node.js中，<code>microtask</code> 在事件循环的各个阶段之间执行</li>
-      <li>浏览器端，<code>microtask</code> 在事件循环的 <code>macrotask</code> 执行完之后执行</li>
-    </ul>
-  </li>
-  <li>递归的调用<code>process.nextTick()</code>会导致I/O starving，官方推荐使用<code>setImmediate()</code></li>
-</ol>
+<blockquote>
+  <p>因特拉肯</p>
+</blockquote>
 
-<p>[参考资料]</p>
-<ol>
-  <li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/">event-loop-timers-and-nexttick</a></li>
-  <li><a href="https://cnodejs.org/topic/57d68794cb6f605d360105bf">Node.js Event Loop 的理解 Timers，process.nextTick()</a></li>
-  <li><a href="https://github.com/libuv/libuv/blob/v1.x/src/unix/core.c">libuv/core.c</a></li>
-  <li><a href="https://github.com/nodejs/node/blob/master/lib/internal/process/next_tick.js">nodejs/next_tick.js</a></li>
-  <li><a href="http://lynnelv.github.io/js-event-loop-browser">深入理解js事件循环机制（浏览器篇）</a></li>
-</ol>
+<p>去因特拉肯，就要坐心心念念的黄金列车了，略遗憾的是不能开窗，加之天气阴，不能完全还原它的美，下图就是抖音上瑞士很火的地方之一了——龙江小镇，路过mark
+<img src="../img/article/swiss/golden-pass.jpg" alt="Alt text" /></p>
+
+<p>接近格林德瓦一段都是雪山，下车出站环顾四面都是雪顶山，半坡以下却是绿油油的草地，简直符合所有我对美的想象，满心兴奋！冷的感觉顾不上！必须拍拍拍！酒店小哥很nice，check in时生怕听不懂，特意慢语速，听到”with balcony, mountain view”很惊喜，打开房间门，真的是哇！阳台对面就是梦幻山坡，躺床上就能看见的视角，超预期的满意，因特拉肯这几天住的酒店应该是此行性价比最高的，毕竟欧洲住宿真心贵，7 8百一晚感觉还不如国内的如家。
+<img src="../img/article/swiss/balcony-mountain-view.jpg" alt="Alt text" /></p>
+
+<p>换上羽绒服之后，沿着downtown一路漫逛，空气很清新，夹着雪水和草的味道，依稀的铃铛声，远近的牛羊在吃草，脖子上的铃铛在摇动，雪顶山上雾气缭绕，简直人间天堂。
+<img src="../img/article/swiss/interlaken.jpg" alt="Alt text" />
+<img src="../img/article/swiss/cow.jpg" alt="Alt text" />
+<img src="../img/article/swiss/interlaken1.jpg" alt="Alt text" /></p>
+
+<p>来因特拉肯就是为了上少女峰，我们是直接在格林德瓦搭火车上去（swiss pass打7.5折之后还是觉得贵），沿途都是白雪皑皑，冷杉树一片，童话世界的样子，在海拔这么高的山开隧道，建观景台滑雪场什么的，真的很不容易，上去之后我能理解票价了。作为一个南方人，人生中第一次摸到雪，恨不得在雪地打几个滚，要不是没戴手套，还能滚雪球堆雪人了。
+<img src="../img/article/swiss/jungfrau3.jpg" alt="Alt text" />
+<img src="../img/article/swiss/jungfrau2.jpg" alt="Alt text" />
+<img src="../img/article/swiss/jungfrau1.jpg" alt="Alt text" />
+<img src="../img/article/swiss/jungfrau.jpg" alt="Alt text" /></p>
+
+<p>这是下山时，中途下站的一处拍的，夹谷之间的绿洲，视角很好。如果卢塞恩是开胃菜，因特拉肯就是硬菜，杠杠的视觉盛宴~
+<img src="../img/article/swiss/passby1.jpg" alt="Alt text" /></p>
+
+<blockquote>
+  <p>蒙特勒</p>
+</blockquote>
+
+<p>这次行程除了瑞士之外，还有意大利，来蒙特勒的理由似乎是因为蒙特勒可以直达米兰，却意外收获瑞士行的这道甜品，不愧是天堂国家，随便哪里都美如画，蒙特勒是法语区，也多了一丝浪漫的调调，有超大的日内瓦湖，时间关系我们只坐船游了湖的一角，看了很美的日落，残红的夕阳，桃红色的金边云倒影的湖面上，白天鹅悠闲的拨掌划水，飞鸟追着夕阳的余晖戏水。我可能要变身诗人了(●´∀｀●)
+<img src="../img/article/swiss/chillon-castle.jpg" alt="Alt text" />
+<img src="../img/article/swiss/lake.jpg" alt="Alt text" />
+<img src="../img/article/swiss/swan.jpg" alt="Alt text" /></p>
+
+<p>酒店附近的一家法国餐厅，味道不错，发现欧洲这边的餐厅菜单基本都没图，英语还能指望看得懂几个单词，法语只能求翻译了，随便赞下老东家百度的拍图翻译比Google好使多了。</p>
+
+<p>来一段微信的小视频~</p>
+<video controls="">
+  <source src="../img/article/swiss/sunset.mp4" type="video/mp4" />
+您的浏览器不支持Video标签。
+</video>
+
+<p>瑞士，一个完全符合我对美所有想象的国度，风景如画，喜欢这里悠闲慢慢的生活节奏，我一定会再来的！</p>
+
 
 	</div>
 </article>

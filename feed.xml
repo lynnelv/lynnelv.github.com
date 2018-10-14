@@ -1,5 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-27T22:53:53+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
-</subtitle><entry><title type="html">深入理解js事件循环机制（Node.js篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（Node.js篇）" /><published>2017-11-05T00:00:00+08:00</published><updated>2017-11-05T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-14T12:56:46+08:00</updated><id>http://localhost:4000//</id><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">唯美瑞士·风景如画</title><link href="http://localhost:4000/trip-of-swiss" rel="alternate" type="text/html" title="唯美瑞士·风景如画" /><published>2018-10-14T00:00:00+08:00</published><updated>2018-10-14T00:00:00+08:00</updated><id>http://localhost:4000/trip-of-swiss</id><content type="html" xml:base="http://localhost:4000/trip-of-swiss">&lt;p&gt;距离上次旅行又双叒一年了，没勇气感慨时间飞快，因为我今年过得很颓废，『间歇性踌躇满志，持续性混吃等死』是我没错了，一堆烦心事短时间是难解了的，但『每年至少旅行一次』的小目标不能落空啊，是时候出去走走了。前阵子刷抖音，各种安利瑞士的视频看得心痒痒，本来就超爱漂亮的自然风景，就瑞士了！这次行程我完全是无脑跟游，嘿嘿~(•̀⌄•́)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/swiss/map.png&quot; alt=&quot;Alt text&quot; /&gt;
+这次主要去了图中mark的三个地方：卢塞恩-&amp;gt;因特拉肯-&amp;gt;蒙特勒。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;卢塞恩&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;从香港飞，在苏黎世落脚一晚，到达苏黎世是当地时间18点半，第一次坐10几个小时的飞机，累半死，6个小时的时差，国内已经凌晨了，假期时间变慢就是赚了的感觉，彼时深圳还在过30多度的夏天，到这边之后换秋装都瑟瑟发抖，一天入冬了。第二天坐火车往卢塞恩，坐火车发现报站语言不止英语，原来瑞士有4种官方语言，卢塞恩是德语区，隐约意识到吃饭点菜是个问题。。。到达check in之后，在廊桥附近闲逛，天气有点阴郁，整个小镇静谧而悠闲，感觉时光也慢慢流，大抵欧洲小镇都如此。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../img/article/swiss/downtown.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/downtown1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;标志性的廊桥，day and night，还没来前在游记看有人说坐在湖边看风景很惬意，眼前的一切真实还原了我yy的画面，站在廊桥，看着湖里的天鹅和船艇放空，湖边尽是悠闲漫步的路人，再来一杯咖啡就演足了。
+&lt;img src=&quot;../img/article/swiss/day.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/night.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有大名鼎鼎的悲伤的狮子石雕，位置有点难找，在一个小公园里面，瑞士这边街头很多各种水龙头，据说除特殊标示，都可以直接饮用，可见水质环境很好，依云在这边便宜是有道理的。
+&lt;img src=&quot;../img/article/swiss/lion.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;琉森桥附近的钟楼，登上去可以俯瞰整个小镇。
+&lt;img src=&quot;../img/article/swiss/bell-tower.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/overall-view-of-downtown.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第二天终于放晴了，天公作美，正好今天要上皮拉图山，先坐游船到山脚，蓝天白云碧湖，沿途都是美景，半山都是草地，稀稀疏疏的房子，此处应开启多图模式~
+&lt;img src=&quot;../img/article/swiss/boat.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/boat-travel.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/boat-travel1.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/boat-travel2.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;大约1h到达山脚，坐小火车上山，有swiss pass可以半价购票（今年之前swiss pass是免费的），游客略多，所见黑发的基本都是中国人or韩国人，据说国庆期间韩国刚好也是假期，且瑞士对韩国免签，难怪了。
+&lt;img src=&quot;../img/article/swiss/pilatus-ticket.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/pilatus-train.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/pilatus-mountain-view.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/pilatus-mountain-view1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;美得一塌糊涂，各种拍照，还遇到中国大妈在山顶直播&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;因特拉肯&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;去因特拉肯，就要坐心心念念的黄金列车了，略遗憾的是不能开窗，加之天气阴，不能完全还原它的美，下图就是抖音上瑞士很火的地方之一了——龙江小镇，路过mark
+&lt;img src=&quot;../img/article/swiss/golden-pass.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;接近格林德瓦一段都是雪山，下车出站环顾四面都是雪顶山，半坡以下却是绿油油的草地，简直符合所有我对美的想象，满心兴奋！冷的感觉顾不上！必须拍拍拍！酒店小哥很nice，check in时生怕听不懂，特意慢语速，听到”with balcony, mountain view”很惊喜，打开房间门，真的是哇！阳台对面就是梦幻山坡，躺床上就能看见的视角，超预期的满意，因特拉肯这几天住的酒店应该是此行性价比最高的，毕竟欧洲住宿真心贵，7 8百一晚感觉还不如国内的如家。
+&lt;img src=&quot;../img/article/swiss/balcony-mountain-view.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;换上羽绒服之后，沿着downtown一路漫逛，空气很清新，夹着雪水和草的味道，依稀的铃铛声，远近的牛羊在吃草，脖子上的铃铛在摇动，雪顶山上雾气缭绕，简直人间天堂。
+&lt;img src=&quot;../img/article/swiss/interlaken.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/cow.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/interlaken1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来因特拉肯就是为了上少女峰，我们是直接在格林德瓦搭火车上去（swiss pass打7.5折之后还是觉得贵），沿途都是白雪皑皑，冷杉树一片，童话世界的样子，在海拔这么高的山开隧道，建观景台滑雪场什么的，真的很不容易，上去之后我能理解票价了。作为一个南方人，人生中第一次摸到雪，恨不得在雪地打几个滚，要不是没戴手套，还能滚雪球堆雪人了。
+&lt;img src=&quot;../img/article/swiss/jungfrau3.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/jungfrau2.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/jungfrau1.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/jungfrau.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是下山时，中途下站的一处拍的，夹谷之间的绿洲，视角很好。如果卢塞恩是开胃菜，因特拉肯就是硬菜，杠杠的视觉盛宴~
+&lt;img src=&quot;../img/article/swiss/passby1.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;蒙特勒&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这次行程除了瑞士之外，还有意大利，来蒙特勒的理由似乎是因为蒙特勒可以直达米兰，却意外收获瑞士行的这道甜品，不愧是天堂国家，随便哪里都美如画，蒙特勒是法语区，也多了一丝浪漫的调调，有超大的日内瓦湖，时间关系我们只坐船游了湖的一角，看了很美的日落，残红的夕阳，桃红色的金边云倒影的湖面上，白天鹅悠闲的拨掌划水，飞鸟追着夕阳的余晖戏水。我可能要变身诗人了(●´∀｀●)
+&lt;img src=&quot;../img/article/swiss/chillon-castle.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/lake.jpg&quot; alt=&quot;Alt text&quot; /&gt;
+&lt;img src=&quot;../img/article/swiss/swan.jpg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;酒店附近的一家法国餐厅，味道不错，发现欧洲这边的餐厅菜单基本都没图，英语还能指望看得懂几个单词，法语只能求翻译了，随便赞下老东家百度的拍图翻译比Google好使多了。&lt;/p&gt;
+
+&lt;p&gt;来一段微信的小视频~&lt;/p&gt;
+&lt;video controls=&quot;&quot;&gt;
+  &lt;source src=&quot;../img/article/swiss/sunset.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+您的浏览器不支持Video标签。
+&lt;/video&gt;
+
+&lt;p&gt;瑞士，一个完全符合我对美所有想象的国度，风景如画，喜欢这里悠闲慢慢的生活节奏，我一定会再来的！&lt;/p&gt;</content><category term="旅行" /><category term="旅行" /><category term="瑞士" /><summary type="html">美到炸裂的国家，符合所有对美的想象，到处可见的草地，牛羊，雪山，湖泊，瀑布...</summary></entry><entry><title type="html">深入理解js事件循环机制（Node.js篇）</title><link href="http://localhost:4000/js-event-loop-nodejs" rel="alternate" type="text/html" title="深入理解js事件循环机制（Node.js篇）" /><published>2017-11-05T00:00:00+08:00</published><updated>2017-11-05T00:00:00+08:00</updated><id>http://localhost:4000/js-event-loop-nodejs</id><content type="html" xml:base="http://localhost:4000/js-event-loop-nodejs">&lt;style&gt;
 	ol {
 		list-style: decimal;
 		list-style-position: inside;
@@ -764,101 +844,4 @@ c) UI render&lt;/p&gt;
 &lt;/ol&gt;
 &lt;p&gt;
 	以上是使用过程中一些主要点的总结，我用到的功能还只是jmeter的一小部分，jmeter支持的测试类型不只HTTP请求，还有DB，junit等。本文只是介绍了一个完整测试计划的配置过程，作为一个非专业人员自己摸索，有错漏的地方，谢谢指正。
-&lt;/p&gt;</content><category term="技术" /><category term="测试" /><category term="jmeter" /><summary type="html">本文就jmeter常用的、主要的功能作一个总结。</summary></entry><entry><title type="html">vue2表单验证插件のvee-validate</title><link href="http://localhost:4000/veevalidate" rel="alternate" type="text/html" title="vue2表单验证插件のvee-validate" /><published>2017-05-10T00:00:00+08:00</published><updated>2017-05-10T00:00:00+08:00</updated><id>http://localhost:4000/veevalidator</id><content type="html" xml:base="http://localhost:4000/veevalidate">&lt;p&gt;输入校验对fe来说再熟悉不过了，各种类库插件也蛮多，本文要介绍的是，基于目前很火的国人产框架Vue.js 2.0的表单验证插件 — vee-validate的常用方法，虽然&lt;a href=&quot;http://vee-validate.logaretm.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;官方API&lt;/a&gt;已经有比较详细的介绍，但有些细节还是比较隐藏的，这里分享一下&lt;/p&gt;
-&lt;p&gt;还是按部就班吧，安装走起：&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	npm install vee-validate --save
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;使用方法很简单，直接引用&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	import Vue from 'vue'
-	import VeeValidate from 'vee-validate'
-
-	Vue.use(VeeValidate, {
-		// 指定locale为中文
-	  	locale: 'zh_CN'
-	})
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;可以整理一个单独的组件来管理表单验证的相关代码。&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	import {Validator} from 'vee-validate'
-	import cn from 'vee-validate/dist/locale/zh_CN'
-	// 默认是en，这里添加中文的lang包
-	Validator.addLocale(cn)
-	// 自定义校验规则
-	Validator.extend('chinese', {
-		messages: {
-			zh_CN: field =&gt; field + '格式不正确'
-		},
-		validate(value) {
-			return /^[\u4E00-\u9FFF\u3400-\u4DFF]+$/.test(value)
-		}
-	})
-	// 修改vee-validate默认的提示文案
-	Validator.updateDictionary({
-		zh_CN: {
-		    messages: {
-		        regex: field =&gt; field + '格式不正确'
-		    }
-		}
-	});
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;vee-validate本身也有很多常用的校验规则可以选择，这里不累述了，直接参考&lt;a href=&quot;http://vee-validate.logaretm.com/rules.html#available-rules&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;官方文档&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;关于表单控件的引用，这里有几个点：&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;&lt;code&gt;data-vv-as&lt;/code&gt; - 指定显示给用户看的提示字段名，默认是使用name属性&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;v-validate&lt;/code&gt; - 校验规则，多个以“|”分隔&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;data-vv-validate-on&lt;/code&gt; - 指定触发校验的时机，默认是input、change事件时触发，如希望手动触发，设置为&lt;code&gt;none&lt;/code&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;name&lt;/code&gt; - name属性是必须的，否则无法触发校验&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	&amp;lt;input type=&quot;text&quot; name=&quot;name&quot; data-vv-as=&quot;姓名&quot; v-validate=&quot;'required|chinese'&quot; data-vv-validate-on=&quot;blur&quot; v-model=&quot;name&quot;&amp;gt;
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;然后是错误提示了，&lt;em&gt;errors&lt;/em&gt;的常用api如下：&lt;/p&gt;
-&lt;ul&gt;
-	&lt;li&gt;&lt;code&gt;has(field)&lt;/code&gt; - 指定字段是否有错误&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;first(field)&lt;/code&gt; - 返回指定字段的第一个错误信息&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;firstByRule(field, rule)&lt;/code&gt; - 返回指定字段某个校验规则的错误信息&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;any()&lt;/code&gt; - 当前表单校验是否有错误&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;add(file, msg, ruleRule)&lt;/code&gt; - 添加错误信息到errors对象&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;remove(field)&lt;/code&gt; - 清空指定字段的所有错误信息&lt;/li&gt;
-	&lt;li&gt;&lt;code&gt;clear()&lt;/code&gt; - 清空当前表单的所有错误信息&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;p.s: name字段的校验规则包括非空和中文，这里的效果是，非空不提示错误，只有填了非中文的值才提示错误信息，如果空值需要提示，那么用first()&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	&amp;lt;div class=&quot;error&quot; v-show=&quot;errors.firstByRule('name','chinese')&quot;&amp;gt;&amp;lt;/div&amp;gt;
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;以上是通过data-*属性来触发校验，因为前面的&lt;code&gt;Vue.use(VeeValidate)&lt;/code&gt;已经在vue中注册了实例，也可以手动触发校验，如表单提交前手动校验：&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	this.$validator.validateAll().then(async (validateFlag) =&gt; {
-        	if (!validateFlag) return
-			this.$store.dispatch('showToast', {
-				type: 'loading',
-				message: '正在加载...'
-			})
-			await this.$store.dispatch('post', data)
-      	}, err =&gt; {
-      	})
-	}
-	&lt;/code&gt;
-&lt;/pre&gt;
-&lt;p&gt;我这里没有写校验规则，因为在控件上指定了，也可以通过js指定，那么调用就变成了&lt;code&gt;validator.validateAll()&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;
-	&lt;code class=&quot;language-javascript&quot;&gt;
-	const validator = new Validator({
-		name: 'required|chinese',
-		...
-	})
-	&lt;/code&gt;
-&lt;/pre&gt;</content><category term="技术" /><category term="web" /><category term="vue" /><summary type="html">最近的项目前端是基于vue2.0，表单验证这块，用了vee-validate插件，本文是一些常用api总结。</summary></entry></feed>
+&lt;/p&gt;</content><category term="技术" /><category term="测试" /><category term="jmeter" /><summary type="html">本文就jmeter常用的、主要的功能作一个总结。</summary></entry></feed>
